@@ -1,9 +1,9 @@
 import { Container, Box, Text, HStack } from "@chakra-ui/layout"
 import { Input, InputGroup, InputLeftElement} from "@chakra-ui/input"
-import { Kbd } from "@chakra-ui/layout"
 import { Image } from "@chakra-ui/image"
 import { BsSearch } from 'react-icons/bs'
-export const Navbar = () => {
+
+const Navbar = () => {
     return (
         <Box bg="white" boxShadow="md">
             <Container display="flex" maxWidth="90%" paddingY="10px">
@@ -24,3 +24,5 @@ export const Navbar = () => {
         </Box>
     )
 }
+
+export { Navbar }

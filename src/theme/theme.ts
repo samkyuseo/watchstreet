@@ -26,11 +26,12 @@ const components = {
     }
 }
 
-const color = {
+const colors = {
     green: {
-        dark: "#1CB68B"
+        dark: "#1CB68B",
+        light: "#24E5AF"
     }
 
 }
 
-export const theme = extendTheme({ components, color });
+export const theme = extendTheme({ components, colors });

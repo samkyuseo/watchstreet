@@ -2,7 +2,7 @@ import { Container, Heading, Flex, Text, Box, Divider} from '@chakra-ui/layout'
 import { LineChart, Line } from 'recharts';
 
 
-export const Chart = () => {
+const Chart = () => {
     return (
         <Container maxWidth="70%" mt="50px">
             <Box>
@@ -12,21 +12,23 @@ export const Chart = () => {
                 <Text display="inline-block">Today</Text>
             </Box>
             <Box>
-                <LineChart width={600} height={285} data={data}>
-                    <Line type="monotone" dataKey="pv" stroke="#1CB68B" strokeWidth={2} dot={false}/>
+                <LineChart width={700} height={285} data={data}>
+                    <Line type="monotone" dataKey="pv" stroke="#24E5AF" strokeWidth={2} dot={false}/>
                 </LineChart>
                 <Flex style={{gap: 50}}>
-                    <Text variant="bold" color="green" >1D</Text>
+                    <Text variant="bold" color="green.light" textDecoration="underline" textUnderlineOffset="10px" textDecorationThickness="2px">1D</Text>
                     <Text variant="bold">1M</Text>
                     <Text variant="bold">3M</Text>
                     <Text variant="bold">1Y</Text>
                     <Text variant="bold">ALL</Text>
                 </Flex>
-                <Divider mt="10px" width="50%" height={0.4} bg="gray"/>
+                <Divider mt="5px" width="700px" style={{ height: 0.1, backgroundColor: "black" }}/>
             </Box>
         </Container>
     )
 }
+
+export { Chart }
 
 const data = [
     {
