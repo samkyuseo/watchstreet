@@ -13,13 +13,14 @@ import { LineChart, Line } from 'recharts';
 
 const Chart = () => {
   return (
-    <Container maxWidth='70%' mt='50px'>
+    <Container maxWidth='70%' mt='100px'>
+      <Heading>Nautilus 5711/1A-014</Heading>
       <HStack css={{ gap: '40px' }}>
         <VStack alignItems='left'>
           <Box>
-            <Heading>$120,100.12</Heading>
+            <Heading>$475,212.89</Heading>
             <Text variant='bold' display='inline-block'>
-              -$172.5 (-0.14%)
+              -$172.5 (-0.06%)
             </Text>{' '}
             <Text display='inline-block'>Today</Text>
           </Box>
@@ -55,16 +56,15 @@ const Chart = () => {
             />
           </Box>
         </VStack>
-        {/* <Box minWidth='300px' height='390px' border='1px' borderRadius='lg'> */}
         <Image
-          minWidth='300px'
+          width='250px'
           height='390px'
-          border='1px'
           borderRadius='lg'
+          border='1px'
+          borderColor='gray.200'
           src='/patek.jpg'
-          objectFit='cover'
+          objectFit='contain'
         />
-        {/* </Box> */}
       </HStack>
     </Container>
   );

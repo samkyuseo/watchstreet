@@ -10,9 +10,11 @@ const components = {
   Text: {
     baseStyle: {
       fontFamily: 'barlow',
+      color: '#6f6f6f',
     },
     variants: {
       bold: {
+        color: 'black',
         fontWeight: 800,
       },
     },

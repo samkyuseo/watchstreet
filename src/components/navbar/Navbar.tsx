@@ -5,7 +5,16 @@ import { BsSearch } from 'react-icons/bs';
 
 const Navbar = () => {
   return (
-    <Box bg='white' boxShadow='md'>
+    <Box
+      position='fixed'
+      top={0}
+      borderBottom='1px solid'
+      borderColor='gray.100'
+      display='flex'
+      width='100%'
+      bg='white'
+      zIndex={1000}
+    >
       <Container display='flex' maxWidth='90%' paddingY='10px'>
         <HStack flex='1' justifyContent='left'>
           <Image src='logo.svg' boxSize='40px' />
