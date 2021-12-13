@@ -1,6 +1,5 @@
-import React from "react";
 import { Container, Box, Text, Flex } from "@chakra-ui/layout";
-
+import { Image } from "@chakra-ui/react";
 const Footer = () => {
   return (
     <Box
@@ -19,7 +18,10 @@ const Footer = () => {
             💬 Contact Us
           </Text>
         </Flex>
-        <Text marginTop="15px">415 Mission St, San Francisco, CA 94105</Text>
+        <Flex style={{ gap: 5 }}>
+          <Image marginTop="17px" src="images/logo.svg" boxSize="20px" />
+          <Text marginTop="15px">415 Mission St, San Francisco, CA 94105</Text>
+        </Flex>
       </Container>
     </Box>
   );
