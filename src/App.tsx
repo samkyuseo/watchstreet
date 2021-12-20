@@ -1,11 +1,14 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { initializeApp } from "@firebase/app";
-import { getAnalytics } from "@firebase/analytics";
+import { Navigate } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { AuthenticatedTemplate } from "./components/templates/AuthenticatedTemplate";
-import { UnauthenticatedTemplate } from "./components/templates/UnauthenticatedTemplate";
 import { LandingPage } from "./pages/landingpage/LandingPage";
 import { WatchPage } from "./pages/watchpage/WatchPage";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { ProfilePage } from "./pages/profilepage/ProfilePage";
+
+import { initializeApp } from "@firebase/app";
+import { getAnalytics } from "@firebase/analytics";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBNvP9lKSi6K-Mean3tkJfy65a6OfYq3oI",
@@ -21,26 +24,23 @@ const app = initializeApp(firebaseConfig);
 getAnalytics(app);
 
 const App = () => {
+  const [user] = useAuthState(getAuth());
+
   return (
-    <>
-      <AuthenticatedTemplate>
-        <Router>
-          <Routes>
-            <Route path="/watch">
-              <WatchPage />
-            </Route>
-          </Routes>
-        </Router>
-      </AuthenticatedTemplate>
-      <UnauthenticatedTemplate>
-        <Router>
-          <Routes>
-            <Route path="/" element={<LandingPage />}></Route>
-            <Route path="*" element={<LandingPage />}></Route>
-          </Routes>
-        </Router>
-      </UnauthenticatedTemplate>
-    </>
+    <BrowserRouter>
+      {user ? (
+        <Routes>
+          <Route path="/watch" element={<WatchPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          {/* <Route path="*" element={<Navigate to="/watch" />}></Route> */}
+        </Routes>
+      ) : (
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          {/* <Route path="*" element={<Navigate to="/" />}></Route> */}
+        </Routes>
+      )}
+    </BrowserRouter>
   );
 };
 

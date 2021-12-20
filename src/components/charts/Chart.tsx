@@ -8,65 +8,52 @@ import {
   HStack,
   VStack,
 } from "@chakra-ui/layout";
-import { Image } from "@chakra-ui/react";
+
 import { LineChart, Line } from "recharts";
 
 const Chart = () => {
   return (
-    <Container maxWidth="70%" mt="100px">
+    <VStack alignItems="left" minWidth="600px">
       <Heading>Nautilus 5711/1A-014</Heading>
-      <HStack css={{ gap: "40px" }}>
-        <VStack alignItems="left">
-          <Box>
-            <Heading>$475,212.89</Heading>
-            <Text variant="bold" display="inline-block">
-              -$172.5 (-0.06%)
-            </Text>{" "}
-            <Text display="inline-block">Today</Text>
-          </Box>
-          <Box>
-            <LineChart width={700} height={285} data={data}>
-              <Line
-                type="monotone"
-                dataKey="pv"
-                stroke="#24E5AF"
-                strokeWidth={2}
-                dot={false}
-              />
-            </LineChart>
-            <Flex style={{ gap: 50 }}>
-              <Text
-                variant="bold"
-                color="green.light"
-                textDecoration="underline"
-                textUnderlineOffset="10px"
-                textDecorationThickness="2px"
-              >
-                1D
-              </Text>
-              <Text variant="bold">1M</Text>
-              <Text variant="bold">3M</Text>
-              <Text variant="bold">1Y</Text>
-              <Text variant="bold">ALL</Text>
-            </Flex>
-            <Divider
-              mt="5px"
-              width="700px"
-              style={{ height: 0.1, backgroundColor: "black" }}
-            />
-          </Box>
-        </VStack>
-        <Image
-          width="250px"
-          height="390px"
-          borderRadius="lg"
-          border="1px"
-          borderColor="gray.200"
-          src="images/patek.jpg"
-          objectFit="contain"
+      <Box>
+        <Heading>$475,212.89</Heading>
+        <Text variant="bold" display="inline-block">
+          -$172.5 (-0.06%)
+        </Text>{" "}
+        <Text display="inline-block">Today</Text>
+      </Box>
+      <Box>
+        <LineChart width={600} height={285} data={data}>
+          <Line
+            type="monotone"
+            dataKey="pv"
+            stroke="#24E5AF"
+            strokeWidth={2}
+            dot={false}
+          />
+        </LineChart>
+        <Flex style={{ gap: 50 }}>
+          <Text
+            variant="bold"
+            color="green.light"
+            textDecoration="underline"
+            textUnderlineOffset="10px"
+            textDecorationThickness="2px"
+          >
+            1D
+          </Text>
+          <Text variant="bold">1M</Text>
+          <Text variant="bold">3M</Text>
+          <Text variant="bold">1Y</Text>
+          <Text variant="bold">ALL</Text>
+        </Flex>
+        <Divider
+          mt="5px"
+          width="100%"
+          style={{ height: 0.1, backgroundColor: "black" }}
         />
-      </HStack>
-    </Container>
+      </Box>
+    </VStack>
   );
 };
 

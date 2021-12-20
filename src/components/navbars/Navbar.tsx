@@ -2,6 +2,15 @@ import { Container, Box, Text, HStack } from "@chakra-ui/layout";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
 import { Image } from "@chakra-ui/image";
 import { BsSearch } from "react-icons/bs";
+import { FaSignOutAlt } from "react-icons/fa";
+import {
+  MenuButton,
+  Menu,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+} from "@chakra-ui/react";
+import { signOutFromGoogle } from "../../functions/auth";
 
 const Navbar = () => {
   return (
@@ -37,9 +46,19 @@ const Navbar = () => {
           <Text mx="20px" variant="bold">
             Collection
           </Text>
-          <Text mx="20px" variant="bold">
-            Account
-          </Text>
+          <Menu>
+            <MenuButton as={Text} mx="20px" variant="bold">
+              Account
+            </MenuButton>
+            <MenuList>
+              <MenuItem>Account Settings</MenuItem>
+              <MenuDivider />
+              <MenuItem css={{ gap: 5 }} onClick={signOutFromGoogle}>
+                <FaSignOutAlt color="#6f6f6f" />
+                <span>Sign Out</span>
+              </MenuItem>
+            </MenuList>
+          </Menu>
         </HStack>
       </Container>
     </Box>

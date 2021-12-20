@@ -1,5 +1,6 @@
 import { Container, Box, HStack, Flex, Button } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
+import { signInWithGoogle } from "../../functions/auth";
 
 const LandingNavbar = () => {
   return (
@@ -17,8 +18,12 @@ const LandingNavbar = () => {
         <HStack display="flex" width="100%" justifyContent="space-between">
           <Image src="images/logo.svg" boxSize="40px" />
           <Flex style={{ gap: "20px" }}>
-            <Button variant="minimal">Login</Button>
-            <Button variant="pop">Sign Up</Button>
+            <Button variant="minimal" onClick={signInWithGoogle}>
+              Login
+            </Button>
+            <Button variant="pop" onClick={signInWithGoogle}>
+              Sign Up
+            </Button>
           </Flex>
         </HStack>
       </Container>

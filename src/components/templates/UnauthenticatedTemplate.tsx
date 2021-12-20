@@ -13,10 +13,7 @@ interface IProps {
 const UnauthenticatedTemplate = ({ children }: IProps) => {
   const [user] = useAuthState(getAuth());
 
-  if (user === null || user === undefined) {
-    return <>{children}</>;
-  }
-  return <></>;
+  return user === null || user === undefined ? <>{children}</> : <></>;
 };
 
 export { UnauthenticatedTemplate };
