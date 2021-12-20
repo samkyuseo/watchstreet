@@ -1,5 +1,5 @@
 import { Navigate } from "react-router";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { LandingPage } from "./pages/landingpage/LandingPage";
 import { WatchPage } from "./pages/watchpage/WatchPage";
@@ -9,6 +9,8 @@ import { ProfilePage } from "./pages/profilepage/ProfilePage";
 import { initializeApp } from "@firebase/app";
 import { getAnalytics } from "@firebase/analytics";
 import { getAuth } from "firebase/auth";
+
+import { Center, Spinner } from "@chakra-ui/react";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBNvP9lKSi6K-Mean3tkJfy65a6OfYq3oI",
@@ -24,23 +26,42 @@ const app = initializeApp(firebaseConfig);
 getAnalytics(app);
 
 const App = () => {
-  const [user] = useAuthState(getAuth());
+  const [user, loading, error] = useAuthState(getAuth());
 
-  return (
-    <BrowserRouter>
-      {user ? (
+  if (loading || error) {
+    // spin wheel
+    return (
+      <Router>
+        <Routes>
+          <Route
+            path="*"
+            element={
+              <Center>
+                <Spinner />
+              </Center>
+            }
+          ></Route>
+        </Routes>
+      </Router>
+    );
+  } else if (user) {
+    return (
+      <Router>
         <Routes>
           <Route path="/watch" element={<WatchPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          {/* <Route path="*" element={<Navigate to="/watch" />}></Route> */}
+          <Route path="*" element={<Navigate to="/profile" />}></Route>
         </Routes>
-      ) : (
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          {/* <Route path="*" element={<Navigate to="/" />}></Route> */}
-        </Routes>
-      )}
-    </BrowserRouter>
+      </Router>
+    );
+  }
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="*" element={<Navigate to="/" />}></Route>
+      </Routes>
+    </Router>
   );
 };
 

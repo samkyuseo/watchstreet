@@ -3,21 +3,16 @@ import { getAuth } from "firebase/auth";
 
 import {
   Container,
-  Heading,
-  Skeleton,
   HStack,
   VStack,
   Box,
   Text,
   Flex,
-  Divider,
-  Image,
   Spacer,
 } from "@chakra-ui/react";
-import { LineChart, Line } from "recharts";
 import { Navbar } from "../../components/navbars/Navbar";
 import { Footer } from "../../components/footers/Footer";
-
+import { Chart } from "../../components/charts/Chart";
 const ProfilePage = () => {
   const [user] = useAuthState(getAuth());
   return (
@@ -25,49 +20,10 @@ const ProfilePage = () => {
       <Navbar />
       <Container maxWidth="70%" mt="100px">
         <HStack css={{ gap: "40px" }}>
-          <VStack alignItems="left">
-            <Box>
-              <Heading>$475,212.89</Heading>
-              <Text variant="bold" display="inline-block">
-                -$172.5 (-0.06%)
-              </Text>{" "}
-              <Text display="inline-block">Today</Text>
-            </Box>
-            <Box>
-              <LineChart width={600} height={285} data={data}>
-                <Line
-                  type="monotone"
-                  dataKey="pv"
-                  stroke="#24E5AF"
-                  strokeWidth={2}
-                  dot={false}
-                />
-              </LineChart>
-              <Flex style={{ gap: 50 }}>
-                <Text
-                  variant="bold"
-                  color="green.light"
-                  textDecoration="underline"
-                  textUnderlineOffset="10px"
-                  textDecorationThickness="2px"
-                >
-                  1D
-                </Text>
-                <Text variant="bold">1M</Text>
-                <Text variant="bold">3M</Text>
-                <Text variant="bold">1Y</Text>
-                <Text variant="bold">ALL</Text>
-              </Flex>
-              <Divider
-                mt="5px"
-                width="600px"
-                style={{ height: 0.1, backgroundColor: "black" }}
-              />
-            </Box>
-          </VStack>
+          <Chart />
           <Box
             minWidth="300px"
-            height="390px"
+            minHeight="390px"
             borderRadius="lg"
             border="1px"
             borderColor="gray.200"
@@ -134,6 +90,27 @@ const ProfilePage = () => {
               <VStack alignItems="left">
                 <Text variant="bold" fontSize="sm">
                   Jaeger Le Coultre Reverso
+                </Text>
+                <Text fontSize="sm">1 watch</Text>
+              </VStack>
+              <Spacer />
+              <VStack alignItems="right">
+                <Text fontSize="sm">$20,330</Text>
+                <Text fontSize="sm" color="red">
+                  -22.25%
+                </Text>
+              </VStack>
+            </Flex>
+            <Flex
+              borderBottom="1px"
+              borderColor="gray.200"
+              width="100%"
+              padding="10px"
+              flexDirection="row"
+            >
+              <VStack alignItems="left">
+                <Text variant="bold" fontSize="sm">
+                  Rolex Oyster Perpetual Tiffany Blue
                 </Text>
                 <Text fontSize="sm">1 watch</Text>
               </VStack>
