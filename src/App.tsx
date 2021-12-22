@@ -40,6 +40,7 @@ const App = () => {
   if (loading || error) {
     return loadingRoutes;
   }
+
   if (user) {
     return authRoutes;
   } else {
