@@ -1,6 +1,3 @@
-import { useAuthState } from "react-firebase-hooks/auth";
-import { getAuth } from "firebase/auth";
-
 import {
   Container,
   HStack,
@@ -14,7 +11,6 @@ import { Navbar } from "../../components/navbars/Navbar";
 import { Footer } from "../../components/footers/Footer";
 import { Chart } from "../../components/charts/Chart";
 const ProfilePage = () => {
-  const [user] = useAuthState(getAuth());
   return (
     <>
       <Navbar />
@@ -132,68 +128,68 @@ const ProfilePage = () => {
 
 export { ProfilePage };
 
-const data = [
-  {
-    pv: 2400,
-  },
-  {
-    pv: 1398,
-  },
-  {
-    pv: 9800,
-  },
-  {
-    pv: 3908,
-  },
-  {
-    pv: 10000,
-  },
-  {
-    pv: 9000,
-  },
-  {
-    pv: 5679,
-  },
-  {
-    pv: 30000,
-  },
-  {
-    pv: 8000,
-  },
-  {
-    pv: 10000,
-  },
-  {
-    pv: 7000,
-  },
-  {
-    pv: 12000,
-  },
-  {
-    pv: 9000,
-  },
-  {
-    pv: 20000,
-  },
-  {
-    pv: 20000,
-  },
-  {
-    pv: 10098,
-  },
-  {
-    pv: 9800,
-  },
-  {
-    pv: 15008,
-  },
-  {
-    pv: 30000,
-  },
-  {
-    pv: 40000,
-  },
-  {
-    pv: 50000,
-  },
-];
+// const data = [
+//   {
+//     pv: 2400,
+//   },
+//   {
+//     pv: 1398,
+//   },
+//   {
+//     pv: 9800,
+//   },
+//   {
+//     pv: 3908,
+//   },
+//   {
+//     pv: 10000,
+//   },
+//   {
+//     pv: 9000,
+//   },
+//   {
+//     pv: 5679,
+//   },
+//   {
+//     pv: 30000,
+//   },
+//   {
+//     pv: 8000,
+//   },
+//   {
+//     pv: 10000,
+//   },
+//   {
+//     pv: 7000,
+//   },
+//   {
+//     pv: 12000,
+//   },
+//   {
+//     pv: 9000,
+//   },
+//   {
+//     pv: 20000,
+//   },
+//   {
+//     pv: 20000,
+//   },
+//   {
+//     pv: 10098,
+//   },
+//   {
+//     pv: 9800,
+//   },
+//   {
+//     pv: 15008,
+//   },
+//   {
+//     pv: 30000,
+//   },
+//   {
+//     pv: 40000,
+//   },
+//   {
+//     pv: 50000,
+//   },
+// ];

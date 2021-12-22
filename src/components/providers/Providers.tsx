@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter } from "react-router-dom";
 import { theme } from "../../theme/theme";
 
 import "@fontsource/barlow";
@@ -13,5 +14,9 @@ interface IProps {
  * @param children a react child
  */
 export const Providers = ({ children }: IProps) => {
-  return <ChakraProvider theme={theme}>{children}</ChakraProvider>;
+  return (
+    <ChakraProvider theme={theme}>
+      <BrowserRouter>{children}</BrowserRouter>
+    </ChakraProvider>
+  );
 };

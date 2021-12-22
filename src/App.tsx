@@ -1,5 +1,4 @@
-import { Navigate } from "react-router";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 
 import { LandingPage } from "./pages/landingpage/LandingPage";
 import { WatchPage } from "./pages/watchpage/WatchPage";
@@ -10,7 +9,7 @@ import { initializeApp } from "@firebase/app";
 import { getAnalytics } from "@firebase/analytics";
 import { getAuth } from "firebase/auth";
 
-import { Center, Spinner } from "@chakra-ui/react";
+import { LoadingPage } from "./pages/loadingpage/LoadingPage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBNvP9lKSi6K-Mean3tkJfy65a6OfYq3oI",
@@ -27,42 +26,25 @@ getAnalytics(app);
 
 const App = () => {
   const [user, loading, error] = useAuthState(getAuth());
+  const authRoutes = useRoutes([
+    { path: "/watch", element: <WatchPage /> },
+    { path: "/profile", element: <ProfilePage /> },
+    { path: "*", element: <Navigate to="/profile" /> },
+  ]);
+  const unAuthRoutes = useRoutes([
+    { path: "/", element: <LandingPage /> },
+    { path: "*", element: <Navigate to="/" /> },
+  ]);
+  const loadingRoutes = useRoutes([{ path: "*", element: <LoadingPage /> }]);
 
   if (loading || error) {
-    // spin wheel
-    return (
-      <Router>
-        <Routes>
-          <Route
-            path="*"
-            element={
-              <Center>
-                <Spinner />
-              </Center>
-            }
-          ></Route>
-        </Routes>
-      </Router>
-    );
-  } else if (user) {
-    return (
-      <Router>
-        <Routes>
-          <Route path="/watch" element={<WatchPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="*" element={<Navigate to="/profile" />}></Route>
-        </Routes>
-      </Router>
-    );
+    return loadingRoutes;
   }
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="*" element={<Navigate to="/" />}></Route>
-      </Routes>
-    </Router>
-  );
+  if (user) {
+    return authRoutes;
+  } else {
+    return unAuthRoutes;
+  }
 };
 
 export { App };

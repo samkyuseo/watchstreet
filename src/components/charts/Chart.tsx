@@ -1,13 +1,4 @@
-import {
-  Container,
-  Heading,
-  Flex,
-  Text,
-  Box,
-  Divider,
-  HStack,
-  VStack,
-} from "@chakra-ui/layout";
+import { Heading, Flex, Text, Box, Divider, VStack } from "@chakra-ui/layout";
 
 import { LineChart, Line } from "recharts";
 
