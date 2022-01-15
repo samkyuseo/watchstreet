@@ -17,7 +17,7 @@ const Table = ({ watches }: ITableProps) => {
     >
       <Flex borderBottom='1px' borderColor='gray.200' width='100%' p='10px'>
         <Text variant='bold' fontSize='lg'>
-          Details
+          Watches
         </Text>
       </Flex>
       {watches.map((watch, index) => {

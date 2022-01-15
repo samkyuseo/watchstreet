@@ -10,13 +10,11 @@ const ProfilePage = () => {
       <Navbar />
       <Container maxWidth='70%' mt='100px'>
         <HStack css={{ gap: '40px' }}>
-          <Chart
-            title='Your Portfolio'
-            price={225125.5}
-            priceChange={-1025.5}
-            data={data}
-          />
+          {/* Portfolio Section */}
+          <Chart title='' price={225125.5} priceChange={-1025.5} data={data} />
           <Table watches={watches} />
+          {/* Trending List */}
+          {/* News */}
         </HStack>
       </Container>
     </>
