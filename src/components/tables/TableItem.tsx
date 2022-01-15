@@ -1,8 +1,8 @@
 import { Flex, Text, VStack, Spacer } from '@chakra-ui/react';
-import { WatchTableItem } from '../../types/watch';
+import { IWatchTableItem } from '../../types/watch';
 
 interface ITableItemProps {
-  watch: WatchTableItem;
+  watch: IWatchTableItem;
 }
 
 const TableItem = ({ watch }: ITableItemProps) => {

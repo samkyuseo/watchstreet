@@ -1,9 +1,9 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { TableItem } from './TableItem';
-import { WatchTableItem } from '../../types/watch';
+import { IWatchTableItem } from '../../types/watch';
 
 interface ITableProps {
-  watches: WatchTableItem[];
+  watches: IWatchTableItem[];
 }
 
 const Table = ({ watches }: ITableProps) => {
@@ -17,7 +17,7 @@ const Table = ({ watches }: ITableProps) => {
     >
       <Flex borderBottom='1px' borderColor='gray.200' width='100%' p='10px'>
         <Text variant='bold' fontSize='lg'>
-          Your Collection
+          Details
         </Text>
       </Flex>
       {watches.map((watch, index) => {

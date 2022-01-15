@@ -2,15 +2,21 @@ import { Container, HStack } from '@chakra-ui/react';
 import { Navbar } from '../../components/navbars/Navbar';
 import { Footer } from '../../components/footers/Footer';
 import { Chart } from '../../components/charts/Chart';
-import { Table } from '../../components/table/Table';
-import { WatchTableItem } from '../../types/watch';
+import { Table } from '../../components/tables/Table';
+import { IWatchTableItem } from '../../types/watch';
+import { IDataPoint } from '../../types/chart';
 const ProfilePage = () => {
   return (
     <>
       <Navbar />
       <Container maxWidth='70%' mt='100px'>
         <HStack css={{ gap: '40px' }}>
-          <Chart />
+          <Chart
+            title='Your Portfolio'
+            price={225125.5}
+            priceChange={-1025.5}
+            data={data}
+          />
           <Table watches={watches} />
         </HStack>
       </Container>
@@ -19,7 +25,7 @@ const ProfilePage = () => {
   );
 };
 
-const watches: WatchTableItem[] = [
+const watches: IWatchTableItem[] = [
   {
     modelName: 'Rolex GMT Master II Pepsi',
     numWatches: 3,
@@ -43,6 +49,72 @@ const watches: WatchTableItem[] = [
     numWatches: 2,
     price: 6000,
     priceChange: -9.89,
+  },
+];
+
+const data: IDataPoint[] = [
+  {
+    pv: 2400,
+  },
+  {
+    pv: 1398,
+  },
+  {
+    pv: 9800,
+  },
+  {
+    pv: 3908,
+  },
+  {
+    pv: 10000,
+  },
+  {
+    pv: 9000,
+  },
+  {
+    pv: 5679,
+  },
+  {
+    pv: 30000,
+  },
+  {
+    pv: 8000,
+  },
+  {
+    pv: 10000,
+  },
+  {
+    pv: 7000,
+  },
+  {
+    pv: 12000,
+  },
+  {
+    pv: 9000,
+  },
+  {
+    pv: 20000,
+  },
+  {
+    pv: 20000,
+  },
+  {
+    pv: 10098,
+  },
+  {
+    pv: 9800,
+  },
+  {
+    pv: 15008,
+  },
+  {
+    pv: 30000,
+  },
+  {
+    pv: 40000,
+  },
+  {
+    pv: 50000,
   },
 ];
 
