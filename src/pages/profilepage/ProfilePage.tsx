@@ -1,6 +1,5 @@
 import { Container, HStack } from '@chakra-ui/react';
 import { Navbar } from '../../components/navbars/Navbar';
-import { Footer } from '../../components/footers/Footer';
 import { Chart } from '../../components/charts/Chart';
 import { Table } from '../../components/tables/Table';
 import { IWatchTableItem } from '../../types/watch';
@@ -20,7 +19,6 @@ const ProfilePage = () => {
           <Table watches={watches} />
         </HStack>
       </Container>
-      <Footer />
     </>
   );
 };
