@@ -1,21 +1,44 @@
-import { Container, HStack } from '@chakra-ui/react';
+import {
+  Container,
+  HStack,
+  VStack,
+  Heading,
+  Divider,
+  Wrap,
+  WrapItem,
+} from '@chakra-ui/react';
+import { Tag } from '../../components/tags/Tag';
 import { Navbar } from '../../components/navbars/Navbar';
 import { Chart } from '../../components/charts/Chart';
 import { Table } from '../../components/tables/Table';
 import { IWatchTableItem } from '../../types/watch';
 import { IDataPoint } from '../../types/chart';
+import johnmayer from '../../assets/images/johnmayer.jpg';
+import bingingwithbabish from '../../assets/images/bingingwithbabish.jpeg';
+import christianoronaldo from '../../assets/images/christianoronaldo.jpeg';
 const ProfilePage = () => {
   return (
     <>
       <Navbar />
       <Container maxWidth='70%' mt='100px'>
+        {/* Portfolio Section */}
         <HStack css={{ gap: '40px' }}>
-          {/* Portfolio Section */}
           <Chart title='' price={225125.5} priceChange={-1025.5} data={data} />
           <Table watches={watches} />
-          {/* Trending List */}
-          {/* News */}
         </HStack>
+        {/* Trending List */}
+        <VStack alignItems='left' width='600px' mt='30px'>
+          <Heading variant='section-heading'>Trending Lists</Heading>
+          <Divider width='100%' />
+          <Wrap>
+            <WrapItem>
+              {trendingListTags.map((tag, index) => {
+                return <Tag key={index} image={tag.image} text={tag.text} />;
+              })}
+            </WrapItem>
+          </Wrap>
+        </VStack>
+        {/* News */}
       </Container>
     </>
   );
@@ -112,6 +135,57 @@ const data: IDataPoint[] = [
   {
     pv: 50000,
   },
+];
+
+const trendingListTags = [
+  {
+    image: johnmayer,
+    text: 'John Mayer',
+  },
+  {
+    image: bingingwithbabish,
+    text: 'Binging with Babish',
+  },
+  {
+    image: christianoronaldo,
+    text: 'Christiano Ronaldo',
+  },
+  // {
+  //   image: johnmayer,
+  //   text: 'John Mayer',
+  // },
+  // {
+  //   image: bingingwithbabish,
+  //   text: 'Binging with Babish',
+  // },
+  // {
+  //   image: christianoronaldo,
+  //   text: 'Christiano Ronaldo',
+  // },
+  // {
+  //   image: johnmayer,
+  //   text: 'John Mayer',
+  // },
+  // {
+  //   image: bingingwithbabish,
+  //   text: 'Binging with Babish',
+  // },
+  // {
+  //   image: christianoronaldo,
+  //   text: 'Christiano Ronaldo',
+  // },
+  // {
+  //   image: johnmayer,
+  //   text: 'John Mayer',
+  // },
+  // {
+  //   image: bingingwithbabish,
+  //   text: 'Binging with Babish',
+  // },
+  // {
+  //   image: christianoronaldo,
+  //   text: 'Christiano Ronaldo',
+  // },
 ];
 
 export { ProfilePage };

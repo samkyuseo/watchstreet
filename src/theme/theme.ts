@@ -1,69 +1,72 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme } from '@chakra-ui/react';
 
 const components = {
   Heading: {
     baseStyle: {
-      fontFamily: "barlow",
+      fontFamily: 'barlow',
       fontWeight: 900,
     },
     variants: {
-      "hero-heading": {
-        fontSize: "52px",
+      'hero-heading': {
+        fontSize: '52px',
+      },
+      'section-heading': {
+        fontSize: '26px',
       },
     },
   },
   Text: {
     baseStyle: {
-      fontFamily: "barlow",
-      color: "#6f6f6f",
+      fontFamily: 'barlow',
+      color: '#6f6f6f',
     },
     variants: {
       bold: {
-        color: "black",
+        color: 'black',
         fontWeight: 800,
       },
-      "hero-text": {
+      'hero-text': {
         fontWeight: 500,
-        fontSize: "24px",
+        fontSize: '24px',
       },
     },
   },
   Input: {
     baseStyle: {
       field: {
-        fontFamily: "barlow",
+        fontFamily: 'barlow',
       },
     },
   },
   Button: {
     baseStyle: {
-      fontFamily: "barlow",
-      _focus: { boxShadow: "none" },
-      borderRadius: "50px",
+      fontFamily: 'barlow',
+      _focus: { boxShadow: 'none' },
+      borderRadius: '50px',
     },
     sizes: {
       xl: {
-        fontSize: "24px",
-        paddingY: "10px",
-        paddingX: "40px",
+        fontSize: '24px',
+        paddingY: '10px',
+        paddingX: '40px',
       },
     },
     variants: {
       minimal: {
-        background: "transparent",
-        _hover: { backgroundColor: "transparent" },
+        background: 'transparent',
+        _hover: { backgroundColor: 'transparent' },
         _active: {
-          backgroundColor: "transparent",
-          color: "green.light",
+          backgroundColor: 'transparent',
+          color: 'green.light',
         },
-        _focus: { color: "green.dark" },
+        _focus: { color: 'green.dark' },
       },
       pop: {
-        bgColor: "green.light",
-        fontFamily: "barlow",
-        _hover: { backgroundColor: "green.dark" },
+        bgColor: 'green.light',
+        fontFamily: 'barlow',
+        _hover: { backgroundColor: 'green.dark' },
         _active: {
-          backgroundColor: "green.dark",
+          backgroundColor: 'green.dark',
         },
       },
     },
@@ -72,8 +75,8 @@ const components = {
 
 const colors = {
   green: {
-    dark: "#1CB68B",
-    light: "#24E5AF",
+    dark: '#1CB68B',
+    light: '#24E5AF',
   },
 };
 

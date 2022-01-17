@@ -14,7 +14,7 @@ const Chart = ({ title, price, priceChange, data }: IChartProps) => {
   const neatPriceChange = priceChange.toFixed(2).toLocaleString();
   const percentPriceChange = ((priceChange / price) * 100).toFixed(2);
   return (
-    <VStack alignItems='left' minWidth='600px'>
+    <VStack alignItems='left' width='600px'>
       <Heading>{title}</Heading>
       <Box>
         <Heading>${neatPrice}</Heading>
@@ -49,11 +49,7 @@ const Chart = ({ title, price, priceChange, data }: IChartProps) => {
           <Text variant='bold'>1Y</Text>
           <Text variant='bold'>ALL</Text>
         </Flex>
-        <Divider
-          mt='5px'
-          width='100%'
-          style={{ height: 0.1, backgroundColor: 'black' }}
-        />
+        <Divider mt='5px' width='100%' />
       </Box>
     </VStack>
   );
