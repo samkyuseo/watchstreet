@@ -10,6 +10,9 @@ const components = {
       'hero-heading': {
         fontSize: '52px',
       },
+      'card-heading': {
+        fontSize: '18px',
+      },
       'section-heading': {
         fontSize: '26px',
       },
@@ -21,13 +24,26 @@ const components = {
       color: '#6f6f6f',
     },
     variants: {
-      bold: {
+      'bold-text': {
         color: 'black',
         fontWeight: 800,
       },
       'hero-text': {
         fontWeight: 500,
         fontSize: '24px',
+      },
+      'card-company-text': {
+        color: 'black',
+        fontWeight: 800,
+        fontSize: '14px',
+      },
+      'card-text': {
+        fontSize: '14px',
+      },
+      'card-ticker-text': {
+        fontSize: '14px',
+        color: 'black',
+        fontWeight: '800',
       },
     },
   },

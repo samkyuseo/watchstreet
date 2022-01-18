@@ -15,7 +15,7 @@ const TableItem = ({ watch }: ITableItemProps) => {
       flexDirection='row'
     >
       <VStack alignItems='left'>
-        <Text variant='bold' fontSize='sm'>
+        <Text variant='bold-text' fontSize='sm'>
           {watch.modelName}
         </Text>
         <Text fontSize='sm'>{watch.numWatches} watches</Text>

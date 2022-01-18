@@ -18,7 +18,7 @@ const Chart = ({ title, price, priceChange, data }: IChartProps) => {
       <Heading>{title}</Heading>
       <Box>
         <Heading>${neatPrice}</Heading>
-        <Text variant='bold' display='inline-block'>
+        <Text variant='bold-text' display='inline-block'>
           {priceChange < 0 ? '-' : '+'}
           {neatPriceChange} ({percentPriceChange}%)
         </Text>{' '}
@@ -36,20 +36,20 @@ const Chart = ({ title, price, priceChange, data }: IChartProps) => {
         </LineChart>
         <Flex style={{ gap: 50 }}>
           <Text
-            variant='bold'
+            variant='bold-text'
             color='green.light'
             textDecoration='underline'
-            textUnderlineOffset='10px'
+            textUnderlineOffset='13px'
             textDecorationThickness='2px'
           >
             1D
           </Text>
-          <Text variant='bold'>1M</Text>
-          <Text variant='bold'>3M</Text>
-          <Text variant='bold'>1Y</Text>
-          <Text variant='bold'>ALL</Text>
+          <Text variant='bold-text'>1M</Text>
+          <Text variant='bold-text'>3M</Text>
+          <Text variant='bold-text'>1Y</Text>
+          <Text variant='bold-text'>ALL</Text>
         </Flex>
-        <Divider mt='5px' width='100%' />
+        <Divider my='10px' width='100%' />
       </Box>
     </VStack>
   );

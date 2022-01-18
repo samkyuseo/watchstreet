@@ -4,7 +4,7 @@ const Specs = () => {
   return (
     <Container maxWidth='70%' mt='40px'>
       <Box width='700px'>
-        <Text variant='bold' fontSize='lg'>
+        <Text variant='bold-text' fontSize='lg'>
           Specifications 👀
         </Text>
         <Divider marginY='10px' />
@@ -20,27 +20,27 @@ const Specs = () => {
         </Text>
         <SimpleGrid columns={{ sm: 2, md: 3 }} spacing='10px'>
           <Box height='80px'>
-            <Text variant='bold'>Brand</Text>
+            <Text variant='bold-text'>Brand</Text>
             <Text>Patek Philippe</Text>
           </Box>
           <Box height='80px'>
-            <Text variant='bold'>Model</Text>
+            <Text variant='bold-text'>Model</Text>
             <Text>Nautilus 5711/1A-014</Text>
           </Box>
           <Box height='80px'>
-            <Text variant='bold'>Ref Number</Text>
+            <Text variant='bold-text'>Ref Number</Text>
             <Text>5711/1A-014</Text>
           </Box>
           <Box height='80px'>
-            <Text variant='bold'>Year of Production</Text>
+            <Text variant='bold-text'>Year of Production</Text>
             <Text>2021</Text>
           </Box>
           <Box height='80px'>
-            <Text variant='bold'>Case Material</Text>
+            <Text variant='bold-text'>Case Material</Text>
             <Text>Steel</Text>
           </Box>
           <Box height='80px'>
-            <Text variant='bold'>Bracelet Material</Text>
+            <Text variant='bold-text'>Bracelet Material</Text>
             <Text>Steel</Text>
           </Box>
         </SimpleGrid>

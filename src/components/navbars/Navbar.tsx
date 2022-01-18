@@ -44,11 +44,11 @@ const Navbar = () => {
           </InputGroup>
         </HStack>
         <HStack flex='4' justifyContent='right'>
-          <Text mx='20px' variant='bold'>
+          <Text mx='20px' variant='bold-text'>
             Collection
           </Text>
           <Menu>
-            <MenuButton as={Text} mx='20px' variant='bold'>
+            <MenuButton as={Text} mx='20px' variant='bold-text'>
               Account
             </MenuButton>
             <MenuList>

@@ -1,21 +1,27 @@
 import {
+  Box,
   Container,
   HStack,
-  VStack,
+  Text,
   Heading,
   Divider,
   Wrap,
-  WrapItem,
+  Image,
+  Flex,
 } from '@chakra-ui/react';
 import { Tag } from '../../components/tags/Tag';
 import { Navbar } from '../../components/navbars/Navbar';
 import { Chart } from '../../components/charts/Chart';
 import { Table } from '../../components/tables/Table';
+
 import { IWatchTableItem } from '../../types/watch';
 import { IDataPoint } from '../../types/chart';
+
 import johnmayer from '../../assets/images/johnmayer.jpg';
 import bingingwithbabish from '../../assets/images/bingingwithbabish.jpeg';
 import christianoronaldo from '../../assets/images/christianoronaldo.jpeg';
+import hodinkeeimage from '../../assets/images/hodinkeeimage.jpeg';
+
 const ProfilePage = () => {
   return (
     <>
@@ -27,18 +33,56 @@ const ProfilePage = () => {
           <Table watches={watches} />
         </HStack>
         {/* Trending List */}
-        <VStack alignItems='left' width='600px' mt='30px'>
+        <Box width='600px' mt='40px'>
           <Heading variant='section-heading'>Trending Lists</Heading>
-          <Divider width='100%' />
-          <Wrap>
-            <WrapItem>
-              {trendingListTags.map((tag, index) => {
-                return <Tag key={index} image={tag.image} text={tag.text} />;
-              })}
-            </WrapItem>
+          <Box marginY='20px'>
+            <Divider width='100%' />
+          </Box>
+          <Wrap spacing='5px' shouldWrapChildren={true}>
+            {trendingListTags.map((tag, index) => {
+              return <Tag key={index} image={tag.image} text={tag.text} />;
+            })}
           </Wrap>
-        </VStack>
+        </Box>
         {/* News */}
+        <Flex width='600px' mt='40px' flexDir='column'>
+          <Heading variant='section-heading'>News</Heading>
+          <Box marginTop='20px'>
+            <Divider width='100%' />
+          </Box>
+          <Box
+            width='660px'
+            mb='100px'
+            paddingX='30px'
+            alignContent={'center'}
+            _hover={{ backgroundColor: 'gray.50' }}
+          >
+            <Text variant='card-company-text' mb='20px'>
+              Hodinkee
+            </Text>
+            <HStack spacing='50px'>
+              <Box width='350px' minHeight='200px'>
+                <Heading variant='card-heading' mb='20px'>
+                  Introducing: Zenith's Latest Defy Is The Funky '60s Revival
+                  I've Been Waiting For
+                </Heading>
+                <Text variant='card-text' mb='20px'>
+                  The contemporary Zenith Defy collection, in its current form
+                  since 2017, looks like a watch that was designed to meet the
+                  trends of the 2020s....
+                </Text>
+                <Text variant='card-ticker-text'>Zenith Defy</Text>
+              </Box>
+              <Image
+                width='200px'
+                minHeight='200px'
+                objectFit='cover'
+                borderRadius='5px'
+                src={hodinkeeimage}
+              />
+            </HStack>
+          </Box>
+        </Flex>
       </Container>
     </>
   );
@@ -150,42 +194,30 @@ const trendingListTags = [
     image: christianoronaldo,
     text: 'Christiano Ronaldo',
   },
-  // {
-  //   image: johnmayer,
-  //   text: 'John Mayer',
-  // },
-  // {
-  //   image: bingingwithbabish,
-  //   text: 'Binging with Babish',
-  // },
-  // {
-  //   image: christianoronaldo,
-  //   text: 'Christiano Ronaldo',
-  // },
-  // {
-  //   image: johnmayer,
-  //   text: 'John Mayer',
-  // },
-  // {
-  //   image: bingingwithbabish,
-  //   text: 'Binging with Babish',
-  // },
-  // {
-  //   image: christianoronaldo,
-  //   text: 'Christiano Ronaldo',
-  // },
-  // {
-  //   image: johnmayer,
-  //   text: 'John Mayer',
-  // },
-  // {
-  //   image: bingingwithbabish,
-  //   text: 'Binging with Babish',
-  // },
-  // {
-  //   image: christianoronaldo,
-  //   text: 'Christiano Ronaldo',
-  // },
+  {
+    image: christianoronaldo,
+    text: 'Christiano Ronaldo',
+  },
+  {
+    image: johnmayer,
+    text: 'John Mayer',
+  },
+  {
+    image: johnmayer,
+    text: 'John Mayer',
+  },
+  {
+    image: bingingwithbabish,
+    text: 'Binging with Babish',
+  },
+  {
+    image: christianoronaldo,
+    text: 'Christiano Ronaldo',
+  },
+  {
+    image: christianoronaldo,
+    text: 'Christiano Ronaldo',
+  },
 ];
 
 export { ProfilePage };

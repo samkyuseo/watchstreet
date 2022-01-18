@@ -16,7 +16,7 @@ const Table = ({ watches }: ITableProps) => {
       borderColor='gray.200'
     >
       <Flex borderBottom='1px' borderColor='gray.200' width='100%' p='10px'>
-        <Text variant='bold' fontSize='lg'>
+        <Text variant='bold-text' fontSize='lg'>
           Watches
         </Text>
       </Flex>

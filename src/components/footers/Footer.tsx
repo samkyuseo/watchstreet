@@ -11,7 +11,6 @@ const Footer = () => {
       borderColor='gray.100'
       bg='#f3f3f3'
       width='100%'
-      position='fixed'
     >
       <Container maxWidth='70%' color='#6f6f6f'>
         <Flex marginTop='35px' justifyContent='space-between'>

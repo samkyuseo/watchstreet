@@ -14,9 +14,7 @@ const LandingHero = () => {
     <Container maxWidth='70%' mt='100px' height='100%' marginBottom='100px'>
       <VStack spacing={5}>
         <Heading variant='hero-heading'>watchvalue.io</Heading>
-        <Text variant='hero-text'>
-          Live market pricing and media on your favorite watches
-        </Text>
+        <Text variant='hero-text'>Robinhood but for watches.</Text>
         <Button onClick={signInWithGoogle} variant='pop' size='xl'>
           Sign Up
         </Button>

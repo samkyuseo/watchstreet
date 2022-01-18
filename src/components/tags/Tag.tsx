@@ -1,4 +1,4 @@
-import { Flex, Image, Text } from '@chakra-ui/react';
+import { Center, Image, Text } from '@chakra-ui/react';
 
 interface ITagProps {
   image: string;
@@ -7,25 +7,20 @@ interface ITagProps {
 
 const Tag = ({ image, text }: ITagProps) => {
   return (
-    <>
-      <Flex
-        border='1px'
-        borderColor='gray.200'
-        borderRadius='30px'
-        pl='9px'
-        pr='15px'
-        py='5px'
-        width='fit-content'
-        display='flex'
-        flexDirection='row'
-        style={{ gap: 10 }}
-      >
-        <Image src={image} boxSize='30px' borderRadius='20px' />
-        <Text color='black' mt='2px'>
-          {text}
-        </Text>
-      </Flex>
-    </>
+    <Center
+      border='1px'
+      borderColor='gray.200'
+      borderRadius='30px'
+      pl='9px'
+      pr='15px'
+      py='5px'
+      style={{ gap: 10 }}
+    >
+      <Image src={image} boxSize='28px' borderRadius='20px' objectFit='cover' />
+      <Text color='black' mt='2px' fontSize='15px'>
+        {text}
+      </Text>
+    </Center>
   );
 };
 
