@@ -69,7 +69,7 @@ const ProfilePage = () => {
                 <Text variant='card-text' mb='20px'>
                   The contemporary Zenith Defy collection, in its current form
                   since 2017, looks like a watch that was designed to meet the
-                  trends of the 2020s....
+                  trends of the 2020s...
                 </Text>
                 <Text variant='card-ticker-text'>Zenith Defy</Text>
               </Box>
