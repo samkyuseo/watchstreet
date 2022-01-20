@@ -40,11 +40,6 @@ const components = {
       'card-text': {
         fontSize: '14px',
       },
-      'card-ticker-text': {
-        fontSize: '14px',
-        color: 'black',
-        fontWeight: '800',
-      },
     },
   },
   Input: {
