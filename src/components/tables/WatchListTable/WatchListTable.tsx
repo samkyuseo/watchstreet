@@ -82,6 +82,7 @@ const WatchListTable = ({ watches }: IWatchListTableProps) => {
                     ) : (
                       <StatArrow type='decrease' />
                     )}
+                    {'  '}
                     {percentChange < 0 ? percentChange * -1 : percentChange}%
                   </StatHelpText>
                 </Td>

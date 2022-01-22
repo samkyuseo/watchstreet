@@ -10,7 +10,7 @@ import { getAnalytics } from '@firebase/analytics';
 import { getAuth } from 'firebase/auth';
 
 import { LoadingPage } from './pages/loadingpage/LoadingPage';
-import { ListPage } from './pages/listpage/ListPage';
+import { WatchListPage } from './pages/watchlistpage/WatchListPage';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBNvP9lKSi6K-Mean3tkJfy65a6OfYq3oI',
@@ -28,7 +28,7 @@ getAnalytics(app);
 const App = () => {
   const [user, loading, error] = useAuthState(getAuth());
   const authRoutes = useRoutes([
-    { path: '/lists/watchvalue/:id', element: <ListPage /> },
+    { path: '/lists/watchvalue/:id', element: <WatchListPage /> },
     { path: '/watch/:id', element: <WatchPage /> },
     { path: '/profile', element: <ProfilePage /> },
     { path: '*', element: <Navigate to='/profile' /> },

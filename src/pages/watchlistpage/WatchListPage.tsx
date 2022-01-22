@@ -1,7 +1,7 @@
 import { Navbar } from '../../components/navbars/Navbar';
 import { Container, Text, Heading, Box } from '@chakra-ui/react';
 import { WatchListTable } from '../../components/tables/WatchListTable/WatchListTable';
-const ListPage = () => {
+const WatchListPage = () => {
   return (
     <>
       <Navbar />
@@ -177,4 +177,4 @@ const tableRows = [
   },
 ];
 
-export { ListPage };
+export { WatchListPage };
