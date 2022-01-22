@@ -13,9 +13,6 @@ import { Chart } from '../../components/charts/Chart';
 import { WatchCollectionTable } from '../../components/tables/WatchCollectionTable/WatchCollectionTable';
 import { Article } from '../../components/articles/Article';
 
-import { IWatchTableItem } from '../../types/watch';
-import { IDataPoint } from '../../types/chart';
-
 import johnmayer from '../../assets/images/johnmayer.jpg';
 import bingingwithbabish from '../../assets/images/bingingwithbabish.jpeg';
 import christianoronaldo from '../../assets/images/christianoronaldo.jpeg';
@@ -67,7 +64,7 @@ const ProfilePage = () => {
   );
 };
 
-const watches: IWatchTableItem[] = [
+const watches = [
   {
     modelName: 'Rolex GMT Master II Pepsi',
     numWatches: 3,
@@ -94,7 +91,7 @@ const watches: IWatchTableItem[] = [
   },
 ];
 
-const data: IDataPoint[] = [
+const data = [
   {
     pv: 2400,
   },

@@ -1,11 +1,18 @@
 import { Flex, Text, VStack, Spacer } from '@chakra-ui/react';
-import { IWatchTableItem } from '../../../types/watch';
 
-interface ITableItemProps {
-  watch: IWatchTableItem;
+interface IWatchTableItemProps {
+  modelName: string;
+  numWatches: number;
+  price: number;
+  priceChange: number;
 }
 
-const TableItem = ({ watch }: ITableItemProps) => {
+const WatchTableItem = ({
+  modelName,
+  numWatches,
+  price,
+  priceChange,
+}: IWatchTableItemProps) => {
   return (
     <Flex
       borderBottom='1px'
@@ -16,20 +23,20 @@ const TableItem = ({ watch }: ITableItemProps) => {
     >
       <VStack alignItems='left'>
         <Text variant='bold-text' fontSize='sm'>
-          {watch.modelName}
+          {modelName}
         </Text>
-        <Text fontSize='sm'>{watch.numWatches} watches</Text>
+        <Text fontSize='sm'>{numWatches} watches</Text>
       </VStack>
       <Spacer />
       <VStack alignItems='right'>
-        <Text fontSize='sm'>${watch.price}</Text>
-        {watch.priceChange >= 0 ? (
+        <Text fontSize='sm'>${price}</Text>
+        {priceChange >= 0 ? (
           <Text fontSize='sm' color='green.light'>
-            +{watch.priceChange}%
+            +{priceChange}%
           </Text>
         ) : (
           <Text fontSize='sm' color='red'>
-            -{watch.priceChange}%
+            -{priceChange}%
           </Text>
         )}
       </VStack>
@@ -37,4 +44,5 @@ const TableItem = ({ watch }: ITableItemProps) => {
   );
 };
 
-export { TableItem };
+export { WatchTableItem };
+export type { IWatchTableItemProps };

@@ -1,18 +1,11 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import { TableItem } from './TableItem';
+import { WatchTableItem, IWatchTableItemProps } from './WatchTableItem';
 
-interface IWatchTableItem {
-  modelName: string;
-  numWatches: number;
-  price: number;
-  priceChange: number;
+interface IWatchCollectionTableProps {
+  watches: IWatchTableItemProps[];
 }
 
-interface ITableProps {
-  watches: IWatchTableItem[];
-}
-
-const WatchCollectionTable = ({ watches }: ITableProps) => {
+const WatchCollectionTable = ({ watches }: IWatchCollectionTableProps) => {
   return (
     <Box
       minWidth='300px'
@@ -27,7 +20,7 @@ const WatchCollectionTable = ({ watches }: ITableProps) => {
         </Text>
       </Flex>
       {watches.map((watch, index) => {
-        return <TableItem key={index} watch={watch}></TableItem>;
+        return <WatchTableItem key={index} {...watch} />;
       })}
     </Box>
   );

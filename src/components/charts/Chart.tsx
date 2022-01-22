@@ -1,7 +1,10 @@
 import { Heading, Flex, Text, Box, Divider, VStack } from '@chakra-ui/layout';
 import { LineChart, Line } from 'recharts';
-import { IDataPoint } from '../../types/chart';
 import { generateNeatVersion } from '../../functions/num';
+
+interface IDataPoint {
+  pv: number;
+}
 
 interface IChartProps {
   title: string;
