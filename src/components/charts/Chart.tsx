@@ -1,19 +1,13 @@
 import { Heading, Flex, Text, Box, Divider, VStack } from '@chakra-ui/layout';
 import { LineChart, Line } from 'recharts';
 import { IDataPoint } from '../../types/chart';
+import { generateNeatVersion } from '../../functions/num';
 
 interface IChartProps {
   title: string;
   price: number;
   priceChange: number;
   data: IDataPoint[];
-}
-
-function generateNeatVersion(num: number): string {
-  return num
-    .toFixed(2)
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 const Chart = ({ title, price, priceChange, data }: IChartProps) => {

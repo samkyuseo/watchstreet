@@ -1,18 +1,6 @@
 import { Navbar } from '../../components/navbars/Navbar';
-import {
-  Container,
-  Text,
-  Heading,
-  Box,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  StatArrow,
-  StatHelpText,
-} from '@chakra-ui/react';
+import { Container, Text, Heading, Box } from '@chakra-ui/react';
+import { WatchListTable } from '../../components/tables/WatchListTable/WatchListTable';
 const ListPage = () => {
   return (
     <>
@@ -27,77 +15,7 @@ const ListPage = () => {
           </Text>
         </Box>
         <Box width='600px' mt='20px'>
-          <Table width='100%'>
-            <Thead>
-              <Tr>
-                <Th p='0' fontFamily='barlow' width='300px'>
-                  Model and Company
-                </Th>
-                <Th px='0' textAlign='center' fontFamily='barlow' width='100px'>
-                  Reference
-                </Th>
-                <Th px='0' textAlign='center' fontFamily='barlow' width='100px'>
-                  Price
-                </Th>
-                <Th px='0' textAlign='right' fontFamily='barlow' width='100px'>
-                  This Week
-                </Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {tableRows.map(
-                (
-                  { company, model, reference, price, percentChange },
-                  index
-                ) => {
-                  return (
-                    <Tr key={index}>
-                      <Td px='0' fontFamily='barlow'>
-                        <Text color='black' fontSize='14px'>
-                          {model}
-                        </Text>
-                        <Text fontSize='12px'>{company}</Text>
-                      </Td>
-                      <Td
-                        px='0'
-                        textAlign='center'
-                        fontFamily='barlow'
-                        fontSize='14px'
-                      >
-                        {reference}
-                      </Td>
-                      <Td
-                        px='0'
-                        textAlign='center'
-                        fontFamily='barlow'
-                        fontSize='14px'
-                      >
-                        ${price.toLocaleString()}
-                      </Td>
-                      <Td
-                        px='0'
-                        textAlign='right'
-                        fontFamily='barlow'
-                        fontSize='14px'
-                      >
-                        <StatHelpText>
-                          {percentChange > 0 ? (
-                            <StatArrow type='increase' />
-                          ) : (
-                            <StatArrow type='decrease' />
-                          )}
-                          {percentChange < 0
-                            ? percentChange * -1
-                            : percentChange}
-                          %
-                        </StatHelpText>
-                      </Td>
-                    </Tr>
-                  );
-                }
-              )}
-            </Tbody>
-          </Table>
+          <WatchListTable watches={tableRows} />
         </Box>
       </Container>
     </>

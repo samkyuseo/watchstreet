@@ -10,7 +10,7 @@ import {
 import { Tag } from '../../components/tags/Tag';
 import { Navbar } from '../../components/navbars/Navbar';
 import { Chart } from '../../components/charts/Chart';
-import { CollectionTable } from '../../components/tables/CollectionTable/CollectionTable';
+import { WatchCollectionTable } from '../../components/tables/WatchCollectionTable/WatchCollectionTable';
 import { Article } from '../../components/articles/Article';
 
 import { IWatchTableItem } from '../../types/watch';
@@ -30,7 +30,7 @@ const ProfilePage = () => {
         {/* Portfolio Section */}
         <HStack css={{ gap: '40px' }}>
           <Chart title='' price={225125.5} priceChange={-1025.5} data={data} />
-          <CollectionTable watches={watches} />
+          <WatchCollectionTable watches={watches} />
         </HStack>
         {/* Trending List */}
         <Box width='600px' mt='40px'>
@@ -53,6 +53,7 @@ const ProfilePage = () => {
           {newsArticles.map((article, index) => {
             return (
               <Article
+                key={index}
                 company={article.company}
                 heading={article.heading}
                 article={article.article}
