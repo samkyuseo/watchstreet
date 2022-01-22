@@ -1,27 +1,30 @@
 import { Navbar } from '../../components/navbars/Navbar';
 import { Chart } from '../../components/charts/Chart';
 import { Specs } from '../../components/specs/Specs';
-import { Image } from '../../components/images/Image';
-import { HStack } from '@chakra-ui/react';
+import { WatchImage } from '../../components/images/WatchImage/WatchImage';
 
-import { Container } from '@chakra-ui/react';
+import { Container, Box } from '@chakra-ui/react';
+
+import patek from '../../assets/images/patek.jpg';
 
 const WatchPage = () => {
   return (
     <>
       <Navbar />
-      <Container maxWidth='70%' mt='100px'>
-        <HStack css={{ gap: 40 }}>
-          <Chart
-            title='Nautilus 5711/1A-014'
-            price={475212.89}
-            priceChange={-172.5}
-            data={data}
-          />
-          <Image />
-        </HStack>
+      <WatchImage image={patek} />
+      <Container maxWidth='70%' mt='100px' mb='100px'>
+        {/* Price Data Section */}
+        <Chart
+          title='Nautilus 5711/1A-014'
+          price={475212.89}
+          priceChange={-172.5}
+          data={data}
+        />
+        {/* Specifications Section */}
+        <Box width='600px' mt='40px'>
+          <Specs />
+        </Box>
       </Container>
-      <Specs />
     </>
   );
 };

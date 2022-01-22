@@ -23,12 +23,10 @@ const ProfilePage = () => {
   return (
     <>
       <Navbar />
-      <Container maxWidth='70%' mt='100px' mb='100px'>
+      <WatchCollectionTable watches={watches} />
+      <Container minWidth='70%' mt='100px' mb='100px'>
         {/* Portfolio Section */}
-        <HStack css={{ gap: '40px' }}>
-          <Chart title='' price={225125.5} priceChange={-1025.5} data={data} />
-          <WatchCollectionTable watches={watches} />
-        </HStack>
+        <Chart title='' price={225125.5} priceChange={-1025.5} data={data} />
         {/* Trending List */}
         <Box width='600px' mt='40px'>
           <Heading variant='section-heading'>Trending Lists</Heading>
