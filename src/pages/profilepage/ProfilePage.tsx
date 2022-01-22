@@ -10,7 +10,7 @@ import {
 import { Tag } from '../../components/tags/Tag';
 import { Navbar } from '../../components/navbars/Navbar';
 import { Chart } from '../../components/charts/Chart';
-import { Table } from '../../components/tables/Table';
+import { CollectionTable } from '../../components/tables/CollectionTable/CollectionTable';
 import { Article } from '../../components/articles/Article';
 
 import { IWatchTableItem } from '../../types/watch';
@@ -30,7 +30,7 @@ const ProfilePage = () => {
         {/* Portfolio Section */}
         <HStack css={{ gap: '40px' }}>
           <Chart title='' price={225125.5} priceChange={-1025.5} data={data} />
-          <Table watches={watches} />
+          <CollectionTable watches={watches} />
         </HStack>
         {/* Trending List */}
         <Box width='600px' mt='40px'>

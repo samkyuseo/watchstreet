@@ -9,10 +9,17 @@ interface IChartProps {
   data: IDataPoint[];
 }
 
+function generateNeatVersion(num: number): string {
+  return num
+    .toFixed(2)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
 const Chart = ({ title, price, priceChange, data }: IChartProps) => {
-  const neatPrice = price.toFixed(2).toLocaleString();
-  const neatPriceChange = priceChange.toFixed(2).toLocaleString();
-  const percentPriceChange = ((priceChange / price) * 100).toFixed(2);
+  const neatPrice = generateNeatVersion(price);
+  const neatPriceChange = generateNeatVersion(priceChange);
+  const percentPriceChange = generateNeatVersion((priceChange / price) * 100);
   return (
     <VStack alignItems='left' width='600px'>
       <Heading>{title}</Heading>

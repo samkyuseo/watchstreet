@@ -1,12 +1,12 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import { TableItem } from './TableItem';
-import { IWatchTableItem } from '../../types/watch';
+import { TableItem } from './CollectionTableItem';
+import { IWatchTableItem } from '../../../types/watch';
 
 interface ITableProps {
   watches: IWatchTableItem[];
 }
 
-const Table = ({ watches }: ITableProps) => {
+const CollectionTable = ({ watches }: ITableProps) => {
   return (
     <Box
       minWidth='300px'
@@ -27,4 +27,4 @@ const Table = ({ watches }: ITableProps) => {
   );
 };
 
-export { Table };
+export { CollectionTable };

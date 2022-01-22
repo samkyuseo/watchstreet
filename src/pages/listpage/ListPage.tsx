@@ -7,11 +7,11 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
+  StatArrow,
+  StatHelpText,
 } from '@chakra-ui/react';
 const ListPage = () => {
   return (
@@ -27,35 +27,71 @@ const ListPage = () => {
           </Text>
         </Box>
         <Box width='600px' mt='20px'>
-          <Table width='100%' textAlign='left'>
-            <Thead textAlign='left'>
+          <Table width='100%'>
+            <Thead>
               <Tr>
-                <Th textAlign='left'>Model and Company</Th>
-                <Th>Price</Th>
-                <Th>This Week</Th>
-                <Th>Material</Th>
-                <Th>Reference</Th>
+                <Th p='0' fontFamily='barlow' width='300px'>
+                  Model and Company
+                </Th>
+                <Th px='0' textAlign='center' fontFamily='barlow' width='100px'>
+                  Reference
+                </Th>
+                <Th px='0' textAlign='center' fontFamily='barlow' width='100px'>
+                  Price
+                </Th>
+                <Th px='0' textAlign='right' fontFamily='barlow' width='100px'>
+                  This Week
+                </Th>
               </Tr>
             </Thead>
             <Tbody>
               {tableRows.map(
                 (
-                  { company, model, reference, price, material, percentChange },
+                  { company, model, reference, price, percentChange },
                   index
                 ) => {
                   return (
                     <Tr key={index}>
-                      <Td>
-                        {model}
-                        {company}
+                      <Td px='0' fontFamily='barlow'>
+                        <Text color='black' fontSize='14px'>
+                          {model}
+                        </Text>
+                        <Text fontSize='12px'>{company}</Text>
                       </Td>
-                      <Td>${price.toLocaleString()}</Td>
-                      <Td color={percentChange > 0 ? 'green.light' : 'red'}>
-                        {percentChange > 0 ? '+' : ''}
-                        {percentChange.toFixed(2)}%
+                      <Td
+                        px='0'
+                        textAlign='center'
+                        fontFamily='barlow'
+                        fontSize='14px'
+                      >
+                        {reference}
                       </Td>
-                      <Td>{material}</Td>
-                      <Td>{reference}</Td>
+                      <Td
+                        px='0'
+                        textAlign='center'
+                        fontFamily='barlow'
+                        fontSize='14px'
+                      >
+                        ${price.toLocaleString()}
+                      </Td>
+                      <Td
+                        px='0'
+                        textAlign='right'
+                        fontFamily='barlow'
+                        fontSize='14px'
+                      >
+                        <StatHelpText>
+                          {percentChange > 0 ? (
+                            <StatArrow type='increase' />
+                          ) : (
+                            <StatArrow type='decrease' />
+                          )}
+                          {percentChange < 0
+                            ? percentChange * -1
+                            : percentChange}
+                          %
+                        </StatHelpText>
+                      </Td>
                     </Tr>
                   );
                 }
@@ -146,7 +182,7 @@ const tableRows = [
     model: 'Daytona, Pulsation Dial',
     material: 'Steel',
     reference: '6264',
-    price: 1000000.24,
+    price: 1000000,
     percentChange: 45.8,
   },
   {
