@@ -18,7 +18,7 @@ const Chart = ({ title, price, priceChange, data }: IChartProps) => {
   const neatPriceChange = generateNeatVersion(priceChange);
   const percentPriceChange = generateNeatVersion((priceChange / price) * 100);
   return (
-    <VStack alignItems='left' width='600px'>
+    <VStack alignItems='left' width='600px' bg='red'>
       <Heading>{title}</Heading>
       <Box>
         <Heading>${neatPrice}</Heading>

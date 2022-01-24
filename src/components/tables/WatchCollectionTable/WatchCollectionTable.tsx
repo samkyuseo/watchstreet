@@ -8,11 +8,11 @@ interface IWatchCollectionTableProps {
 const WatchCollectionTable = ({ watches }: IWatchCollectionTableProps) => {
   return (
     <Box
-      position='fixed'
+      // position='-webkit-sticky'
+      position='sticky'
       top='110px'
-      left='70%'
-      right='30%'
-      minWidth='300px'
+      left='900px'
+      width='300px'
       borderRadius='lg'
       border='1px'
       borderColor='gray.200'
