@@ -16,21 +16,21 @@ import logo from '../../assets/images/logo.svg';
 const Navbar = () => {
   return (
     <Box
-      position='fixed'
       top={0}
-      borderBottom='1px solid'
-      borderColor='gray.100'
+      position='fixed'
       display='flex'
       width='100%'
+      zIndex={1}
+      borderBottom='1px solid'
+      borderColor='gray.100'
       bg='white'
-      zIndex={1000}
     >
       <Container display='flex' maxWidth='90%' paddingY='10px'>
         <HStack flex='1' justifyContent='left'>
           <Image src={logo} boxSize='40px' />
         </HStack>
         <HStack flex='4'>
-          <InputGroup>
+          <InputGroup width='100%'>
             <InputLeftElement
               pointerEvents='none'
               children={<BsSearch color='gray' />}
@@ -38,7 +38,7 @@ const Navbar = () => {
             <Input
               variant='outline'
               placeholder='Search watches'
-              maxWidth='80%'
+              maxWidth='100%'
               focusBorderColor='gray'
             />
           </InputGroup>

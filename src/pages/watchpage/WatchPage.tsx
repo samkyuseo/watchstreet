@@ -11,20 +11,27 @@ const WatchPage = () => {
   return (
     <>
       <Navbar />
-      <WatchImage image={patek} />
-      <Container maxWidth='70%' mt='100px' mb='100px'>
-        {/* Price Data Section */}
-        <Chart
-          title='Nautilus 5711/1A-014'
-          price={475212.89}
-          priceChange={-172.5}
-          data={data}
-        />
-        {/* Specifications Section */}
-        <Box width='600px' mt='40px'>
-          <Specs />
+      <Box
+        display='flex'
+        width='1000px'
+        margin='auto'
+        justifyContent={'space-between'}
+      >
+        <Box width='60%' mt='100px' mb='100px'>
+          {/* Price Data Section */}
+          <Chart
+            title='Nautilus 5711/1A-014'
+            price={475212.89}
+            priceChange={-172.5}
+            data={data}
+          />
+          {/* Specifications Section */}
+          <Box width='600px' mt='40px'>
+            <Specs />
+          </Box>
         </Box>
-      </Container>
+        <WatchImage image={patek} />
+      </Box>
     </>
   );
 };

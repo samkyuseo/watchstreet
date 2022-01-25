@@ -5,19 +5,26 @@ const WatchListPage = () => {
   return (
     <>
       <Navbar />
-      <Container maxWidth='70%' mt='100px' mb='100px'>
-        <Box width='600px' mt='40px'>
-          <Heading>John Mayer's Collection</Heading>
-          <Text mt='20px'>
-            The following is John Mayer's watch collection based on all the
-            latest media that we've gathered. Remember when the Rolex Cosmograph
-            Daytona 116508 got nicknamed the John Mayer Daytona?
-          </Text>
+      <Box
+        display='flex'
+        width='1000px'
+        margin='auto'
+        justifyContent={'space-between'}
+      >
+        <Box maxWidth='60%' mt='100px' mb='100px'>
+          <Box width='600px'>
+            <Heading>John Mayer's Collection</Heading>
+            <Text mt='20px'>
+              The following is John Mayer's watch collection based on all the
+              latest media that we've gathered. Remember when the Rolex
+              Cosmograph Daytona 116508 got nicknamed the John Mayer Daytona?
+            </Text>
+          </Box>
+          <Box width='600px' mt='20px'>
+            <WatchListTable watches={tableRows} />
+          </Box>
         </Box>
-        <Box width='600px' mt='20px'>
-          <WatchListTable watches={tableRows} />
-        </Box>
-      </Container>
+      </Box>
     </>
   );
 };

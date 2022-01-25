@@ -23,48 +23,77 @@ const ProfilePage = () => {
   return (
     <>
       <Navbar />
-      <Container minWidth='70%' mt='100px' mb='100px'>
-        {/* Portfolio Section */}
-
-        <WatchCollectionTable watches={watches} />
-        <Chart title='' price={225125.5} priceChange={-1025.5} data={data} />
-
-        {/* Trending List */}
-        <Box width='600px' mt='40px'>
-          <Heading variant='section-heading'>Trending Lists</Heading>
-          <Box marginY='20px'>
-            <Divider width='100%' />
+      <Box
+        display='flex'
+        width='1000px'
+        margin='auto'
+        justifyContent={'space-between'}
+      >
+        <Box width='60%' mt='100px' mb='100px'>
+          {/* Portfolio Section */}
+          <Chart title='' price={225125.5} priceChange={-1025.5} data={data} />
+          {/* Trending List */}
+          <Box width='600px' mt='40px'>
+            <Heading variant='section-heading'>Trending Lists</Heading>
+            <Box marginY='20px'>
+              <Divider width='100%' />
+            </Box>
+            <Wrap spacing='5px' shouldWrapChildren={true}>
+              {trendingListTags.map((tag, index) => {
+                return <Tag key={index} image={tag.image} text={tag.text} />;
+              })}
+            </Wrap>
           </Box>
-          <Wrap spacing='5px' shouldWrapChildren={true}>
-            {trendingListTags.map((tag, index) => {
-              return <Tag key={index} image={tag.image} text={tag.text} />;
+          {/* News */}
+          <Flex width='600px' mt='40px' flexDirection='column'>
+            <Heading variant='section-heading'>News Articles</Heading>
+            <Box marginTop='20px'>
+              <Divider width='100%' />
+            </Box>
+            {newsArticles.map((article, index) => {
+              return (
+                <Article
+                  key={index}
+                  company={article.company}
+                  heading={article.heading}
+                  article={article.article}
+                  image={article.image}
+                />
+              );
             })}
-          </Wrap>
+          </Flex>
         </Box>
-        {/* News */}
-        <Flex width='600px' mt='40px' flexDirection='column'>
-          <Heading variant='section-heading'>News Articles</Heading>
-          <Box marginTop='20px'>
-            <Divider width='100%' />
-          </Box>
-          {newsArticles.map((article, index) => {
-            return (
-              <Article
-                key={index}
-                company={article.company}
-                heading={article.heading}
-                article={article.article}
-                image={article.image}
-              />
-            );
-          })}
-        </Flex>
-      </Container>
+        <WatchCollectionTable watches={watches} />
+      </Box>
     </>
   );
 };
 
 const watches = [
+  {
+    modelName: 'Rolex GMT Master II Pepsi',
+    numWatches: 3,
+    price: 65330,
+    priceChange: 5.25,
+  },
+  {
+    modelName: 'Jaeger Le Coultre Reverso',
+    numWatches: 2,
+    price: 14000,
+    priceChange: -3.45,
+  },
+  {
+    modelName: 'IWC Chrono 41',
+    numWatches: 2,
+    price: 4500,
+    priceChange: -3.89,
+  },
+  {
+    modelName: 'Cartier Santos',
+    numWatches: 2,
+    price: 6000,
+    priceChange: -9.89,
+  },
   {
     modelName: 'Rolex GMT Master II Pepsi',
     numWatches: 3,
