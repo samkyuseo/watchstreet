@@ -1,12 +1,8 @@
-import {
-  Box,
-  Container,
-  HStack,
-  Heading,
-  Divider,
-  Flex,
-  Wrap,
-} from '@chakra-ui/react';
+import { Page } from '../../components/layouts/Page';
+import { Content } from '../../components/layouts/Content';
+import { Section } from '../../components/layouts/Section';
+
+import { Box, Heading, Divider, Flex, Wrap } from '@chakra-ui/react';
 import { Tag } from '../../components/tags/Tag';
 import { Navbar } from '../../components/navbars/Navbar';
 import { Chart } from '../../components/charts/Chart';
@@ -23,17 +19,19 @@ const ProfilePage = () => {
   return (
     <>
       <Navbar />
-      <Box
-        display='flex'
-        width='1000px'
-        margin='auto'
-        justifyContent={'space-between'}
-      >
-        <Box width='60%' mt='100px' mb='100px'>
+      <Page>
+        <Content>
           {/* Portfolio Section */}
-          <Chart title='' price={225125.5} priceChange={-1025.5} data={data} />
+          <Section>
+            <Chart
+              title=''
+              price={225125.5}
+              priceChange={-1025.5}
+              data={data}
+            />
+          </Section>
           {/* Trending List */}
-          <Box width='600px' mt='40px'>
+          <Section>
             <Heading variant='section-heading'>Trending Lists</Heading>
             <Box marginY='20px'>
               <Divider width='100%' />
@@ -43,28 +41,30 @@ const ProfilePage = () => {
                 return <Tag key={index} image={tag.image} text={tag.text} />;
               })}
             </Wrap>
-          </Box>
+          </Section>
           {/* News */}
-          <Flex width='600px' mt='40px' flexDirection='column'>
-            <Heading variant='section-heading'>News Articles</Heading>
-            <Box marginTop='20px'>
-              <Divider width='100%' />
-            </Box>
-            {newsArticles.map((article, index) => {
-              return (
-                <Article
-                  key={index}
-                  company={article.company}
-                  heading={article.heading}
-                  article={article.article}
-                  image={article.image}
-                />
-              );
-            })}
-          </Flex>
-        </Box>
+          <Section>
+            <Flex flexDirection='column'>
+              <Heading variant='section-heading'>News Articles</Heading>
+              <Box marginTop='20px'>
+                <Divider width='100%' />
+              </Box>
+              {newsArticles.map((article, index) => {
+                return (
+                  <Article
+                    key={index}
+                    company={article.company}
+                    heading={article.heading}
+                    article={article.article}
+                    image={article.image}
+                  />
+                );
+              })}
+            </Flex>
+          </Section>
+        </Content>
         <WatchCollectionTable watches={watches} />
-      </Box>
+      </Page>
     </>
   );
 };

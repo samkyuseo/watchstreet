@@ -1,30 +1,29 @@
+import { Page } from '../../components/layouts/Page';
+import { Content } from '../../components/layouts/Content';
+import { Section } from '../../components/layouts/Section';
+
 import { Navbar } from '../../components/navbars/Navbar';
-import { Text, Heading, Box } from '@chakra-ui/react';
+import { Text, Heading } from '@chakra-ui/react';
 import { WatchListTable } from '../../components/tables/WatchListTable/WatchListTable';
 const WatchListPage = () => {
   return (
     <>
       <Navbar />
-      <Box
-        display='flex'
-        width='1000px'
-        margin='auto'
-        justifyContent={'space-between'}
-      >
-        <Box maxWidth='60%' mt='100px' mb='100px'>
-          <Box width='600px'>
+      <Page>
+        <Content>
+          <Section>
             <Heading>John Mayer's Collection</Heading>
             <Text mt='20px'>
               The following is John Mayer's watch collection based on all the
               latest media that we've gathered. Remember when the Rolex
               Cosmograph Daytona 116508 got nicknamed the John Mayer Daytona?
             </Text>
-          </Box>
-          <Box width='600px' mt='20px'>
+          </Section>
+          <Section>
             <WatchListTable watches={tableRows} />
-          </Box>
-        </Box>
-      </Box>
+          </Section>
+        </Content>
+      </Page>
     </>
   );
 };

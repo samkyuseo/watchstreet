@@ -7,7 +7,7 @@ const WatchImage = ({ image }: IWatchImageProp) => {
   return (
     <Image
       position='sticky'
-      top='110px'
+      top='120px'
       left='850px'
       width='35%'
       height='350px'

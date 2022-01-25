@@ -10,8 +10,10 @@ Every page is formatted in the same way
 <>
     <Navbar/>
     <Page>
-        <Section>
-        <Section/>
+        <Content>
+            <Section>
+            <Section/>
+        </Content>
         <StickySideBar/>
     <Page>
 </>
@@ -22,5 +24,6 @@ Every page is formatted in the same way
   - Sets the width of the content sitting inside the page.
   - Uses `display: flex` and `justifyContent: space-between` to keep the side bar and the content side by side
   - Has a top and bottom `margin` for content to have some space vertically
-- The `Section` component takes up 60% of the space in the page on the right side.
+- The `Content` component takes up 60% of the space in the page on the right side.
+- Each `Section`component simply takes up 100% of space inside the content block and also adds a 40px margin
 - The `StickySideBar` component takes up 35% of the space on the left side.

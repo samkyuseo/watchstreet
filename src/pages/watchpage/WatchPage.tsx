@@ -1,9 +1,11 @@
+import { Page } from '../../components/layouts/Page';
+import { Content } from '../../components/layouts/Content';
+import { Section } from '../../components/layouts/Section';
+
 import { Navbar } from '../../components/navbars/Navbar';
 import { Chart } from '../../components/charts/Chart';
 import { Specs } from '../../components/specs/Specs';
 import { WatchImage } from '../../components/images/WatchImage/WatchImage';
-
-import { Box } from '@chakra-ui/react';
 
 import patek from '../../assets/images/patek.jpg';
 
@@ -11,29 +13,24 @@ const WatchPage = () => {
   return (
     <>
       <Navbar />
-      <Box
-        display='flex'
-        width='1000px'
-        margin='auto'
-        mt='100px'
-        mb='100px'
-        justifyContent={'space-between'}
-      >
-        <Box width='60%'>
+      <Page>
+        <Content>
           {/* Price Data Section */}
-          <Chart
-            title='Nautilus 5711/1A-014'
-            price={475212.89}
-            priceChange={-172.5}
-            data={data}
-          />
+          <Section>
+            <Chart
+              title='Nautilus 5711/1A-014'
+              price={475212.89}
+              priceChange={-172.5}
+              data={data}
+            />
+          </Section>
           {/* Specifications Section */}
-          <Box width='60%' mt='40px'>
+          <Section>
             <Specs />
-          </Box>
-        </Box>
+          </Section>
+        </Content>
         <WatchImage image={patek} />
-      </Box>
+      </Page>
     </>
   );
 };
