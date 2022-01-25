@@ -15,9 +15,11 @@ const WatchPage = () => {
         display='flex'
         width='1000px'
         margin='auto'
+        mt='100px'
+        mb='100px'
         justifyContent={'space-between'}
       >
-        <Box width='60%' mt='100px' mb='100px'>
+        <Box width='60%'>
           {/* Price Data Section */}
           <Chart
             title='Nautilus 5711/1A-014'
@@ -26,7 +28,7 @@ const WatchPage = () => {
             data={data}
           />
           {/* Specifications Section */}
-          <Box width='600px' mt='40px'>
+          <Box width='60%' mt='40px'>
             <Specs />
           </Box>
         </Box>
