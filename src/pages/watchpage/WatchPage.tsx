@@ -3,7 +3,7 @@ import { Chart } from '../../components/charts/Chart';
 import { Specs } from '../../components/specs/Specs';
 import { WatchImage } from '../../components/images/WatchImage/WatchImage';
 
-import { Container, Box } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 import patek from '../../assets/images/patek.jpg';
 

@@ -1,5 +1,5 @@
 import { Navbar } from '../../components/navbars/Navbar';
-import { Container, Text, Heading, Box } from '@chakra-ui/react';
+import { Text, Heading, Box } from '@chakra-ui/react';
 import { WatchListTable } from '../../components/tables/WatchListTable/WatchListTable';
 const WatchListPage = () => {
   return (
