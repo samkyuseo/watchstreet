@@ -1,5 +1,7 @@
 # watchvalue.io
 
+Robinhood for watches.
+
 ## Formatting
 
 Every page is formatted in the same way
