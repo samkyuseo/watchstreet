@@ -6,12 +6,12 @@ Every page is formatted in the same way
 
 ```
 <>
-<Navbar/>
-<Page>
-    <Section>
-    <Section/>
-    <StickySideBar/>
-<Page>
+    <Navbar/>
+    <Page>
+        <Section>
+        <Section/>
+        <StickySideBar/>
+    <Page>
 </>
 ```
 
