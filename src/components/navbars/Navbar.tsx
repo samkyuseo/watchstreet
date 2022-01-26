@@ -10,8 +10,6 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  HStack,
-  Center,
 } from '@chakra-ui/react';
 import { BsSearch } from 'react-icons/bs';
 import { FaSignOutAlt } from 'react-icons/fa';
