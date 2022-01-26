@@ -1,11 +1,11 @@
 import { Box } from '@chakra-ui/react';
 
-interface ISidebarProps {
+interface IStickySidebarProps {
   height?: string;
   children: React.ReactNode;
 }
 // Stick side bar. Sets everything except the height, which can be optionally passed in
-const Sidebar = ({ children, height }: ISidebarProps) => {
+const StickySidebar = ({ children, height }: IStickySidebarProps) => {
   return (
     <Box
       position='sticky'
@@ -22,4 +22,4 @@ const Sidebar = ({ children, height }: ISidebarProps) => {
   );
 };
 
-export { Sidebar };
+export { StickySidebar };

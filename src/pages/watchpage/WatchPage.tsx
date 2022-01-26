@@ -1,7 +1,7 @@
 import { Page } from '../../components/layouts/Page';
 import { Content } from '../../components/layouts/Content';
 import { Section } from '../../components/layouts/Section';
-import { Sidebar } from '../../components/layouts/Sidebar';
+import { StickySidebar } from '../../components/layouts/StickySidebar';
 
 import { Navbar } from '../../components/navbars/Navbar';
 import { Chart } from '../../components/charts/Chart';
@@ -30,9 +30,9 @@ const WatchPage = () => {
             <Specs />
           </Section>
         </Content>
-        <Sidebar height='350px'>
+        <StickySidebar height='350px'>
           <WatchImage image={patek} />
-        </Sidebar>
+        </StickySidebar>
       </Page>
     </>
   );
