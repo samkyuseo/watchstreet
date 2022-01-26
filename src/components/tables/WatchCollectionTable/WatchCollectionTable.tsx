@@ -7,16 +7,7 @@ interface IWatchCollectionTableProps {
 
 const WatchCollectionTable = ({ watches }: IWatchCollectionTableProps) => {
   return (
-    <Box
-      position='sticky'
-      top='110px'
-      width='35%'
-      height='100%'
-      borderRadius='lg'
-      border='1px'
-      borderColor='gray.200'
-      boxShadow='md'
-    >
+    <Box>
       {/* Header */}
       <Flex borderBottom='1px' borderColor='gray.200' width='100%' p='10px'>
         <Text variant='bold-text' fontSize='lg'>

@@ -1,6 +1,7 @@
 import { Page } from '../../components/layouts/Page';
 import { Content } from '../../components/layouts/Content';
 import { Section } from '../../components/layouts/Section';
+import { Sidebar } from '../../components/layouts/Sidebar';
 
 import { Box, Heading, Divider, Flex, Wrap } from '@chakra-ui/react';
 import { Tag } from '../../components/tags/Tag';
@@ -63,7 +64,9 @@ const ProfilePage = () => {
             </Flex>
           </Section>
         </Content>
-        <WatchCollectionTable watches={watches} />
+        <Sidebar>
+          <WatchCollectionTable watches={watches} />
+        </Sidebar>
       </Page>
     </>
   );

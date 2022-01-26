@@ -4,21 +4,8 @@ interface IWatchImageProp {
   image: string;
 }
 const WatchImage = ({ image }: IWatchImageProp) => {
-  return (
-    <Image
-      position='sticky'
-      top='120px'
-      left='850px'
-      width='35%'
-      height='350px'
-      borderRadius='lg'
-      border='1px'
-      borderColor='gray.200'
-      objectFit='contain'
-      boxShadow='md'
-      src={image}
-    />
-  );
+  // Take full width and height of whatever div surrounds it
+  return <Image width='100%' height='100%' objectFit='contain' src={image} />;
 };
 
 export { WatchImage };
