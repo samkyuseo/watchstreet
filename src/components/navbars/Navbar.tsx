@@ -14,10 +14,18 @@ import {
 import { BsSearch } from 'react-icons/bs';
 import { FaSignOutAlt } from 'react-icons/fa';
 
+import { useNavigate } from 'react-router';
 import { signOutFromGoogle } from '../../functions/auth';
+
 import logo from '../../assets/images/logo.svg';
 
 const Navbar = () => {
+  let navigate = useNavigate();
+
+  function routeChange() {
+    navigate('/profile');
+  }
+
   return (
     // Just the outer border
     <Box
@@ -33,7 +41,7 @@ const Navbar = () => {
     >
       {/* Logo */}
       <Box width='200px' marginY='auto'>
-        <Image src={logo} boxSize='40px' margin='auto' />
+        <Image src={logo} boxSize='40px' margin='auto' onClick={routeChange} />
       </Box>
       {/* Search Bar */}
       <Box width='1000px' margin='auto'>
