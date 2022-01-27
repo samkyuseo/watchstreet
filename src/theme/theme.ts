@@ -78,9 +78,18 @@ const components = {
       pop: {
         bgColor: 'green.light',
         fontFamily: 'barlow',
-        _hover: { backgroundColor: 'green.dark' },
+        _hover: { backgroundColor: 'green.lighter' },
         _active: {
-          backgroundColor: 'green.dark',
+          backgroundColor: 'green.lighter',
+        },
+      },
+      outline: {
+        bgColor: 'transparent',
+        borderColor: 'green.light',
+        fontFamily: 'barlow',
+        _hover: { backgroundColor: 'green.alpha' },
+        _active: {
+          backgroundColor: 'green.alpha',
         },
       },
     },
@@ -91,6 +100,8 @@ const colors = {
   green: {
     dark: '#1CB68B',
     light: '#24E5AF',
+    lighter: '#50f2c5',
+    alpha: '#50f2c532',
   },
 };
 

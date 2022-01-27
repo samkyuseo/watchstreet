@@ -1,13 +1,11 @@
-import { Box, Text, Divider } from '@chakra-ui/layout';
+import { Box, Text, Divider, Heading } from '@chakra-ui/layout';
 import { SimpleGrid } from '@chakra-ui/layout';
 const Specs = () => {
   return (
     <>
-      <Text variant='bold-text' fontSize='lg'>
-        Specifications 👀
-      </Text>
-      <Divider marginY='10px' />
-      <Text marginBottom='30px'>
+      <Heading variant='section-heading'>Specifications</Heading>
+      <Divider marginY='20px' />
+      <Text marginBottom='40px'>
         On its 5711/1A model, Patek Philippe unveils a dial in a brand-new
         olive-green shade that is new to the Nautilus collection and which
         should delight lovers of this cult watch, an icon of sporting elegance.

@@ -9,6 +9,7 @@ import { Specs } from '../../components/specs/Specs';
 import { WatchImage } from '../../components/images/WatchImage/WatchImage';
 
 import patek from '../../assets/images/patek.jpg';
+import { Button } from '@chakra-ui/react';
 
 const WatchPage = () => {
   return (
@@ -31,7 +32,15 @@ const WatchPage = () => {
           </Section>
         </Content>
         <StickySidebar height='350px'>
+          {/* Image */}
           <WatchImage image={patek} />
+          {/* Actions */}
+          <Button mt='40px' variant='pop' width='100%'>
+            Add to Collection
+          </Button>
+          <Button mt='20px' variant='outline' width='100%'>
+            Add to List
+          </Button>
         </StickySidebar>
       </Page>
     </>
