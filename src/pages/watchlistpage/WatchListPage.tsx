@@ -1,10 +1,15 @@
 import { Page } from '../../components/layouts/Page';
 import { Content } from '../../components/layouts/Content';
 import { Section } from '../../components/layouts/Section';
+import { StickySidebar } from '../../components/layouts/StickySidebar';
 
 import { Navbar } from '../../components/navbars/Navbar';
 import { Text, Heading } from '@chakra-ui/react';
 import { WatchListTable } from '../../components/tables/WatchListTable/WatchListTable';
+import { WatchImage } from '../../components/images/WatchImage/WatchImage';
+
+import johnmayer from '../../assets/images/johnmayer.jpg';
+
 const WatchListPage = () => {
   return (
     <>
@@ -23,6 +28,9 @@ const WatchListPage = () => {
             <WatchListTable watches={tableRows} />
           </Section>
         </Content>
+        <StickySidebar>
+          <WatchImage image={johnmayer} />
+        </StickySidebar>
       </Page>
     </>
   );

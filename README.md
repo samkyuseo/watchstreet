@@ -27,3 +27,8 @@ Every page is formatted in the same way
 - The `Content` component takes up 60% of the space in the page on the right side.
 - Each `Section`component simply takes up 100% of space inside the content block and also adds a 40px margin
 - The `StickySideBar` component takes up 35% of the space on the left side.
+  - Takes an optional height to let you set the height of the border surrounding the thing you are putting in
+
+## Random thoughts
+
+- The goal for us is to have something be sticky while also having a fixed height %
