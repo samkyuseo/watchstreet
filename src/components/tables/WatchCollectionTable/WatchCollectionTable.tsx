@@ -7,7 +7,7 @@ interface IWatchCollectionTableProps {
 
 const WatchCollectionTable = ({ watches }: IWatchCollectionTableProps) => {
   return (
-    <Box>
+    <Box height='80vh'>
       {/* Header */}
       <Flex borderBottom='1px' borderColor='gray.200' width='100%' p='10px'>
         <Text variant='bold-text' fontSize='lg'>
@@ -15,9 +15,11 @@ const WatchCollectionTable = ({ watches }: IWatchCollectionTableProps) => {
         </Text>
       </Flex>
       {/* Table content */}
-      {watches.map((watch, index) => {
-        return <WatchTableItem key={index} {...watch} />;
-      })}
+      <Box height='8'>
+        {watches.map((watch, index) => {
+          return <WatchTableItem key={index} {...watch} />;
+        })}
+      </Box>
       {/* Footer */}
       <Flex width='100%' p='23px' />
     </Box>
