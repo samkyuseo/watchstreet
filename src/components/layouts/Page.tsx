@@ -8,7 +8,7 @@ const Page = ({ children }: IPageProps) => {
     <Box
       display='flex'
       width='1000px'
-      justifyContent='space-between'
+      justifyContent={'space-between'}
       // Since the top most element in the page as mt=40
       height='100vh' // bg='red'
       pt='60px'
