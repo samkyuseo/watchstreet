@@ -20,7 +20,6 @@ const ProfilePage = () => {
   return (
     <>
       <Navbar />
-      <WatchCollectionTable watches={watches} />
       <Page>
         <Content>
           {/* Portfolio Section */}
@@ -65,6 +64,9 @@ const ProfilePage = () => {
             </Flex>
           </Section>
         </Content>
+        <StickySidebar>
+          <WatchCollectionTable watches={watches} />
+        </StickySidebar>
       </Page>
     </>
   );
