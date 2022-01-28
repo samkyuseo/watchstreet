@@ -7,16 +7,7 @@ interface IStickySidebarProps {
 // Stick side bar. Sets everything except the height, which can be optionally passed in
 const StickySidebar = ({ children, height }: IStickySidebarProps) => {
   return (
-    <Box
-      position='sticky'
-      top='110px'
-      width='35%'
-      borderRadius='lg'
-      border='1px'
-      borderColor='gray.200'
-      boxShadow='md'
-      height={height ? height : '100%'}
-    >
+    <Box position='sticky' width='35%' height='100%'>
       {children}
     </Box>
   );
