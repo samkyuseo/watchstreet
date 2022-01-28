@@ -7,7 +7,13 @@ interface IWatchCollectionTableProps {
 
 const WatchCollectionTable = ({ watches }: IWatchCollectionTableProps) => {
   return (
-    <Box height='80vh'>
+    <Box
+      height='80vh'
+      borderRadius='lg'
+      border='1px'
+      borderColor='gray.200'
+      boxShadow='md'
+    >
       {/* Header */}
       <Flex borderBottom='1px' borderColor='gray.200' width='100%' p='10px'>
         <Text variant='bold-text' fontSize='lg'>
@@ -15,7 +21,7 @@ const WatchCollectionTable = ({ watches }: IWatchCollectionTableProps) => {
         </Text>
       </Flex>
       {/* Table content */}
-      <Box height='8'>
+      <Box overflowX='hidden' overflowY='auto' height='100%'>
         {watches.map((watch, index) => {
           return <WatchTableItem key={index} {...watch} />;
         })}
