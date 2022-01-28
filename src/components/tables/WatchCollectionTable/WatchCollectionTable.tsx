@@ -1,4 +1,5 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
+import { NONAME } from 'dns';
 import { WatchTableItem, IWatchTableItemProps } from './WatchTableItem';
 
 interface IWatchCollectionTableProps {
@@ -13,6 +14,17 @@ const WatchCollectionTable = ({ watches }: IWatchCollectionTableProps) => {
       border='1px'
       borderColor='gray.200'
       boxShadow='md'
+      overflowX='hidden'
+      overflowY='auto'
+      // hide scroll bar
+      css={{
+        '&::-webkit-scrollbar': {
+          width: '0px',
+        },
+        '&::-webkit-scrollbar-thumb': {
+          background: 'transparent',
+        },
+      }}
     >
       {/* Header */}
       <Flex borderBottom='1px' borderColor='gray.200' width='100%' p='10px'>
@@ -21,13 +33,11 @@ const WatchCollectionTable = ({ watches }: IWatchCollectionTableProps) => {
         </Text>
       </Flex>
       {/* Table content */}
-      <Box overflowX='hidden' overflowY='auto' height='100%'>
+      <Box>
         {watches.map((watch, index) => {
           return <WatchTableItem key={index} {...watch} />;
         })}
       </Box>
-      {/* Footer */}
-      <Flex width='100%' p='23px' />
     </Box>
   );
 };
