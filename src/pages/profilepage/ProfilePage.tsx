@@ -65,7 +65,7 @@ const ProfilePage = () => {
           </Section>
         </Content>
         <StickySidebar>
-          <WatchCollectionTable watches={watches} />
+          <WatchCollectionTable watches={watches} watchLists={watchLists} />
         </StickySidebar>
       </Page>
     </>
@@ -97,53 +97,43 @@ const watches = [
     price: 6000,
     priceChange: -9.89,
   },
+];
+const watchLists = [
   {
-    modelName: 'Rolex GMT Master II Pepsi',
-    numWatches: 3,
-    price: 65330,
-    priceChange: 5.25,
-  },
-  {
-    modelName: 'Jaeger Le Coultre Reverso',
-    numWatches: 2,
-    price: 14000,
-    priceChange: -3.45,
-  },
-  {
-    modelName: 'IWC Chrono 41',
-    numWatches: 2,
-    price: 4500,
-    priceChange: -3.89,
-  },
-  {
-    modelName: 'Cartier Santos',
-    numWatches: 2,
-    price: 6000,
-    priceChange: -9.89,
-  },
-  {
-    modelName: 'Rolex GMT Master II Pepsi',
-    numWatches: 3,
-    price: 65330,
-    priceChange: 5.25,
-  },
-  {
-    modelName: 'Jaeger Le Coultre Reverso',
-    numWatches: 2,
-    price: 14000,
-    priceChange: -3.45,
-  },
-  {
-    modelName: 'IWC Chrono 41',
-    numWatches: 2,
-    price: 4500,
-    priceChange: -3.89,
-  },
-  {
-    modelName: 'Cartier Santos',
-    numWatches: 2,
-    price: 6000,
-    priceChange: -9.89,
+    title: 'My Holy Grail Watches',
+    emoji: '🌠',
+    watches: [
+      {
+        modelName: 'Cartier Santos',
+        numWatches: 2,
+        price: 6000,
+        priceChange: -9.89,
+      },
+      {
+        modelName: 'Rolex GMT Master II Pepsi',
+        numWatches: 3,
+        price: 65330,
+        priceChange: 5.25,
+      },
+      {
+        modelName: 'Jaeger Le Coultre Reverso',
+        numWatches: 2,
+        price: 14000,
+        priceChange: -3.45,
+      },
+      {
+        modelName: 'IWC Chrono 41',
+        numWatches: 2,
+        price: 4500,
+        priceChange: -3.89,
+      },
+      {
+        modelName: 'Cartier Santos',
+        numWatches: 2,
+        price: 6000,
+        priceChange: -9.89,
+      },
+    ],
   },
 ];
 

@@ -1,20 +1,20 @@
-import {
-  Box,
-  Flex,
-  Text,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-} from '@chakra-ui/react';
+import { Box, Flex, Text, Accordion } from '@chakra-ui/react';
 import { WatchTableItem, IWatchTableItemProps } from './WatchTableItem';
+import { AiOutlinePlus } from 'react-icons/ai';
+import {
+  WatchTableListItem,
+  IWatchTableListItemProps,
+} from './WatchTableListItem';
 
 interface IWatchCollectionTableProps {
   watches: IWatchTableItemProps[];
+  watchLists: IWatchTableListItemProps[];
 }
 
-const WatchCollectionTable = ({ watches }: IWatchCollectionTableProps) => {
+const WatchCollectionTable = ({
+  watches,
+  watchLists,
+}: IWatchCollectionTableProps) => {
   return (
     <Box
       // make content always 80% of the vh
@@ -48,44 +48,25 @@ const WatchCollectionTable = ({ watches }: IWatchCollectionTableProps) => {
         return <WatchTableItem key={index} {...watch} />;
       })}
       {/* List Header */}
-      <Flex width='100%' p='10px'>
+      <Flex width='100%' p='10px' justifyContent='space-between'>
         <Text variant='bold-text' fontSize='lg'>
           Lists
         </Text>
+        <Flex marginY='auto' marginRight='8px'>
+          <AiOutlinePlus />
+        </Flex>
       </Flex>
       <Accordion defaultIndex={[0]} allowMultiple fontFamily='barlow'>
-        <AccordionItem>
-          <h2>
-            <AccordionButton _focus={{ outline: 0 }}>
-              <Box flex='1' textAlign='left'>
-                My Holy Grails
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </AccordionPanel>
-        </AccordionItem>
-        <AccordionItem>
-          <h2>
-            <AccordionButton _focus={{ outline: 0 }}>
-              <Box flex='1' textAlign='left'>
-                For my Wife
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat .
-          </AccordionPanel>
-        </AccordionItem>
+        {watchLists.map((watchList, index) => {
+          return (
+            <WatchTableListItem
+              title={watchList.title}
+              emoji={watchList.emoji}
+              watches={watchList.watches}
+              key={index}
+            />
+          );
+        })}
       </Accordion>
     </Box>
   );
