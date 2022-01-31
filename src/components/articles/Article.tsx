@@ -1,4 +1,4 @@
-import { Box, Text, Heading, Image, HStack, Divider } from '@chakra-ui/react';
+import { Box, Text, Heading, Image, Flex, Divider } from '@chakra-ui/react';
 
 interface IArticleProps {
   company: string;
@@ -14,8 +14,8 @@ const Article = ({ company, heading, article, image }: IArticleProps) => {
         <Text variant='card-company-text' mb='20px'>
           {company}
         </Text>
-        <HStack spacing='50px'>
-          <Box width='350px' minHeight='200px'>
+        <Flex justifyContent='space-between'>
+          <Box maxWidth='400px' minHeight='200px'>
             <Heading variant='card-heading' mb='20px'>
               {heading}
             </Heading>
@@ -27,10 +27,10 @@ const Article = ({ company, heading, article, image }: IArticleProps) => {
             width='200px'
             minHeight='200px'
             objectFit='cover'
-            borderRadius='5px'
+            borderRadius='sm'
             src={image}
           />
-        </HStack>
+        </Flex>
       </Box>
       <Box>
         <Divider width='100%' />

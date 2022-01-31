@@ -32,7 +32,7 @@ const WatchCollectionTable = ({
         },
       }}
       // border settings
-      borderRadius='lg'
+      borderRadius='sm'
       border='1px'
       borderColor='gray.200'
       boxShadow='md'

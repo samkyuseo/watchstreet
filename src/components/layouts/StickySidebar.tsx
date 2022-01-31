@@ -10,7 +10,7 @@ const StickySidebar = ({ children, height }: IStickySidebarProps) => {
     <Box
       position='sticky'
       top='110px'
-      width='35%'
+      width='30%'
       height={height ? height : '100%'}
     >
       {children}
