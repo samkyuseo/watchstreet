@@ -1,4 +1,4 @@
-import { Text, Heading, Box } from '@chakra-ui/react';
+import { Text, Heading } from '@chakra-ui/react';
 
 import { Page } from '../../components/layouts/Page';
 import { Content } from '../../components/layouts/Content';
