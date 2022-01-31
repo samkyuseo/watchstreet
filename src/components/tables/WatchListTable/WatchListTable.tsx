@@ -9,6 +9,7 @@ import {
   StatHelpText,
   Text,
 } from '@chakra-ui/react';
+import { AiOutlinePlus } from 'react-icons/ai';
 import { generateNeatVersion } from '../../../functions/num';
 
 interface IWatchListTableItem {
@@ -38,9 +39,10 @@ const WatchListTable = ({ watches }: IWatchListTableProps) => {
           <Th px='0' textAlign='center' fontFamily='barlow' width='100px'>
             Price
           </Th>
-          <Th px='0' textAlign='right' fontFamily='barlow' width='100px'>
+          <Th px='0' textAlign='center' fontFamily='barlow' width='100px'>
             This Week
           </Th>
+          <Th px='0' textAlign='center' fontFamily='barlow' width='100px'></Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -49,10 +51,12 @@ const WatchListTable = ({ watches }: IWatchListTableProps) => {
             return (
               <Tr key={index}>
                 <Td px='0' fontFamily='barlow'>
-                  <Text color='black' fontSize='14px'>
+                  <Text color='black' fontSize='14px' variant='bold-text'>
                     {model}
                   </Text>
-                  <Text fontSize='12px'>{company}</Text>
+                  <Text fontSize='12px' color='black'>
+                    {company}
+                  </Text>
                 </Td>
                 <Td
                   px='0'
@@ -72,7 +76,7 @@ const WatchListTable = ({ watches }: IWatchListTableProps) => {
                 </Td>
                 <Td
                   px='0'
-                  textAlign='right'
+                  textAlign='center'
                   fontFamily='barlow'
                   fontSize='14px'
                 >
@@ -85,6 +89,9 @@ const WatchListTable = ({ watches }: IWatchListTableProps) => {
                     {'  '}
                     {percentChange < 0 ? percentChange * -1 : percentChange}%
                   </StatHelpText>
+                </Td>
+                <Td>
+                  <AiOutlinePlus />
                 </Td>
               </Tr>
             );

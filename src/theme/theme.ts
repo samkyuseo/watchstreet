@@ -19,6 +19,9 @@ const components = {
       'chart-heading': {
         fontSize: '38px',
       },
+      'page-heading': {
+        fontSize: '38px',
+      },
     },
   },
   Text: {

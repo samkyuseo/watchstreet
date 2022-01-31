@@ -10,14 +10,17 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Button,
 } from '@chakra-ui/react';
 import { BsSearch } from 'react-icons/bs';
 import { FaSignOutAlt } from 'react-icons/fa';
 
+import { useNavigate } from 'react-router';
 import { signOutFromGoogle } from '../../functions/auth';
 import logo from '../../assets/images/logo.svg';
 
 const Navbar = () => {
+  let navigate = useNavigate();
   return (
     // Just the outer border
     <Box
@@ -32,7 +35,13 @@ const Navbar = () => {
       borderColor='gray.100'
     >
       {/* Logo */}
-      <Box width='200px' marginY='auto'>
+      <Box
+        width='200px'
+        marginY='auto'
+        onClick={() => {
+          navigate('/profile');
+        }}
+      >
         <Image src={logo} boxSize='40px' margin='auto' />
       </Box>
       {/* Search Bar */}
@@ -65,19 +74,20 @@ const SearchBar = () => {
 };
 
 const LeftButtons = () => {
+  let navigate = useNavigate();
   return (
     <Box display='flex'>
-      <Text variant='bold-text' mr='20px'>
+      <Button variant='minimal' mr='20px' onClick={() => navigate('/profile')}>
         Collection
-      </Text>
+      </Button>
       <Menu>
-        <MenuButton as={Text} variant='bold-text'>
+        <MenuButton as={Text} variant='bold-text' marginY='auto'>
           Account
         </MenuButton>
         <MenuList>
-          <MenuItem>Account Settings</MenuItem>
+          <MenuItem as={Text}>Account Settings</MenuItem>
           <MenuDivider />
-          <MenuItem css={{ gap: 5 }} onClick={signOutFromGoogle}>
+          <MenuItem as={Text} css={{ gap: 5 }} onClick={signOutFromGoogle}>
             <FaSignOutAlt color='#6f6f6f' />
             <span>Sign Out</span>
           </MenuItem>

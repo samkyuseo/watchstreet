@@ -19,7 +19,7 @@ const Chart = ({ title, price, priceChange, data }: IChartProps) => {
   const percentPriceChange = generateNeatVersion((priceChange / price) * 100);
   return (
     <VStack alignItems='left' width='100%'>
-      <Heading variant='chart-heading'>{title}</Heading>
+      <Heading variant='page-heading'>{title}</Heading>
       <Box>
         <Heading variant='chart-heading'>${neatPrice}</Heading>
         <Text variant='bold-text' display='inline-block'>

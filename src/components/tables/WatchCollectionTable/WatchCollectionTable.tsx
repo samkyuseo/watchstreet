@@ -7,8 +7,8 @@ import {
 } from './WatchTableListItem';
 
 interface IWatchCollectionTableProps {
-  watches: IWatchTableItemProps[];
-  watchLists: IWatchTableListItemProps[];
+  watches?: IWatchTableItemProps[];
+  watchLists?: IWatchTableListItemProps[];
 }
 
 const WatchCollectionTable = ({
@@ -37,17 +37,23 @@ const WatchCollectionTable = ({
       borderColor='gray.200'
       boxShadow='md'
     >
-      {/* Header */}
-      <Flex borderBottom='1px' borderColor='gray.200' width='100%' p='10px'>
-        <Text variant='bold-text' fontSize='lg'>
-          Watches
-        </Text>
-      </Flex>
-      {/* Table content */}
-      {watches.map((watch, index) => {
-        return <WatchTableItem key={index} {...watch} />;
-      })}
-      {/* List Header */}
+      {/* Watch Collection */}
+      {watches ? (
+        <>
+          <Flex borderBottom='1px' borderColor='gray.200' width='100%' p='10px'>
+            <Text variant='bold-text' fontSize='lg'>
+              Watches
+            </Text>
+          </Flex>
+          {/* Table content */}
+          {watches.map((watch, index) => {
+            return <WatchTableItem key={index} {...watch} />;
+          })}
+        </>
+      ) : (
+        <></>
+      )}
+      {/* Watch Lists */}
       <Flex width='100%' p='10px' justifyContent='space-between'>
         <Text variant='bold-text' fontSize='lg'>
           Lists
@@ -56,18 +62,24 @@ const WatchCollectionTable = ({
           <AiOutlinePlus />
         </Flex>
       </Flex>
-      <Accordion defaultIndex={[0]} allowMultiple fontFamily='barlow'>
-        {watchLists.map((watchList, index) => {
-          return (
-            <WatchTableListItem
-              title={watchList.title}
-              emoji={watchList.emoji}
-              watches={watchList.watches}
-              key={index}
-            />
-          );
-        })}
-      </Accordion>
+      {watchLists ? (
+        <>
+          <Accordion defaultIndex={[0]} allowMultiple fontFamily='barlow'>
+            {watchLists.map((watchList, index) => {
+              return (
+                <WatchTableListItem
+                  title={watchList.title}
+                  emoji={watchList.emoji}
+                  watches={watchList.watches}
+                  key={index}
+                />
+              );
+            })}
+          </Accordion>
+        </>
+      ) : (
+        <></>
+      )}
     </Box>
   );
 };
