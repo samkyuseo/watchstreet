@@ -29,6 +29,12 @@ Every page is formatted in the same way
 - The `StickySideBar` component takes up 35% of the space on the left side.
   - Takes an optional height to let you set the height of the border surrounding the thing you are putting in
 
+## Data Models
+
+- Collections large, documents small (<1mb)
+- `users` collection
+  - a `user` has many `watches`
+
 ## Random thoughts
 
 - The goal for us is to have something be sticky while also having a fixed height %
