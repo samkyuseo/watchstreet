@@ -31,11 +31,11 @@ const App = () => {
     { path: '/lists/watchvalue/:id', element: <WatchListPage /> },
     { path: '/watch/:id', element: <WatchPage /> },
     { path: '/profile', element: <ProfilePage /> },
-    { path: '*', element: <Navigate to='/profile' /> },
+    { path: '*', element: <Navigate to="/profile" /> },
   ]);
   const unAuthRoutes = useRoutes([
     { path: '/', element: <LandingPage /> },
-    { path: '*', element: <Navigate to='/' /> },
+    { path: '*', element: <Navigate to="/" /> },
   ]);
   const loadingRoutes = useRoutes([{ path: '*', element: <LoadingPage /> }]);
 

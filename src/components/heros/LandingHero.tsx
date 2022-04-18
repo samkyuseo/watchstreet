@@ -18,7 +18,7 @@ const LandingHero = () => {
         <Button onClick={signInWithGoogle} variant='pop' size='xl'>
           Sign Up
         </Button>
-        <Image src={macbook} marginBotton='100px' />
+        <Image src={macbook} marginBottom='100px' />
       </VStack>
     </Container>
   );

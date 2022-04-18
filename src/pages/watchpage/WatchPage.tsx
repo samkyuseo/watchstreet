@@ -9,9 +9,13 @@ import { Specs } from '../../components/specs/Specs';
 import { WatchImage } from '../../components/images/WatchImage/WatchImage';
 
 import patek from '../../assets/images/patek.jpg';
-import { Button } from '@chakra-ui/react';
+import { Button, useQuery } from '@chakra-ui/react';
+import { useParams } from 'react-router-dom';
+import { getWatch } from '../../api/lib/watch';
 
 const WatchPage = () => {
+  const { id } = useParams();
+  const { isLoading, error, data } = useQuery('watchData', getWatch(id)); // <- stopped while trying to get data with use query
   return (
     <>
       <Navbar />
@@ -20,7 +24,7 @@ const WatchPage = () => {
           {/* Price Data Section */}
           <Section>
             <Chart
-              title='Nautilus 5711/1A-014'
+              title="Nautilus 5711/1A-014"
               price={475212.89}
               priceChange={-172.5}
               data={data}
@@ -31,14 +35,14 @@ const WatchPage = () => {
             <Specs />
           </Section>
         </Content>
-        <StickySidebar height='350px'>
+        <StickySidebar height="350px">
           {/* Image */}
           <WatchImage image={patek} />
           {/* Actions */}
-          <Button mt='40px' variant='pop' width='100%'>
+          <Button mt="40px" variant="pop" width="100%">
             Add to Collection
           </Button>
-          <Button mt='20px' variant='outline' width='100%'>
+          <Button mt="20px" variant="outline" width="100%">
             Add to List
           </Button>
         </StickySidebar>
