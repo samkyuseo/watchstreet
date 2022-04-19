@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 import { Page } from '../../components/layouts/Page';
 import { Content } from '../../components/layouts/Content';
 import { Section } from '../../components/layouts/Section';
@@ -9,13 +11,23 @@ import { Specs } from '../../components/specs/Specs';
 import { WatchImage } from '../../components/images/WatchImage/WatchImage';
 
 import patek from '../../assets/images/patek.jpg';
-import { Button, useQuery } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { getWatch } from '../../api/lib/watch';
+import { IWatch } from '../../types';
 
 const WatchPage = () => {
   const { id } = useParams();
-  const { isLoading, error, data } = useQuery('watchData', getWatch(id)); // <- stopped while trying to get data with use query
+  const [watch, setWatch] = useState<IWatch | null>(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const watch = await getWatch(id || '');
+      console.log(watch);
+      setWatch(watch);
+    };
+
+    fetchData().catch(console.error);
+  }, []);
   return (
     <>
       <Navbar />
