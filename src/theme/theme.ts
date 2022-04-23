@@ -95,6 +95,19 @@ const components = {
           backgroundColor: 'green.alpha',
         },
       },
+      'chart-time-delta': {
+        background: 'transparent',
+        _hover: { backgroundColor: 'transparent' },
+      },
+      'chart-time-delta-focus': {
+        background: 'transparent',
+        _hover: { backgroundColor: 'transparent' },
+        backgroundColor: 'transparent',
+        color: 'green.light',
+        textDecoration: 'underline',
+        textUnderlineOffset: '17px',
+        textDecorationThickness: '2px',
+      },
     },
   },
 };
@@ -109,3 +122,9 @@ const colors = {
 };
 
 export const theme = extendTheme({ colors, components });
+
+// variant="bold-text"
+//             color="green.light"
+//             textDecoration="underline"
+//             textUnderlineOffset="13px"
+//             textDecorationThickness="2px"

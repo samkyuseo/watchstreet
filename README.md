@@ -38,3 +38,9 @@ Every page is formatted in the same way
 ## Random thoughts
 
 - The goal for us is to have something be sticky while also having a fixed height %
+
+## Types
+
+- There will be one `types.ts` file under the root directory that has global types or types used by more than one component group
+  - Lots of response types from API calls will be stored in here since API call contents are almost always used outside of the API call file
+- There will also be a `types.ts` file under the component directory for types shared between child and parent components only

@@ -2,7 +2,6 @@ interface IWatchPriceData {
   price: number;
   date: Date;
 }
-
 interface IWatch {
   model: string;
   brand: string;

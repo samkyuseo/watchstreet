@@ -10,6 +10,8 @@ import { Chart } from '../../components/charts/Chart';
 import { WatchCollectionTable } from '../../components/tables/WatchCollectionTable/WatchCollectionTable';
 import { Article } from '../../components/articles/Article';
 
+import { getFakeWatchPriceHistory } from '../../api/lib/watch';
+
 import johnmayer from '../../assets/images/johnmayer.jpg';
 import bingingwithbabish from '../../assets/images/bingingwithbabish.jpeg';
 import christianoronaldo from '../../assets/images/christianoronaldo.jpeg';
@@ -24,20 +26,15 @@ const ProfilePage = () => {
         <Content>
           {/* Portfolio Section */}
           <Section>
-            <Chart
-              title=''
-              price={225125.5}
-              priceChange={-1025.5}
-              data={data}
-            />
+            <Chart title="" data={getFakeWatchPriceHistory()} />
           </Section>
           {/* Trending List */}
           <Section>
-            <Heading variant='section-heading'>Trending Lists</Heading>
-            <Box marginY='20px'>
-              <Divider width='100%' />
+            <Heading variant="section-heading">Trending Lists</Heading>
+            <Box marginY="20px">
+              <Divider width="100%" />
             </Box>
-            <Wrap spacing='5px' shouldWrapChildren={true}>
+            <Wrap spacing="5px" shouldWrapChildren={true}>
               {trendingListTags.map((tag, index) => {
                 return <Tag key={index} image={tag.image} text={tag.text} />;
               })}
@@ -45,10 +42,10 @@ const ProfilePage = () => {
           </Section>
           {/* News */}
           <Section>
-            <Flex flexDirection='column'>
-              <Heading variant='section-heading'>News Articles</Heading>
-              <Box marginTop='20px'>
-                <Divider width='100%' />
+            <Flex flexDirection="column">
+              <Heading variant="section-heading">News Articles</Heading>
+              <Box marginTop="20px">
+                <Divider width="100%" />
               </Box>
               {newsArticles.map((article, index) => {
                 return (
@@ -134,72 +131,6 @@ const watchLists = [
         priceChange: -9.89,
       },
     ],
-  },
-];
-
-const data = [
-  {
-    pv: 2400,
-  },
-  {
-    pv: 1398,
-  },
-  {
-    pv: 9800,
-  },
-  {
-    pv: 3908,
-  },
-  {
-    pv: 10000,
-  },
-  {
-    pv: 9000,
-  },
-  {
-    pv: 5679,
-  },
-  {
-    pv: 30000,
-  },
-  {
-    pv: 8000,
-  },
-  {
-    pv: 10000,
-  },
-  {
-    pv: 7000,
-  },
-  {
-    pv: 12000,
-  },
-  {
-    pv: 9000,
-  },
-  {
-    pv: 20000,
-  },
-  {
-    pv: 20000,
-  },
-  {
-    pv: 10098,
-  },
-  {
-    pv: 9800,
-  },
-  {
-    pv: 15008,
-  },
-  {
-    pv: 30000,
-  },
-  {
-    pv: 40000,
-  },
-  {
-    pv: 50000,
   },
 ];
 
