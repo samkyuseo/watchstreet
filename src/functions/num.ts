@@ -1,12 +1,12 @@
 /**
  * Add commas if applicable and two decimals
- * @param num
- * @returns formatted number
+ * @param {number} num
+ * @returns {string} formatted number XXXX.XX
  */
-function generateNeatVersion(num: number): string {
+function formatTwoDecimals(num: number): string {
   return num
     .toFixed(2)
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
-export { generateNeatVersion };
+export { formatTwoDecimals };

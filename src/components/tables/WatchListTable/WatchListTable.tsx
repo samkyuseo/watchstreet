@@ -10,7 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { generateNeatVersion } from '../../../functions/num';
+import { formatTwoDecimals } from '../../../functions/num';
 
 interface IWatchListTableItem {
   company: string;
@@ -27,22 +27,22 @@ interface IWatchListTableProps {
 
 const WatchListTable = ({ watches }: IWatchListTableProps) => {
   return (
-    <Table width='100%'>
+    <Table width="100%">
       <Thead>
         <Tr>
-          <Th px='0' fontFamily='barlow' width='300px'>
+          <Th px="0" fontFamily="barlow" width="300px">
             Model and Company
           </Th>
-          <Th px='0' textAlign='center' fontFamily='barlow' width='100px'>
+          <Th px="0" textAlign="center" fontFamily="barlow" width="100px">
             Reference
           </Th>
-          <Th px='0' textAlign='center' fontFamily='barlow' width='100px'>
+          <Th px="0" textAlign="center" fontFamily="barlow" width="100px">
             Price
           </Th>
-          <Th px='0' textAlign='center' fontFamily='barlow' width='100px'>
+          <Th px="0" textAlign="center" fontFamily="barlow" width="100px">
             This Week
           </Th>
-          <Th px='0' textAlign='center' fontFamily='barlow' width='100px'></Th>
+          <Th px="0" textAlign="center" fontFamily="barlow" width="100px"></Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -50,41 +50,41 @@ const WatchListTable = ({ watches }: IWatchListTableProps) => {
           ({ company, model, reference, price, percentChange }, index) => {
             return (
               <Tr key={index}>
-                <Td px='0' fontFamily='barlow'>
-                  <Text color='black' fontSize='14px' variant='bold-text'>
+                <Td px="0" fontFamily="barlow">
+                  <Text color="black" fontSize="14px" variant="bold-text">
                     {model}
                   </Text>
-                  <Text fontSize='12px' color='black'>
+                  <Text fontSize="12px" color="black">
                     {company}
                   </Text>
                 </Td>
                 <Td
-                  px='0'
-                  textAlign='center'
-                  fontFamily='barlow'
-                  fontSize='14px'
+                  px="0"
+                  textAlign="center"
+                  fontFamily="barlow"
+                  fontSize="14px"
                 >
                   {reference}
                 </Td>
                 <Td
-                  px='0'
-                  textAlign='center'
-                  fontFamily='barlow'
-                  fontSize='14px'
+                  px="0"
+                  textAlign="center"
+                  fontFamily="barlow"
+                  fontSize="14px"
                 >
-                  ${generateNeatVersion(price)}
+                  ${formatTwoDecimals(price)}
                 </Td>
                 <Td
-                  px='0'
-                  textAlign='center'
-                  fontFamily='barlow'
-                  fontSize='14px'
+                  px="0"
+                  textAlign="center"
+                  fontFamily="barlow"
+                  fontSize="14px"
                 >
                   <StatHelpText>
                     {percentChange > 0 ? (
-                      <StatArrow type='increase' />
+                      <StatArrow type="increase" />
                     ) : (
-                      <StatArrow type='decrease' />
+                      <StatArrow type="decrease" />
                     )}
                     {'  '}
                     {percentChange < 0 ? percentChange * -1 : percentChange}%

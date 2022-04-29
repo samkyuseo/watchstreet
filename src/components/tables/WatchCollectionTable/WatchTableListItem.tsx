@@ -20,17 +20,17 @@ const WatchTableListItem = ({
   watches,
 }: IWatchTableListItemProps) => {
   return (
-    <Accordion defaultIndex={[0]} allowMultiple fontFamily='barlow'>
+    <Accordion defaultIndex={[0]} allowMultiple fontFamily="barlow">
       <AccordionItem>
         <h2>
           <AccordionButton _focus={{ outline: 0 }}>
-            <Box flex='1' textAlign='left' paddingY='10px'>
-              {emoji} {title}
+            <Box flex="1" textAlign="left" paddingY="10px">
+              {`${emoji}   ${title}`}
             </Box>
             <AccordionIcon />
           </AccordionButton>
         </h2>
-        <AccordionPanel p='0'>
+        <AccordionPanel p="0">
           {watches.map((watch, index) => {
             return <WatchTableItem key={index} {...watch} />;
           })}

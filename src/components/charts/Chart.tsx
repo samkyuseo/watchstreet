@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Heading, Text, Box, VStack } from '@chakra-ui/layout';
-import { LineChart, Line } from 'recharts';
+import { LineChart, Line, XAxis, Tooltip } from 'recharts';
 
 import { TimeDeltaSelector } from './TimeDeltaSelector';
 
-import { generateNeatVersion } from '../../functions/num';
+import { formatTwoDecimals } from '../../functions/num';
 import { IWatchPriceData } from '../../types';
 import { ITimeDelta } from './types';
+import { formatDate } from '../../functions/date';
 
 const chartTimeDeltas: ITimeDelta[] = [
   { id: '0', selectText: '1W', displayText: 'Past Week', numDays: 7 },
@@ -26,6 +27,7 @@ const Chart = ({ title, data }: IChartProps) => {
   const [timeDelta, setParentTimeDelta] = useState<ITimeDelta>(
     chartTimeDeltas[defaultIndex]
   );
+  const neatPriceRef = useRef<HTMLHeadingElement>(null);
   useEffect(() => {}, [timeDelta]);
 
   function calculatePriceChange(td: ITimeDelta): number {
@@ -37,31 +39,55 @@ const Chart = ({ title, data }: IChartProps) => {
     return priceToday - priceXDaysAgo;
   }
 
-  const neatPrice = generateNeatVersion(
-    data[data.length - timeDelta.numDays].price
-  );
-  const neatPriceChange = generateNeatVersion(calculatePriceChange(timeDelta));
-  const percentPriceChange = generateNeatVersion(
+  const neatPriceChange = formatTwoDecimals(calculatePriceChange(timeDelta));
+  const percentPriceChange = formatTwoDecimals(
     (calculatePriceChange(timeDelta) / data[data.length - 1].price) * 100
   );
+
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      if (neatPriceRef.current) {
+        neatPriceRef.current.innerText = `$${formatTwoDecimals(
+          payload[0].value
+        )}`;
+      }
+      return (
+        <Box>
+          <Text>{label}</Text>
+        </Box>
+      );
+    }
+    return <></>;
+  };
 
   return (
     <VStack alignItems="left" width="100%">
       <Heading variant="page-heading">{title}</Heading>
       <Box>
-        <Heading variant="chart-heading">${neatPrice}</Heading>
+        <Heading variant="chart-heading" ref={neatPriceRef}></Heading>
         <Text variant="bold-text" display="inline-block">
           {calculatePriceChange(timeDelta) < 0 ? '-' : '+'}
           {neatPriceChange} ({percentPriceChange}%)
         </Text>{' '}
         <Text display="inline-block">{timeDelta.displayText}</Text>
       </Box>
+      <br />
       <Box>
         <LineChart
           width={600}
-          height={285}
-          data={data.slice(data.length - timeDelta.numDays, -1)}
+          height={300}
+          data={data
+            .slice(data.length - timeDelta.numDays, -1)
+            .map((d) => ({ ...d, date: formatDate(d.date) }))}
         >
+          <XAxis dataKey={'date'} tick={false} axisLine={false} />
+          <Tooltip
+            isAnimationActive={false}
+            content={<CustomTooltip />}
+            position={{ y: 0 }}
+            allowEscapeViewBox={{ y: true, x: true }}
+            wrapperStyle={{ top: -20, left: -50 }}
+          />
           <Line
             type="monotone"
             dataKey="price"

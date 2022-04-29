@@ -29,8 +29,9 @@ function getFakeWatchPriceHistory(): IWatchPriceData[] {
   let startDate = new Date('12/24/2021');
   let startPrice = Math.floor(Math.random() * 200001); // random start price between 0 and $200,000
   return Array.from({ length: 500 }, () => {
-    startDate.setDate(startDate.getDate() + 1);
-
+    // console.log('Start date before: ', startDate);
+    startDate = new Date(startDate.setDate(startDate.getDate() + 1));
+    // console.log('Start date after: ', startDate);
     // randomly add or subtract but ensure a pos price
     if (Math.round(Math.random() * 1) === 1 || startPrice < 0) {
       startPrice += Math.floor(Math.random() * 10000) + 5000; // add amount between $10,000 and $5,000
