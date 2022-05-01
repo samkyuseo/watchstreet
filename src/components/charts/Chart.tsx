@@ -38,10 +38,10 @@ function formatPriceChangeStr(priceChange: number, data: IWatchPriceData[]) {
     (priceChange / data[data.length - 1].price) * 100
   );
   const neatPriceChange = formatTwoDecimals(priceChange);
-
-  let formatted = `${
-    priceChange < 0 ? '-' : '+'
-  }${neatPriceChange} (${neatPercentPriceChange}%)`;
+  const sign = priceChange < 0 ? '-' : '+';
+  let formatted = `${sign + neatPriceChange} (${
+    sign + neatPercentPriceChange
+  }%)`;
 
   return formatted;
 }
