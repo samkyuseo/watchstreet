@@ -39,11 +39,11 @@ const WatchPage = () => {
         <Content>
           {/* Price Data Section */}
           <Section>
-            <Chart title={watch.model} data={watch.priceHistory} />
+            <Chart title={watch.specs.model} data={watch.priceHistory} />
           </Section>
           {/* Specifications Section */}
           <Section>
-            <Specs />
+            <Specs watchSpecs={watch.specs} />
           </Section>
         </Content>
         <StickySidebar height="350px">

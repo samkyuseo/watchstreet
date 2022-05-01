@@ -9,12 +9,22 @@ import { IWatch, IWatchPriceData } from '../../types';
  */
 async function getWatch(id: string): Promise<IWatch> {
   const fakeData: IWatch = {
-    model: 'Nautilus 5711/1A-014',
-    brand: 'Patek Phillipe',
-    referenceNumber: '5711/1A-014',
-    yearOfProduction: '2021',
-    caseMaterial: 'Steel',
-    description: '',
+    specs: {
+      model: 'Nautilus 5711/1A-014',
+      brand: 'Patek Phillipe',
+      referenceNumber: '5711/1A-014',
+      yearOfProduction: '2021',
+      caseMaterial: 'Steel',
+      braceletMaterial: 'Steel',
+      description: `On its 5711/1A model, Patek Philippe unveils a dial in a brand-new
+      olive-green shade that is new to the Nautilus collection and which
+      should delight lovers of this cult watch, an icon of sporting elegance.
+      The highly recognizable design of the case, bezel and bracelet is
+      enhanced by a subtle alternation between satinated and polished manual
+      finishing. Inside this model water-resistant to 120m beats a
+      self-winding caliber visible through a transparent sapphire crystal
+      case-back.`,
+    },
     priceHistory: getFakeWatchPriceHistory(),
   };
   // return apiClient.get(`/watch/${id}`);
@@ -29,9 +39,7 @@ function getFakeWatchPriceHistory(): IWatchPriceData[] {
   let startDate = new Date('12/24/2021');
   let startPrice = Math.floor(Math.random() * 200001); // random start price between 0 and $200,000
   return Array.from({ length: 500 }, () => {
-    // console.log('Start date before: ', startDate);
     startDate = new Date(startDate.setDate(startDate.getDate() + 1));
-    // console.log('Start date after: ', startDate);
     // randomly add or subtract but ensure a pos price
     if (Math.round(Math.random() * 1) === 1 || startPrice < 0) {
       startPrice += Math.floor(Math.random() * 10000) + 5000; // add amount between $10,000 and $5,000
