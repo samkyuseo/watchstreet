@@ -17,6 +17,39 @@ const chartTimeDeltas: ITimeDelta[] = [
   { id: '4', selectText: '1Y', displayText: 'Past Year', numDays: 365 },
   { id: '5', selectText: 'ALL', displayText: 'All Time', numDays: Infinity },
 ];
+
+/**
+ * Calculates price change given the some data nd the time delta
+ * @param {IWatchPriceData[]} data
+ * @param {ITimeDelta} td
+ * @returns {number} amount changed in the time period
+ */
+function calculatePriceChange(data: IWatchPriceData[], td: ITimeDelta): number {
+  if (td.numDays === Infinity)
+    return data[data.length - 1].price - data[0].price;
+  // priceChange = priceToday - priceXDaysAgo
+  const priceToday = data[data.length - 1].price;
+  const priceXDaysAgo = data[data.length - td.numDays].price;
+  return priceToday - priceXDaysAgo;
+}
+
+function formatPriceChangeStr(priceChange: number, data: IWatchPriceData[]) {
+  const neatPercentPriceChange = formatTwoDecimals(
+    (priceChange / data[data.length - 1].price) * 100
+  );
+  const neatPriceChange = formatTwoDecimals(priceChange);
+
+  let formatted = `${
+    priceChange < 0 ? '-' : '+'
+  }${neatPriceChange} (${neatPercentPriceChange}%)`;
+
+  return formatted;
+}
+
+function getLatestPrice(data: IWatchPriceData[]) {
+  return data[data.length - 1].price;
+}
+
 export interface IChartProps {
   title: string;
   data: IWatchPriceData[];
@@ -27,29 +60,41 @@ const Chart = ({ title, data }: IChartProps) => {
   const [timeDelta, setParentTimeDelta] = useState<ITimeDelta>(
     chartTimeDeltas[defaultIndex]
   );
-  const neatPriceRef = useRef<HTMLHeadingElement>(null);
-  useEffect(() => {}, [timeDelta]);
+  useEffect(() => {
+    /* Set the chart price as soon as component is */
+    if (priceRef.current) {
+      priceRef.current.innerText = formatTwoDecimals(getLatestPrice(data));
+    }
+    if (priceChangeRef.current) {
+      priceChangeRef.current.innerText = formatPriceChangeStr(
+        calculatePriceChange(data, timeDelta),
+        data
+      );
+    }
+  }, [timeDelta, data]);
 
-  function calculatePriceChange(td: ITimeDelta): number {
-    if (td.numDays === Infinity)
-      return data[data.length - 1].price - data[0].price;
-    // priceChange = priceToday - priceXDaysAgo
-    const priceToday = data[data.length - 1].price;
-    const priceXDaysAgo = data[data.length - td.numDays].price;
-    return priceToday - priceXDaysAgo;
-  }
-
-  const neatPriceChange = formatTwoDecimals(calculatePriceChange(timeDelta));
-  const percentPriceChange = formatTwoDecimals(
-    (calculatePriceChange(timeDelta) / data[data.length - 1].price) * 100
-  );
+  const priceRef = useRef<HTMLHeadingElement>(null);
+  const priceChangeRef = useRef<HTMLParagraphElement>(null);
 
   const CustomTooltip = ({ active, payload, label }: any) => {
+    if (!active && priceRef.current) {
+      priceRef.current.innerText = formatTwoDecimals(getLatestPrice(data));
+    }
+    if (!active && priceChangeRef.current) {
+      priceChangeRef.current.innerText = formatPriceChangeStr(
+        calculatePriceChange(data, timeDelta),
+        data
+      );
+    }
     if (active && payload && payload.length) {
-      if (neatPriceRef.current) {
-        neatPriceRef.current.innerText = `$${formatTwoDecimals(
-          payload[0].value
-        )}`;
+      if (priceRef.current) {
+        priceRef.current.innerText = `$${formatTwoDecimals(payload[0].value)}`;
+      }
+      if (priceChangeRef.current) {
+        priceChangeRef.current.innerText = formatPriceChangeStr(
+          getLatestPrice(data) - payload[0].value,
+          data
+        );
       }
       return (
         <Box>
@@ -64,11 +109,12 @@ const Chart = ({ title, data }: IChartProps) => {
     <VStack alignItems="left" width="100%">
       <Heading variant="page-heading">{title}</Heading>
       <Box>
-        <Heading variant="chart-heading" ref={neatPriceRef}></Heading>
-        <Text variant="bold-text" display="inline-block">
-          {calculatePriceChange(timeDelta) < 0 ? '-' : '+'}
-          {neatPriceChange} ({percentPriceChange}%)
-        </Text>{' '}
+        <Heading variant="chart-heading" ref={priceRef}></Heading>
+        <Text
+          variant="bold-text"
+          display="inline-block"
+          ref={priceChangeRef}
+        ></Text>{' '}
         <Text display="inline-block">{timeDelta.displayText}</Text>
       </Box>
       <br />
