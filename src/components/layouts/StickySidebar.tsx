@@ -8,9 +8,9 @@ interface IStickySidebarProps {
 const StickySidebar = ({ children, height }: IStickySidebarProps) => {
   return (
     <Box
-      position='sticky'
-      top='110px'
-      width='29%'
+      position="sticky"
+      top="110px"
+      width="30%"
       height={height ? height : '100%'}
     >
       {children}

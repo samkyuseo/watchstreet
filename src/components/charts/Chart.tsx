@@ -4,10 +4,15 @@ import { LineChart, Line, XAxis, Tooltip } from 'recharts';
 
 import { TimeDeltaSelector } from './TimeDeltaSelector';
 
-import { formatTwoDecimals } from '../../functions/num';
-import { IWatchPriceData } from '../../types';
-import { ITimeDelta } from './types';
+import {
+  formatTwoDecimals,
+  calculatePriceChange,
+  formatPriceChangeString,
+  getLatestPrice,
+} from '../../functions/price';
 import { formatDate } from '../../functions/date';
+
+import { IWatchPriceData, ITimeDelta } from '../../types';
 
 const chartTimeDeltas: ITimeDelta[] = [
   { id: '0', selectText: '1W', displayText: 'Past Week', numDays: 7 },
@@ -17,38 +22,6 @@ const chartTimeDeltas: ITimeDelta[] = [
   { id: '4', selectText: '1Y', displayText: 'Past Year', numDays: 365 },
   { id: '5', selectText: 'ALL', displayText: 'All Time', numDays: Infinity },
 ];
-
-/**
- * Calculates price change given the some data nd the time delta
- * @param {IWatchPriceData[]} data
- * @param {ITimeDelta} td
- * @returns {number} amount changed in the time period
- */
-function calculatePriceChange(data: IWatchPriceData[], td: ITimeDelta): number {
-  if (td.numDays === Infinity)
-    return data[data.length - 1].price - data[0].price;
-  // priceChange = priceToday - priceXDaysAgo
-  const priceToday = data[data.length - 1].price;
-  const priceXDaysAgo = data[data.length - td.numDays].price;
-  return priceToday - priceXDaysAgo;
-}
-
-function formatPriceChangeStr(priceChange: number, data: IWatchPriceData[]) {
-  const neatPercentPriceChange = formatTwoDecimals(
-    (priceChange / data[data.length - 1].price) * 100
-  );
-  const neatPriceChange = formatTwoDecimals(priceChange);
-  const sign = priceChange < 0 ? '-' : '+';
-  let formatted = `${sign + neatPriceChange} (${
-    sign + neatPercentPriceChange
-  }%)`;
-
-  return formatted;
-}
-
-function getLatestPrice(data: IWatchPriceData[]) {
-  return data[data.length - 1].price;
-}
 
 export interface IChartProps {
   title: string;
@@ -61,14 +34,14 @@ const Chart = ({ title, data }: IChartProps) => {
     chartTimeDeltas[defaultIndex]
   );
   useEffect(() => {
-    /* Set the chart price as soon as component is */
+    /* Set the chart price as soon as component is rendered */
     if (priceRef.current) {
       priceRef.current.innerText = formatTwoDecimals(getLatestPrice(data));
     }
     if (priceChangeRef.current) {
-      priceChangeRef.current.innerText = formatPriceChangeStr(
-        calculatePriceChange(data, timeDelta),
-        data
+      priceChangeRef.current.innerText = formatPriceChangeString(
+        data,
+        calculatePriceChange(data, timeDelta)
       );
     }
   }, [timeDelta, data]);
@@ -81,9 +54,9 @@ const Chart = ({ title, data }: IChartProps) => {
       priceRef.current.innerText = formatTwoDecimals(getLatestPrice(data));
     }
     if (!active && priceChangeRef.current) {
-      priceChangeRef.current.innerText = formatPriceChangeStr(
-        calculatePriceChange(data, timeDelta),
-        data
+      priceChangeRef.current.innerText = formatPriceChangeString(
+        data,
+        calculatePriceChange(data, timeDelta)
       );
     }
     if (active && payload && payload.length) {
@@ -91,9 +64,9 @@ const Chart = ({ title, data }: IChartProps) => {
         priceRef.current.innerText = `$${formatTwoDecimals(payload[0].value)}`;
       }
       if (priceChangeRef.current) {
-        priceChangeRef.current.innerText = formatPriceChangeStr(
-          getLatestPrice(data) - payload[0].value,
-          data
+        priceChangeRef.current.innerText = formatPriceChangeString(
+          data,
+          getLatestPrice(data) - payload[0].value
         );
       }
       return (

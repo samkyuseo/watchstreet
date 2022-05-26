@@ -27,7 +27,6 @@ async function getWatch(id: string): Promise<IWatch> {
     },
     priceHistory: getFakeWatchPriceHistory(),
   };
-  // return apiClient.get(`/watch/${id}`);
   return fakeData;
 }
 

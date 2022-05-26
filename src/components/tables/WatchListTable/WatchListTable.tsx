@@ -10,7 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { formatTwoDecimals } from '../../../functions/num';
+import { formatTwoDecimals } from '../../../functions/price';
 
 interface IWatchListTableItem {
   company: string;

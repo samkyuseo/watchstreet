@@ -1,9 +1,9 @@
-interface IWatchPriceData {
+/** Types for watch data */
+export interface IWatchPriceData {
   price: number;
   date: Date;
 }
-
-interface IWatchSpecs {
+export interface IWatchSpecs {
   model: string;
   brand: string;
   referenceNumber: string;
@@ -12,9 +12,28 @@ interface IWatchSpecs {
   braceletMaterial: string;
   description: string;
 }
-interface IWatch {
+export interface IWatch {
   specs: IWatchSpecs;
   priceHistory: IWatchPriceData[];
 }
-
-export type { IWatch, IWatchPriceData, IWatchSpecs };
+/** Types for User data */
+export interface IUserWatch {
+  watch: IWatch;
+  purchaseDate: Date;
+  numberOfWatches: number;
+}
+export interface IUserList {
+  title: string;
+  emoji: string;
+  watches: IUserWatch[];
+}
+/** Types for the chart component */
+export interface ITimeDelta {
+  id: string;
+  selectText: string;
+  displayText: string;
+  numDays: number;
+}
+export function instanceOfTimeDelta(object: any): object is ITimeDelta {
+  return 'numDays' in object;
+}

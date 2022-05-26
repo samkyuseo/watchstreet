@@ -1,24 +1,37 @@
+import { useEffect, useState } from 'react';
+
 import { Text, Heading } from '@chakra-ui/react';
 
 import { Page } from '../../components/layouts/Page';
 import { Content } from '../../components/layouts/Content';
 import { Section } from '../../components/layouts/Section';
 import { StickySidebar } from '../../components/layouts/StickySidebar';
-
 import { Navbar } from '../../components/navbars/Navbar';
 import { WatchListTable } from '../../components/tables/WatchListTable/WatchListTable';
-
 import { WatchCollectionTable } from '../../components/tables/WatchCollectionTable/WatchCollectionTable';
 
+import { getUserLists } from '../../api/lib/user';
+import { IUserList } from '../../types';
+
 const WatchListPage = () => {
+  const [userLists, setUserLists] = useState<IUserList[] | undefined>(
+    undefined
+  );
+  useEffect(() => {
+    const fetchData = async () => {
+      const userLists = await getUserLists();
+      setUserLists(userLists);
+    };
+    fetchData().catch(console.error);
+  }, []);
   return (
     <>
       <Navbar />
       <Page>
         <Content>
           <Section>
-            <Heading variant='page-heading'>John Mayer's Collection</Heading>
-            <Text mt='20px'>
+            <Heading variant="page-heading">John Mayer's Collection</Heading>
+            <Text mt="20px">
               The following is John Mayer's watch collection based on all the
               latest media that we've gathered. Remember when the Rolex
               Cosmograph Daytona 116508 got nicknamed the John Mayer Daytona?
@@ -29,50 +42,12 @@ const WatchListPage = () => {
           </Section>
         </Content>
         <StickySidebar>
-          <WatchCollectionTable watchLists={watchLists} />
+          <WatchCollectionTable watchLists={userLists} />
         </StickySidebar>
       </Page>
     </>
   );
 };
-const watchLists = [
-  {
-    title: 'My Holy Grail Watches',
-    emoji: '🌠',
-    watches: [
-      {
-        modelName: 'Cartier Santos',
-        numWatches: 2,
-        price: 6000,
-        priceChange: -9.89,
-      },
-      {
-        modelName: 'Rolex GMT Master II Pepsi',
-        numWatches: 3,
-        price: 65330,
-        priceChange: 5.25,
-      },
-      {
-        modelName: 'Jaeger Le Coultre Reverso',
-        numWatches: 2,
-        price: 14000,
-        priceChange: -3.45,
-      },
-      {
-        modelName: 'IWC Chrono 41',
-        numWatches: 2,
-        price: 4500,
-        priceChange: -3.89,
-      },
-      {
-        modelName: 'Cartier Santos',
-        numWatches: 2,
-        price: 6000,
-        priceChange: -9.89,
-      },
-    ],
-  },
-];
 
 const tableRows = [
   {

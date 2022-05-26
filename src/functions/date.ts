@@ -1,13 +1,26 @@
+const ONE_DAY = 24 * 60 * 60 * 1000; /* hrs * mins * secs * ms */
+
 /**
  * Given a javascript Date object, returns a formatted date string
  * @param {Date} date
  * @returns {string} formatted in MMM DD, YYYY
  */
-function formatDate(date: Date): string {
+export function formatDate(date: Date): string {
   return date.toLocaleDateString('default', {
     month: 'short',
     day: '2-digit',
     year: 'numeric',
   });
 }
-export { formatDate };
+/**
+ * Calculate number of days between two JS Date objects
+ * @param endDate
+ * @param startDate
+ * @returns number of days between two dates
+ */
+export function calculateTimeDelta(endDate: Date, startDate: Date): number {
+  const diffDays = Math.round(
+    Math.abs((endDate.getTime() - startDate.getTime()) / ONE_DAY)
+  );
+  return diffDays;
+}

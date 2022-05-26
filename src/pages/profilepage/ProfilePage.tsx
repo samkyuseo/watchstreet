@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { Page } from '../../components/layouts/Page';
 import { Content } from '../../components/layouts/Content';
 import { Section } from '../../components/layouts/Section';
@@ -11,6 +13,8 @@ import { WatchCollectionTable } from '../../components/tables/WatchCollectionTab
 import { Article } from '../../components/articles/Article';
 
 import { getFakeWatchPriceHistory } from '../../api/lib/watch';
+import { getUserLists, getUserWatches } from '../../api/lib/user';
+import { IUserWatch, IUserList } from '../../types';
 
 import johnmayer from '../../assets/images/johnmayer.jpg';
 import bingingwithbabish from '../../assets/images/bingingwithbabish.jpeg';
@@ -19,6 +23,22 @@ import hodinkeeimage from '../../assets/images/hodinkeeimage.jpeg';
 import theoandharrisimage from '../../assets/images/theoandharrisimage.jpeg';
 
 const ProfilePage = () => {
+  const [userWatches, setUserWatches] = useState<IUserWatch[] | undefined>(
+    undefined
+  );
+  const [userLists, setUserLists] = useState<IUserList[] | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userWatches = await getUserWatches();
+      const userLists = await getUserLists();
+      setUserWatches(userWatches);
+      setUserLists(userLists);
+    };
+    fetchData().catch(console.error);
+  }, []);
   return (
     <>
       <Navbar />
@@ -62,77 +82,12 @@ const ProfilePage = () => {
           </Section>
         </Content>
         <StickySidebar>
-          <WatchCollectionTable watches={watches} watchLists={watchLists} />
+          <WatchCollectionTable watches={userWatches} watchLists={userLists} />
         </StickySidebar>
       </Page>
     </>
   );
 };
-
-const watches = [
-  {
-    modelName: 'Rolex GMT Master II Pepsi',
-    numWatches: 3,
-    price: 65330,
-    priceChange: 5.25,
-  },
-  {
-    modelName: 'Jaeger Le Coultre Reverso',
-    numWatches: 2,
-    price: 14000,
-    priceChange: -3.45,
-  },
-  {
-    modelName: 'IWC Chrono 41',
-    numWatches: 2,
-    price: 4500,
-    priceChange: -3.89,
-  },
-  {
-    modelName: 'Cartier Santos',
-    numWatches: 2,
-    price: 6000,
-    priceChange: -9.89,
-  },
-];
-const watchLists = [
-  {
-    title: 'My Holy Grail Watches',
-    emoji: '🌠',
-    watches: [
-      {
-        modelName: 'Cartier Santos',
-        numWatches: 2,
-        price: 6000,
-        priceChange: -9.89,
-      },
-      {
-        modelName: 'Rolex GMT Master II Pepsi',
-        numWatches: 3,
-        price: 65330,
-        priceChange: 5.25,
-      },
-      {
-        modelName: 'Jaeger Le Coultre Reverso',
-        numWatches: 2,
-        price: 14000,
-        priceChange: -3.45,
-      },
-      {
-        modelName: 'IWC Chrono 41',
-        numWatches: 2,
-        price: 4500,
-        priceChange: -3.89,
-      },
-      {
-        modelName: 'Cartier Santos',
-        numWatches: 2,
-        price: 6000,
-        priceChange: -9.89,
-      },
-    ],
-  },
-];
 
 const trendingListTags = [
   {
