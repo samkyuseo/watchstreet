@@ -1,9 +1,9 @@
-import { IUserWatch, IUserList, IWatch } from '../../types';
-import { getFakeWatchPriceHistory } from '../lib/watch';
+import { IUserWatch, IUserList, IWatch, IPriceData } from '../../types';
+import { getFakeWatchPriceData } from '../lib/watch';
 
 /**
  * Get User's watch collection
- * @returns {Promise<IUserWatch[]>} an array of the user's watches
+ * @returns an array of the user's watches
  */
 export async function getUserWatches(): Promise<IUserWatch[]> {
   const collection: IUserWatch[] = [
@@ -21,8 +21,37 @@ export async function getUserWatches(): Promise<IUserWatch[]> {
   return collection;
 }
 /**
+ * Get User's watch collection value
+ * @returns sum of all the user's watch price datas
+ */
+export async function getTotalValue(): Promise<IPriceData[]> {
+  const userWatches = await getUserWatches();
+  /* Sum the prices of the user's watches for that day */
+  let map = new Map<number, IPriceData>();
+  for (let uw of userWatches) {
+    for (let pd of uw.watch.priceData) {
+      const date = pd.date;
+      const price = pd.price * uw.numberOfWatches;
+      const oldPrice = map.has(pd.date.getTime())
+        ? map.get(pd.date.getTime())!.price
+        : 0;
+      map.set(date.getTime(), {
+        date,
+        price: price + oldPrice,
+      });
+    }
+  }
+  /* Extract all the PriceData objs */
+  const priceDataSum: IPriceData[] = [];
+  map.forEach((value) => {
+    priceDataSum.push(value);
+  });
+
+  return priceDataSum;
+}
+/**
  * Get User's watch lists
- * @returns {Promise<IUserList[]>} an array of list watches
+ * @returns an array of list watches
  */
 export async function getUserLists(): Promise<IUserList[]> {
   const userLists: IUserList[] = [
@@ -58,7 +87,7 @@ const watch1: IWatch = {
       self-winding caliber visible through a transparent sapphire crystal
       case-back.`,
   },
-  priceHistory: getFakeWatchPriceHistory(),
+  priceData: getFakeWatchPriceData(),
 };
 
 const watch2: IWatch = {
@@ -76,7 +105,7 @@ const watch2: IWatch = {
     Its combination of peerless functionality, robustness and instantly recognizable
     aesthetics has attracted a wider audience of world travellers.`,
   },
-  priceHistory: getFakeWatchPriceHistory(),
+  priceData: getFakeWatchPriceData(),
 };
 
 const watch3: IWatch = {
@@ -88,12 +117,12 @@ const watch3: IWatch = {
     caseMaterial: 'Rose Gold',
     braceletMaterial: 'Rose Gold',
     description: `Inside the watch is an all-new movement from Audemars Piguet. 
-    Gone is the 2121 movement, and in it’s stead is the 7121. Practically speaking,  
-    the movement is an improvement upon it’s older brother. The movement features a 
+    Gone is the 2121 movement, and in it's stead is the 7121. Practically speaking,  
+    the movement is an improvement upon it's older brother. The movement features a 
     55-hour power reserve instead of the 40-hour of the 2121. The movement will now beat 
-    at 4-Hz instead of 2.75-Hz. And, to enthusiast delight everywhere, a quick-set date. F`,
+    at 4-Hz instead of 2.75-Hz. And, to enthusiast delight everywhere, a quick-set date.`,
   },
-  priceHistory: getFakeWatchPriceHistory(),
+  priceData: getFakeWatchPriceData(),
 };
 
 const watchList1: IUserWatch[] = [

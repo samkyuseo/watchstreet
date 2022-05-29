@@ -1,5 +1,5 @@
-/** Types for watch data */
-export interface IWatchPriceData {
+/* Types for watch data */
+export interface IPriceData {
   price: number;
   date: Date;
 }
@@ -14,9 +14,23 @@ export interface IWatchSpecs {
 }
 export interface IWatch {
   specs: IWatchSpecs;
-  priceHistory: IWatchPriceData[];
+  priceData: IPriceData[];
 }
-/** Types for User data */
+/* Types for public watch lists */
+export interface IWatchList {
+  image: string;
+  text: string;
+  id: number /* Help generate the url */;
+}
+/* Types for watch articles */
+export interface IWatchArticle {
+  company: string;
+  heading: string;
+  articleSnippet: string;
+  image: string;
+  url: string;
+}
+/* Types for User data */
 export interface IUserWatch {
   watch: IWatch;
   purchaseDate: Date;
@@ -27,13 +41,10 @@ export interface IUserList {
   emoji: string;
   watches: IUserWatch[];
 }
-/** Types for the chart component */
+/* Types for the chart component */
 export interface ITimeDelta {
   id: string;
   selectText: string;
   displayText: string;
   numDays: number;
-}
-export function instanceOfTimeDelta(object: any): object is ITimeDelta {
-  return 'numDays' in object;
 }

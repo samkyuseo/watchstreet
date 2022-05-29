@@ -39,7 +39,7 @@ const WatchPage = () => {
         <Content>
           {/* Price Data Section */}
           <Section>
-            <Chart title={watch.specs.model} data={watch.priceHistory} />
+            <Chart title={watch.specs.model} data={watch.priceData} />
           </Section>
           {/* Specifications Section */}
           <Section>

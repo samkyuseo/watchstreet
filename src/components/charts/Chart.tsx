@@ -12,7 +12,7 @@ import {
 } from '../../functions/price';
 import { formatDate } from '../../functions/date';
 
-import { IWatchPriceData, ITimeDelta } from '../../types';
+import { IPriceData, ITimeDelta } from '../../types';
 
 const chartTimeDeltas: ITimeDelta[] = [
   { id: '0', selectText: '1W', displayText: 'Past Week', numDays: 7 },
@@ -25,18 +25,23 @@ const chartTimeDeltas: ITimeDelta[] = [
 
 export interface IChartProps {
   title: string;
-  data: IWatchPriceData[];
+  data: IPriceData[];
 }
 
 const Chart = ({ title, data }: IChartProps) => {
+  /* Hooks */
   const [defaultIndex] = useState<number>(3);
   const [timeDelta, setParentTimeDelta] = useState<ITimeDelta>(
     chartTimeDeltas[defaultIndex]
   );
+  const priceRef = useRef<HTMLHeadingElement>(null);
+  const priceChangeRef = useRef<HTMLParagraphElement>(null);
   useEffect(() => {
     /* Set the chart price as soon as component is rendered */
     if (priceRef.current) {
-      priceRef.current.innerText = formatTwoDecimals(getLatestPrice(data));
+      priceRef.current.innerText = `$${formatTwoDecimals(
+        getLatestPrice(data)
+      )}`;
     }
     if (priceChangeRef.current) {
       priceChangeRef.current.innerText = formatPriceChangeString(
@@ -46,12 +51,12 @@ const Chart = ({ title, data }: IChartProps) => {
     }
   }, [timeDelta, data]);
 
-  const priceRef = useRef<HTMLHeadingElement>(null);
-  const priceChangeRef = useRef<HTMLParagraphElement>(null);
-
   const CustomTooltip = ({ active, payload, label }: any) => {
+    /* Tool tip is not active */
     if (!active && priceRef.current) {
-      priceRef.current.innerText = formatTwoDecimals(getLatestPrice(data));
+      priceRef.current.innerText = `$${formatTwoDecimals(
+        getLatestPrice(data)
+      )}`;
     }
     if (!active && priceChangeRef.current) {
       priceChangeRef.current.innerText = formatPriceChangeString(
@@ -59,14 +64,19 @@ const Chart = ({ title, data }: IChartProps) => {
         calculatePriceChange(data, timeDelta)
       );
     }
+    /* Tool tip is active */
     if (active && payload && payload.length) {
       if (priceRef.current) {
         priceRef.current.innerText = `$${formatTwoDecimals(payload[0].value)}`;
       }
       if (priceChangeRef.current) {
+        const td =
+          timeDelta.numDays === Infinity ? data.length : timeDelta.numDays;
+        /* Can't use calculatePriceChange, since end value is different */
+        const priceChange = payload[0].value - data[data.length - td].price;
         priceChangeRef.current.innerText = formatPriceChangeString(
           data,
-          getLatestPrice(data) - payload[0].value
+          priceChange
         );
       }
       return (
@@ -82,7 +92,7 @@ const Chart = ({ title, data }: IChartProps) => {
     <VStack alignItems="left" width="100%">
       <Heading variant="page-heading">{title}</Heading>
       <Box>
-        <Heading variant="chart-heading" ref={priceRef}></Heading>
+        <Heading variant="chart-heading" ref={priceRef} />
         <Text
           variant="bold-text"
           display="inline-block"
@@ -96,7 +106,7 @@ const Chart = ({ title, data }: IChartProps) => {
           width={600}
           height={300}
           data={data
-            .slice(data.length - timeDelta.numDays, -1)
+            .slice(data.length - timeDelta.numDays, data.length)
             .map((d) => ({ ...d, date: formatDate(d.date) }))}
         >
           <XAxis dataKey={'date'} tick={false} axisLine={false} />

@@ -1,4 +1,4 @@
-import { IWatchPriceData, ITimeDelta } from '../types';
+import { IPriceData, ITimeDelta } from '../types';
 /**
  * Add commas if applicable and two decimals
  * @param num
@@ -13,13 +13,12 @@ export function formatTwoDecimals(num: number): string {
 
 /**
  * Calculates price from lates price change given the some data and the time delta
- * (overloaded)
  * @param data
  * @param td a number or ITimeDelta object
  * @returns amount changed in the time period
  */
 export function calculatePriceChange(
-  data: IWatchPriceData[],
+  data: IPriceData[],
   td: ITimeDelta | number
 ): number {
   let numDays = typeof td === 'number' ? td : td.numDays;
@@ -29,7 +28,7 @@ export function calculatePriceChange(
   }
   // priceChange = priceToday - priceXDaysAgo
   const priceToday = data[data.length - 1].price;
-  const priceXDaysAgo = data[data.length - numDays - 1].price;
+  const priceXDaysAgo = data[data.length - numDays].price;
   return priceToday - priceXDaysAgo;
 }
 
@@ -40,7 +39,7 @@ export function calculatePriceChange(
  * @returns a string in the form of +/-$XXXX.XX(+/-XX.XX%)
  */
 export function formatPriceChangeString(
-  data: IWatchPriceData[],
+  data: IPriceData[],
   priceChange: number
 ): string {
   const neatPercentPriceChange = formatTwoDecimals(
@@ -62,7 +61,7 @@ export function formatPriceChangeString(
  * @returns a string in the form of +/-XX.XX%
  */
 export function formatPriceChangePercent(
-  data: IWatchPriceData[],
+  data: IPriceData[],
   priceChange: number
 ): string {
   const neatPercentPriceChange = formatTwoDecimals(
@@ -78,7 +77,7 @@ export function formatPriceChangePercent(
  * @param data
  * @returns latest price of watch
  */
-export function getLatestPrice(data: IWatchPriceData[]): number {
+export function getLatestPrice(data: IPriceData[]): number {
   return data[data.length - 1].price;
 }
 /**
@@ -86,6 +85,6 @@ export function getLatestPrice(data: IWatchPriceData[]): number {
  * @param data
  * @returns latest price of watch
  */
-export function getLatestDate(data: IWatchPriceData[]): Date {
+export function getLatestDate(data: IPriceData[]): Date {
   return data[data.length - 1].date;
 }
