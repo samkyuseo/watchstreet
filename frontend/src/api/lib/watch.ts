@@ -6,6 +6,7 @@ import bingingwithbabish from '../../assets/images/bingingwithbabish.jpeg';
 import christianoronaldo from '../../assets/images/christianoronaldo.jpeg';
 import hodinkeeimage from '../../assets/images/hodinkeeimage.jpeg';
 import theoandharrisimage from '../../assets/images/theoandharrisimage.jpeg';
+import patek from '../../assets/images/patek.jpg';
 
 /**
  * Returns watch object given id.
@@ -15,6 +16,7 @@ import theoandharrisimage from '../../assets/images/theoandharrisimage.jpeg';
 export async function getWatch(id: string): Promise<IWatch> {
   const fakeData: IWatch = {
     id: '1',
+    image: patek,
     specs: {
       model: 'Nautilus 5711/1A-014',
       brand: 'Patek Phillipe',
@@ -94,6 +96,7 @@ export async function getTrendingListWatches(): Promise<IWatch[]> {
   /** Fake data */
   const watch1: IWatch = {
     id: '1',
+    image: patek,
     specs: {
       model: 'Nautilus 5711/1A-014',
       brand: 'Patek Phillipe',
@@ -115,6 +118,7 @@ export async function getTrendingListWatches(): Promise<IWatch[]> {
 
   const watch2: IWatch = {
     id: '1',
+    image: patek,
     specs: {
       model: 'Rolex GMT Master II',
       brand: 'Rolex',
@@ -134,6 +138,7 @@ export async function getTrendingListWatches(): Promise<IWatch[]> {
 
   const watch3: IWatch = {
     id: '1',
+    image: patek,
     specs: {
       model: 'AP Royal Oak "Jumbo"',
       brand: 'Audemars Piguets',

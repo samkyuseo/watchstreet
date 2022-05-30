@@ -10,7 +10,6 @@ import { Chart } from '../../components/charts/Chart';
 import { Specs } from '../../components/specs/Specs';
 import { WatchImage } from '../../components/images/WatchImage/WatchImage';
 
-import patek from '../../assets/images/patek.jpg';
 import { Button } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { getWatch } from '../../api/lib/watch';
@@ -48,7 +47,7 @@ const WatchPage = () => {
         </Content>
         <StickySidebar height="350px">
           {/* Image */}
-          <WatchImage image={patek} />
+          <WatchImage image={watch.image} />
           {/* Actions */}
           <Button mt="40px" variant="pop" width="100%">
             Add to Collection

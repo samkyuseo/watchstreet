@@ -14,6 +14,7 @@ export interface IWatchSpecs {
 }
 export interface IWatch {
   id: string;
+  image: string;
   specs: IWatchSpecs;
   priceData: IPriceData[];
 }

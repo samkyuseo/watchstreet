@@ -1,5 +1,6 @@
 import { IUserWatch, IUserList, IWatch, IPriceData } from '../../types';
 import { getFakeWatchPriceData } from '../lib/watch';
+import patek from '../../assets/images/patek.jpg';
 
 /**
  * Get User's watch collection
@@ -72,6 +73,7 @@ export async function getUserLists(): Promise<IUserList[]> {
 /** Fake data */
 const watch1: IWatch = {
   id: '1',
+  image: patek,
   specs: {
     model: 'Nautilus 5711/1A-014',
     brand: 'Patek Phillipe',
@@ -93,6 +95,7 @@ const watch1: IWatch = {
 
 const watch2: IWatch = {
   id: '1',
+  image: patek,
   specs: {
     model: 'Rolex GMT Master II',
     brand: 'Rolex',
@@ -112,6 +115,7 @@ const watch2: IWatch = {
 
 const watch3: IWatch = {
   id: '1',
+  image: patek,
   specs: {
     model: 'AP Royal Oak "Jumbo"',
     brand: 'Audemars Piguets',
