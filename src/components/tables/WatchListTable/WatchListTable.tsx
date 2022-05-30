@@ -10,19 +10,16 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { formatTwoDecimals } from '../../../functions/price';
-
-interface IWatchListTableItem {
-  company: string;
-  model: string;
-  material: string;
-  reference: string;
-  price: number;
-  percentChange: number;
-}
+import {
+  calculatePriceChange,
+  calculatePriceChangePerent,
+  formatTwoDecimals,
+  getLatestPrice,
+} from '../../../functions/price';
+import { IWatch } from '../../../types';
 
 interface IWatchListTableProps {
-  watches: IWatchListTableItem[];
+  watches: IWatch[];
 }
 
 const WatchListTable = ({ watches }: IWatchListTableProps) => {
@@ -46,57 +43,43 @@ const WatchListTable = ({ watches }: IWatchListTableProps) => {
         </Tr>
       </Thead>
       <Tbody>
-        {watches.map(
-          ({ company, model, reference, price, percentChange }, index) => {
-            return (
-              <Tr key={index}>
-                <Td px="0" fontFamily="barlow">
-                  <Text color="black" fontSize="14px" variant="bold-text">
-                    {model}
-                  </Text>
-                  <Text fontSize="12px" color="black">
-                    {company}
-                  </Text>
-                </Td>
-                <Td
-                  px="0"
-                  textAlign="center"
-                  fontFamily="barlow"
-                  fontSize="14px"
-                >
-                  {reference}
-                </Td>
-                <Td
-                  px="0"
-                  textAlign="center"
-                  fontFamily="barlow"
-                  fontSize="14px"
-                >
-                  ${formatTwoDecimals(price)}
-                </Td>
-                <Td
-                  px="0"
-                  textAlign="center"
-                  fontFamily="barlow"
-                  fontSize="14px"
-                >
-                  <StatHelpText>
-                    {percentChange > 0 ? (
-                      <StatArrow type="increase" />
-                    ) : (
-                      <StatArrow type="decrease" />
-                    )}
-                    {'  '}
-                    {percentChange < 0 ? percentChange * -1 : percentChange}%
-                  </StatHelpText>
-                </Td>
-                <Td>
-                  <AiOutlinePlus />
-                </Td>
-              </Tr>
-            );
-          }
-        )}
+        {watches.map((watch, index) => {
+          return (
+            <Tr key={index}>
+              <Td px="0" fontFamily="barlow">
+                <Text color="black" fontSize="14px" variant="bold-text">
+                  {watch.specs.model}
+                </Text>
+                <Text fontSize="12px" color="black">
+                  {watch.specs.brand}
+                </Text>
+              </Td>
+              <Td px="0" textAlign="center" fontFamily="barlow" fontSize="14px">
+                {watch.specs.referenceNumber}
+              </Td>
+              <Td px="0" textAlign="center" fontFamily="barlow" fontSize="14px">
+                ${formatTwoDecimals(getLatestPrice(watch.priceData))}
+              </Td>
+              <Td px="0" textAlign="center" fontFamily="barlow" fontSize="14px">
+                <StatHelpText>
+                  {calculatePriceChange(watch.priceData, 7) > 0 ? (
+                    <StatArrow type="increase" />
+                  ) : (
+                    <StatArrow type="decrease" />
+                  )}
+                  {'  '}
+                  {formatTwoDecimals(
+                    Math.abs(calculatePriceChangePerent(watch.priceData, 7))
+                  )}
+                  %
+                </StatHelpText>
+              </Td>
+              <Td>
+                <AiOutlinePlus />
+              </Td>
+            </Tr>
+          );
+        })}
       </Tbody>
     </Table>
   );

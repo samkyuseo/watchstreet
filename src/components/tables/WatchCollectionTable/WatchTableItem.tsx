@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Flex, Text, VStack, Spacer } from '@chakra-ui/react';
 import {
   calculatePriceChange,
@@ -15,6 +16,7 @@ const WatchTableItem = ({
   purchaseDate,
   numberOfWatches,
 }: IUserWatch) => {
+  const navigate = useNavigate();
   const timeDelta = calculateTimeDelta(
     getLatestDate(watch.priceData),
     purchaseDate
@@ -31,6 +33,9 @@ const WatchTableItem = ({
       width="100%"
       padding="10px"
       flexDirection="row"
+      onClick={() => {
+        navigate(`/watch/${watch.id}`);
+      }}
       _hover={{ backgroundColor: 'gray.50' }}
     >
       <VStack align="left">

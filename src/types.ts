@@ -13,6 +13,7 @@ export interface IWatchSpecs {
   description: string;
 }
 export interface IWatch {
+  id: string;
   specs: IWatchSpecs;
   priceData: IPriceData[];
 }

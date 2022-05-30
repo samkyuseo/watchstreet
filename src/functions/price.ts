@@ -12,7 +12,7 @@ export function formatTwoDecimals(num: number): string {
 }
 
 /**
- * Calculates price from lates price change given the some data and the time delta
+ * Calculates price from latest price given the some data and the time delta
  * @param data
  * @param td a number or ITimeDelta object
  * @returns amount changed in the time period
@@ -30,6 +30,29 @@ export function calculatePriceChange(
   const priceToday = data[data.length - 1].price;
   const priceXDaysAgo = data[data.length - numDays].price;
   return priceToday - priceXDaysAgo;
+}
+
+/**
+ * Calculates change percent from latest price given the some data and the time delta
+ * @param data
+ * @param td a number or ITimeDelta object
+ * @returns amount changed in the time period
+ */
+export function calculatePriceChangePerent(
+  data: IPriceData[],
+  td: ITimeDelta | number
+): number {
+  let numDays = typeof td === 'number' ? td : td.numDays;
+
+  if (numDays === Infinity) {
+    return data[data.length - 1].price - data[0].price;
+  }
+  // priceChange = priceToday - priceXDaysAgo
+  const priceToday = data[data.length - 1].price;
+  const priceXDaysAgo = data[data.length - numDays].price;
+
+  const priceChange = priceToday - priceXDaysAgo;
+  return (priceChange / data[data.length - 1].price) * 100;
 }
 
 /**
@@ -68,6 +91,7 @@ export function formatPriceChangePercent(
     (priceChange / data[data.length - 1].price) * 100
   );
   const sign = priceChange < 0 ? '-' : '+';
+
   let formatted = `${sign + neatPercentPriceChange}%`;
   return formatted;
 }

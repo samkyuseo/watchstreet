@@ -71,6 +71,7 @@ export async function getUserLists(): Promise<IUserList[]> {
 
 /** Fake data */
 const watch1: IWatch = {
+  id: '1',
   specs: {
     model: 'Nautilus 5711/1A-014',
     brand: 'Patek Phillipe',
@@ -91,6 +92,7 @@ const watch1: IWatch = {
 };
 
 const watch2: IWatch = {
+  id: '1',
   specs: {
     model: 'Rolex GMT Master II',
     brand: 'Rolex',
@@ -109,6 +111,7 @@ const watch2: IWatch = {
 };
 
 const watch3: IWatch = {
+  id: '1',
   specs: {
     model: 'AP Royal Oak "Jumbo"',
     brand: 'Audemars Piguets',
