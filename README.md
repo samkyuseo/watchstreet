@@ -1,3 +1,3 @@
 # grayidx
 
-Robinhood for watches.
+One stop shop for the gray watch market prices and news.
