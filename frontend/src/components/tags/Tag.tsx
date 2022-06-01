@@ -2,12 +2,12 @@ import { Center, Image, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 interface ITagProps {
+  id: string;
   image: string;
-  text: string;
-  id: number;
+  owner: string;
 }
 
-const Tag = ({ image, text, id }: ITagProps) => {
+const Tag = ({ image, owner, id }: ITagProps) => {
   const navigate = useNavigate();
   return (
     <Center
@@ -20,12 +20,12 @@ const Tag = ({ image, text, id }: ITagProps) => {
       style={{ gap: 10 }}
       _hover={{ backgroundColor: 'gray.50' }}
       onClick={() => {
-        navigate(`/lists/watchvalue/${id}`);
+        navigate(`/lists/${id}`);
       }}
     >
       <Image src={image} boxSize="28px" borderRadius="20px" objectFit="cover" />
       <Text color="black" mt="2px" fontSize="15px">
-        {text}
+        {owner}
       </Text>
     </Center>
   );

@@ -28,7 +28,7 @@ getAnalytics(app);
 const App = () => {
   const [user, loading, error] = useAuthState(getAuth());
   const authRoutes = useRoutes([
-    { path: '/lists/watchvalue/:id', element: <WatchListPage /> },
+    { path: '/lists/:id', element: <WatchListPage /> },
     { path: '/watch/:id', element: <WatchPage /> },
     { path: '/profile', element: <ProfilePage /> },
     { path: '*', element: <Navigate to="/profile" /> },

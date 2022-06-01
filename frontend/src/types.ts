@@ -20,9 +20,11 @@ export interface IWatch {
 }
 /* Types for public watch lists */
 export interface IWatchList {
+  id: string /* Help generate the url */;
   image: string;
-  text: string;
-  id: number /* Help generate the url */;
+  owner: string;
+  description: string;
+  watches: IWatch[];
 }
 /* Types for watch articles */
 export interface IWatchArticle {
@@ -33,6 +35,11 @@ export interface IWatchArticle {
   url: string;
 }
 /* Types for User data */
+export interface IUser {
+  id: String;
+  userLists: IUserList[];
+  userWatches: IUserWatch[];
+}
 export interface IUserWatch {
   watch: IWatch;
   purchaseDate: Date;

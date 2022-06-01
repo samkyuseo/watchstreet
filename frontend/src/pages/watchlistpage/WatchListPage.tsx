@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { Text, Heading } from '@chakra-ui/react';
 
@@ -11,40 +12,38 @@ import { WatchListTable } from '../../components/tables/WatchListTable/WatchList
 import { WatchCollectionTable } from '../../components/tables/WatchCollectionTable/WatchCollectionTable';
 
 import { getUserLists } from '../../api/lib/user';
-import { IUserList, IWatch } from '../../types';
-import { getTrendingListWatches } from '../../api/lib/watch';
+import { IUserList, IWatch, IWatchList } from '../../types';
+import { getTrendingList } from '../../api/lib/watch';
 
 const WatchListPage = () => {
+  const { id } = useParams();
+
   const [userLists, setUserLists] = useState<IUserList[] | undefined>(
     undefined
   );
-  const [listWatches, setListWatches] = useState<IWatch[] | undefined>(
+  const [trendingList, setTrendingList] = useState<IWatchList | undefined>(
     undefined
   );
   useEffect(() => {
     const fetchData = async () => {
       const userLists = await getUserLists();
-      const listWatches = await getTrendingListWatches();
+      const trendingList = await getTrendingList(id || '');
       setUserLists(userLists);
-      setListWatches(listWatches);
+      setTrendingList(trendingList);
     };
     fetchData().catch(console.error);
-  }, []);
+  }, [id]);
   return (
     <>
       <Navbar />
       <Page>
         <Content>
           <Section>
-            <Heading variant="page-heading">John Mayer's Collection</Heading>
-            <Text mt="20px">
-              The following is John Mayer's watch collection based on all the
-              latest media that we've gathered. Remember when the Rolex
-              Cosmograph Daytona 116508 got nicknamed the John Mayer Daytona?
-            </Text>
+            <Heading variant="page-heading">{`${trendingList?.owner}'s Collection`}</Heading>
+            <Text mt="20px">{trendingList?.description}</Text>
           </Section>
           <Section>
-            {listWatches && <WatchListTable watches={listWatches} />}
+            {trendingList && <WatchListTable watches={trendingList.watches} />}
           </Section>
         </Content>
         <StickySidebar>
