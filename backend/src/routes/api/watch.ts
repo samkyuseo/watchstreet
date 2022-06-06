@@ -1,8 +1,5 @@
 import express from 'express';
 import { Request, Response } from 'express';
-import { FirebaseError } from 'firebase-admin';
-import { db } from '../../db';
-import { isFirebaseError } from '../../types/guards';
 
 /* Temporary fake DBs */
 import { watchDB, watchListDB, articleDB } from '../../db';

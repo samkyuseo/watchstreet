@@ -1,0 +1,179 @@
+import { useState, useEffect } from 'react';
+
+import { Content } from '../../components/layouts/Content';
+import { Section } from '../../components/layouts/Section';
+import { Chart } from './Chart';
+import { WatchImage } from '../../components/images/WatchImage/WatchImage';
+
+import {
+  Button,
+  Box,
+  Heading,
+  Spacer,
+  Input,
+  Text,
+  Flex,
+  useMediaQuery,
+} from '@chakra-ui/react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
+import { getWatch } from '../../api/lib/watch';
+import { IWatch } from '../../types';
+import { LoadingPage } from '../loadingpage/LoadingPage';
+import { LandingNavbar } from '../../components/navbars/LandingNavbar';
+import { Footer } from '../../components/footers/Footer';
+
+type Inputs = {
+  email: string;
+};
+
+const WaitlistPage = () => {
+  const [watch, setWatch] = useState<IWatch | null>(null);
+  const [id] = useState<string>('2');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const [isTabletOrSmaller] = useMediaQuery('(max-width: 700px');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const watch = await getWatch(id);
+      setWatch(watch);
+    };
+    fetchData().catch(console.error);
+  }, [id]);
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data);
+  };
+
+  if (isTabletOrSmaller) {
+    return (
+      <Flex height="100%" width="100%" flexDir="column">
+        <LandingNavbar />
+        <br />
+        <Flex flexDir="column" alignItems={'center'} textAlign="center">
+          <Heading variant={'hero-heading-mobile'}>
+            Learn, Discover, Track.
+          </Heading>
+          <br></br>
+          <Text variant="hero-text-mobile">
+            Gray watch market prices and watch news - All in one location.
+          </Text>
+          <br></br>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              size="md"
+              width="100%"
+              placeholder="Enter your email"
+              focusBorderColor="green.light"
+              fontSize="20px"
+              type="email"
+              {...register('email', { required: true })}
+            />
+            <Spacer />
+            <br></br>
+            <Button type="submit" size="md" variant="pop" borderRadius="md">
+              Join the waitlist
+            </Button>
+          </form>
+        </Flex>
+        <br></br>
+        <Flex
+          justifyContent="space-between"
+          paddingX="30px"
+          paddingBottom="30px"
+        >
+          {watch ? (
+            <>
+              <Section>
+                {/* Price Data Section */}
+                <Chart title={watch.specs.model} data={watch.priceData} />
+              </Section>
+            </>
+          ) : (
+            <LoadingPage />
+          )}
+        </Flex>
+        <br />
+        <br />
+        <Footer />
+      </Flex>
+    );
+  }
+
+  return (
+    <Flex height="100%" width="100%" flexDir="column">
+      <LandingNavbar />
+      <br />
+      <Flex flexDir="column" alignItems={'center'}>
+        <Heading variant={'hero-heading'}>Learn, Discover, Track.</Heading>
+        <br></br>
+        <Text variant="hero-text">
+          Gray watch market prices and watch news - All in one location.
+        </Text>
+        <br></br>
+        <Input
+          size="lg"
+          maxWidth="400px"
+          placeholder="Enter your email"
+          focusBorderColor="green.light"
+          fontSize={'20px'}
+        />
+        <Spacer />
+        <br></br>
+        <Button size="lg" variant="pop" borderRadius="md">
+          Join the waitlist
+        </Button>
+      </Flex>
+      <br></br>
+      <br></br>
+      <Flex
+        maxWidth="95%"
+        justifyContent={'space-between'}
+        paddingX="30px"
+        paddingBottom="30px"
+        margin="auto"
+        border="1px"
+        borderColor="gray.200"
+        borderRadius="lg"
+        boxShadow="md"
+      >
+        {watch ? (
+          <>
+            <>
+              <Content>
+                {/* Price Data Section */}
+                <Section>
+                  <Chart title={watch.specs.model} data={watch.priceData} />
+                </Section>
+              </Content>
+              <Box top="110px" width="30%" height="350">
+                {/* Image */}
+                <br />
+                <br />
+                <WatchImage image={watch.image} />
+                {/* Actions */}
+                <Button mt="40px" variant="pop" width="100%">
+                  Add to Collection
+                </Button>
+                <Button mt="20px" variant="outline" width="100%">
+                  Add to List
+                </Button>
+              </Box>
+            </>
+          </>
+        ) : (
+          <LoadingPage />
+        )}
+      </Flex>
+      <br />
+      <br />
+      <Footer />
+    </Flex>
+  );
+};
+
+export { WaitlistPage };

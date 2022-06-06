@@ -1,6 +1,6 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 
-import { LandingPage } from './pages/landingpage/LandingPage';
+import { WaitlistPage } from './pages/waitlistpage/WaitlistPage';
 import { WatchPage } from './pages/watchpage/WatchPage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { ProfilePage } from './pages/profilepage/ProfilePage';
@@ -34,7 +34,7 @@ const App = () => {
     { path: '*', element: <Navigate to="/profile" /> },
   ]);
   const unAuthRoutes = useRoutes([
-    { path: '/', element: <LandingPage /> },
+    { path: '/', element: <WaitlistPage /> },
     { path: '*', element: <Navigate to="/" /> },
   ]);
   const loadingRoutes = useRoutes([{ path: '*', element: <LoadingPage /> }]);

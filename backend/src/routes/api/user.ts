@@ -1,5 +1,8 @@
 import express from 'express';
 import { Request, Response } from 'express';
+import { FirebaseError } from 'firebase-admin';
+import { db } from '../../db';
+import { isFirebaseError } from '../../types/guards';
 
 import { userDB } from '../../db';
 
@@ -21,6 +24,18 @@ router.get('/collection', async (req: Request, res: Response) => {
 router.get('/lists', async (req: Request, res: Response) => {
   const id = '0';
   return res.json(userDB.find((user) => user.id === id)!.userLists);
+});
+
+/**
+ * Add email to waitlist
+ * @route POST /api/user/waitlist
+ */
+
+router.post('/waitlist', async (req: Request, res: Response) => {
+  const response = await db
+    .collection('waitlist')
+    .doc()
+    .set({ lol: 'someemail' });
 });
 
 module.exports = router;

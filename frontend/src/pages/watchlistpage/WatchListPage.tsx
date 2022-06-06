@@ -12,7 +12,7 @@ import { WatchListTable } from '../../components/tables/WatchListTable/WatchList
 import { WatchCollectionTable } from '../../components/tables/WatchCollectionTable/WatchCollectionTable';
 
 import { getUserLists } from '../../api/lib/user';
-import { IUserList, IWatch, IWatchList } from '../../types';
+import { IUserList, IWatchList } from '../../types';
 import { getTrendingList } from '../../api/lib/watch';
 
 const WatchListPage = () => {

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Heading, Text, Box, VStack } from '@chakra-ui/layout';
-import { LineChart, Line, XAxis, Tooltip } from 'recharts';
+import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 import { TimeDeltaSelector } from './TimeDeltaSelector';
 
@@ -13,6 +13,7 @@ import {
 import { formatDate } from '../../functions/date';
 
 import { IPriceData, ITimeDelta } from '../../types';
+import { useMediaQuery } from '@chakra-ui/react';
 
 const chartTimeDeltas: ITimeDelta[] = [
   { id: '0', selectText: '1W', displayText: 'Past Week', numDays: 7 },
@@ -30,6 +31,7 @@ export interface IChartProps {
 
 const Chart = ({ title, data }: IChartProps) => {
   /* Hooks */
+  const [isTableOrSmaller] = useMediaQuery('(max-width: 700px)');
   const [defaultIndex] = useState<number>(3);
   const [timeDelta, setParentTimeDelta] = useState<ITimeDelta>(
     chartTimeDeltas[defaultIndex]
@@ -90,9 +92,16 @@ const Chart = ({ title, data }: IChartProps) => {
 
   return (
     <VStack alignItems="left" width="100%">
-      <Heading variant="page-heading">{title}</Heading>
+      <Heading
+        variant={isTableOrSmaller ? 'chart-heading-mobile' : 'chart-heading'}
+      >
+        {title}
+      </Heading>
       <Box>
-        <Heading variant="chart-heading" ref={priceRef} />
+        <Heading
+          variant={isTableOrSmaller ? 'chart-heading-mobile' : 'chart-heading'}
+          ref={priceRef}
+        />
         <Text
           variant="bold-text"
           display="inline-block"
@@ -101,30 +110,31 @@ const Chart = ({ title, data }: IChartProps) => {
         <Text display="inline-block">{timeDelta.displayText}</Text>
       </Box>
       <br />
-      <Box width="600px">
-        <LineChart
-          width={600}
-          height={300}
-          data={data
-            .slice(data.length - timeDelta.numDays, data.length)
-            .map((d) => ({ ...d, date: formatDate(d.date) }))}
-        >
-          <XAxis dataKey={'date'} tick={false} axisLine={false} />
-          <Tooltip
-            isAnimationActive={false}
-            content={<CustomTooltip />}
-            position={{ y: 0 }}
-            allowEscapeViewBox={{ y: true, x: true }}
-            wrapperStyle={{ top: -20, left: -50 }}
-          />
-          <Line
-            type="monotone"
-            dataKey="price"
-            stroke="#24E5AF"
-            strokeWidth={2}
-            dot={false}
-          />
-        </LineChart>
+      <Box width="100%">
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart
+            data={data
+              .slice(data.length - timeDelta.numDays, data.length)
+              .map((d) => ({ ...d, date: formatDate(d.date) }))}
+          >
+            <XAxis dataKey={'date'} tick={false} axisLine={false} />
+            <Tooltip
+              isAnimationActive={false}
+              content={<CustomTooltip />}
+              position={{ y: 0 }}
+              allowEscapeViewBox={{ y: true, x: true }}
+              wrapperStyle={{ top: -20, left: -50 }}
+            />
+            <Line
+              type="monotone"
+              dataKey="price"
+              stroke="#24E5AF"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+
         <TimeDeltaSelector
           chartTimeDeltas={chartTimeDeltas}
           setParentTimeDelta={setParentTimeDelta}

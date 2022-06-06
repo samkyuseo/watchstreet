@@ -46,3 +46,11 @@ export async function getUserLists(): Promise<IUserList[]> {
   const response = await apiClient.get<IUserList[]>('/api/user/lists');
   return response.data;
 }
+
+/**
+ * Save user's email
+ * @returns message that it added to the waitlist
+ */
+export async function addToWaitlist(email: string) {
+  await apiClient.post<string>('/api/user/waitlist', { email });
+}
