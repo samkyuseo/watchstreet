@@ -32,6 +32,7 @@ router.get('/lists', async (req: Request, res: Response) => {
  */
 
 router.post('/waitlist', async (req: Request, res: Response) => {
+  console.log(req);
   const response = await db
     .collection('waitlist')
     .doc()
