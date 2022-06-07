@@ -14,6 +14,8 @@ import {
   Text,
   Flex,
   useMediaQuery,
+  Center,
+  useToast,
 } from '@chakra-ui/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -22,6 +24,7 @@ import { IWatch } from '../../types';
 import { LoadingPage } from '../loadingpage/LoadingPage';
 import { LandingNavbar } from '../../components/navbars/LandingNavbar';
 import { Footer } from '../../components/footers/Footer';
+import { addToWaitlist } from '../../api/lib/user';
 
 type Inputs = {
   email: string;
@@ -36,6 +39,7 @@ const WaitlistPage = () => {
     formState: { errors },
   } = useForm<Inputs>();
   const [isTabletOrSmaller] = useMediaQuery('(max-width: 700px');
+  const toast = useToast();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,8 +49,25 @@ const WaitlistPage = () => {
     fetchData().catch(console.error);
   }, [id]);
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const res = await addToWaitlist(data.email);
+      toast({
+        title: res.msg,
+        status: 'success',
+        position: 'bottom-left',
+        isClosable: true,
+      });
+    } catch (_e) {
+      if (_e instanceof Error) {
+        toast({
+          title: _e.message,
+          status: 'error',
+          position: 'bottom-left',
+          isClosable: true,
+        });
+      }
+    }
   };
 
   if (isTabletOrSmaller) {
@@ -115,18 +136,22 @@ const WaitlistPage = () => {
           Gray watch market prices and watch news - All in one location.
         </Text>
         <br></br>
-        <Input
-          size="lg"
-          maxWidth="400px"
-          placeholder="Enter your email"
-          focusBorderColor="green.light"
-          fontSize={'20px'}
-        />
-        <Spacer />
-        <br></br>
-        <Button size="lg" variant="pop" borderRadius="md">
-          Join the waitlist
-        </Button>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Center style={{ gap: 10 }}>
+            <Input
+              size="lg"
+              width="400px"
+              placeholder="Enter your email"
+              focusBorderColor="green.light"
+              fontSize={'20px'}
+              borderWidth="0.5"
+              {...register('email', { required: true })}
+            />
+            <Button type="submit" size="lg" variant="pop" borderRadius="md">
+              Join the waitlist
+            </Button>
+          </Center>
+        </form>
       </Flex>
       <br></br>
       <br></br>

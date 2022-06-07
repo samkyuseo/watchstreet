@@ -9,24 +9,13 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.response.use(
-  function (response: AxiosResponse): AxiosResponse {
-    return response;
+  function (res: AxiosResponse) {
+    return res;
   },
-  function (error: AxiosError) {
+  function (error: AxiosError<{ msg: string }>) {
     let res = error.response;
-
-    if (res && res.status == 401) {
-      console.error(
-        'Looks like there was a problem. Status Code: ',
-        res.status
-      );
-    } else if (res && res.status == 404) {
-      console.error(
-        'Looks like there was a problem. Status Code: ',
-        res.status
-      );
-    }
-    return Promise.reject(error);
+    if (res && res.data.msg) throw Error(res.data.msg);
+    throw Error('Unknown error occured.');
   }
 );
 

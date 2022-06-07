@@ -51,6 +51,9 @@ export async function getUserLists(): Promise<IUserList[]> {
  * Save user's email
  * @returns message that it added to the waitlist
  */
-export async function addToWaitlist(email: string) {
-  await apiClient.post<string>('/api/user/waitlist', { email });
+export async function addToWaitlist(email: string): Promise<{ msg: string }> {
+  const res = await apiClient.post<{ msg: string }>('/api/user/waitlist', {
+    email: email,
+  });
+  return res.data;
 }
