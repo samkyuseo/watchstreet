@@ -38,7 +38,7 @@ const WaitlistPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const [isTabletOrSmaller] = useMediaQuery('(max-width: 700px');
+  const [isTabletOrSmaller] = useMediaQuery('(max-width: 768px');
   const toast = useToast();
 
   useEffect(() => {
