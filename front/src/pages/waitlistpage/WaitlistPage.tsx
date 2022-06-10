@@ -110,16 +110,14 @@ const WaitlistPage = () => {
           {watch ? (
             <Flex flexDir="column" width="100%">
               {/* Price Data Section */}
-              <Chart title={watch.specs.model} data={watch.priceData} />
               <Flex flexDir="column">
+                <Chart title={watch.specs.model} data={watch.priceData} />
                 {/* Image */}
-                <br />
-                <br />
+                {/* Actions */}
                 <Flex height="300px">
                   <WatchImage image={watch.image} />
                 </Flex>
-                {/* Actions */}
-                <Button mt="40px" variant="pop" width="100%">
+                <Button variant="pop" width="100%">
                   Add to Collection
                 </Button>
                 <Button mt="20px" variant="outline" width="100%">
