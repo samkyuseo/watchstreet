@@ -26,6 +26,8 @@ import { addToWaitlist } from '../../api/lib/user';
 
 import { isMobile } from 'react-device-detect';
 
+import rolex from '../../assets/images/rolexgmt2.png';
+
 type Inputs = {
   email: string;
 };
@@ -114,7 +116,7 @@ const WaitlistPage = () => {
                 {/* Image */}
                 {/* Actions */}
                 <Flex height="300px">
-                  <WatchImage image={watch.image} />
+                  <WatchImage image={rolex} />
                 </Flex>
                 <Button variant="pop" width="100%">
                   Add to Collection
@@ -189,7 +191,7 @@ const WaitlistPage = () => {
               {/* Image */}
               <br />
               <br />
-              <WatchImage image={watch.image} />
+              <WatchImage image={rolex} />
               {/* Actions */}
               <Button mt="40px" variant="pop" width="100%">
                 Add to Collection

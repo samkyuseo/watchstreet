@@ -15,9 +15,9 @@ const Footer = () => {
         <Flex justifyContent="space-between">
           <Flex style={{ gap: 5 }}>
             <Image marginTop="auto" src={logo} boxSize="20px" />
-            <Text>Gray Watch Corporation</Text>
+            <Text>Watch Street</Text>
           </Flex>
-          <Text as="a" href="https://linkedin.com/in/samkyuseo">
+          <Text as="a" target="_blank" href="https://linkedin.com/in/samkyuseo">
             💬 Contact
           </Text>
         </Flex>
