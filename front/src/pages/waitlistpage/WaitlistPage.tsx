@@ -13,7 +13,6 @@ import {
   Input,
   Text,
   Flex,
-  Center,
   useToast,
 } from '@chakra-ui/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -147,27 +146,28 @@ const WaitlistPage = () => {
           Gray watch market prices and watch news - All in one location.
         </Text>
         <br></br>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Center style={{ gap: 10 }}>
+        <Flex textAlign="center" flexDir="column">
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Input
               size="lg"
-              width="400px"
+              width="100%"
               placeholder="Enter your email"
               focusBorderColor="green.light"
               fontSize={'20px'}
               borderWidth="0.5"
+              marginBottom="35px"
               {...register('email', { required: true })}
             />
             <Button type="submit" size="lg" variant="pop" borderRadius="md">
               Join the waitlist
             </Button>
-          </Center>
-        </form>
+          </form>
+        </Flex>
       </Flex>
       <br></br>
       <br></br>
       <Flex
-        maxWidth="95%"
+        maxWidth="80%"
         justifyContent={'space-between'}
         paddingX="30px"
         paddingBottom="30px"
