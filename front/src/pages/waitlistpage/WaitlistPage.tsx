@@ -38,7 +38,7 @@ const WaitlistPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const [isTabletOrSmaller] = useMediaQuery('(max-width: 768px');
+  const [isTabletOrSmaller] = useMediaQuery('(max-width: 600px');
   const toast = useToast();
 
   useEffect(() => {
@@ -108,12 +108,25 @@ const WaitlistPage = () => {
           paddingBottom="30px"
         >
           {watch ? (
-            <>
-              <Section>
-                {/* Price Data Section */}
-                <Chart title={watch.specs.model} data={watch.priceData} />
-              </Section>
-            </>
+            <Flex flexDir="column" width="100%">
+              {/* Price Data Section */}
+              <Chart title={watch.specs.model} data={watch.priceData} />
+              <Flex flexDir="column">
+                {/* Image */}
+                <br />
+                <br />
+                <Flex height="300px">
+                  <WatchImage image={watch.image} />
+                </Flex>
+                {/* Actions */}
+                <Button mt="40px" variant="pop" width="100%">
+                  Add to Collection
+                </Button>
+                <Button mt="20px" variant="outline" width="100%">
+                  Add to List
+                </Button>
+              </Flex>
+            </Flex>
           ) : (
             <LoadingPage />
           )}
@@ -168,27 +181,25 @@ const WaitlistPage = () => {
       >
         {watch ? (
           <>
-            <>
-              <Content>
-                {/* Price Data Section */}
-                <Section>
-                  <Chart title={watch.specs.model} data={watch.priceData} />
-                </Section>
-              </Content>
-              <Box top="110px" width="30%" height="350">
-                {/* Image */}
-                <br />
-                <br />
-                <WatchImage image={watch.image} />
-                {/* Actions */}
-                <Button mt="40px" variant="pop" width="100%">
-                  Add to Collection
-                </Button>
-                <Button mt="20px" variant="outline" width="100%">
-                  Add to List
-                </Button>
-              </Box>
-            </>
+            <Content>
+              {/* Price Data Section */}
+              <Section>
+                <Chart title={watch.specs.model} data={watch.priceData} />
+              </Section>
+            </Content>
+            <Box top="110px" width="30%" height="350">
+              {/* Image */}
+              <br />
+              <br />
+              <WatchImage image={watch.image} />
+              {/* Actions */}
+              <Button mt="40px" variant="pop" width="100%">
+                Add to Collection
+              </Button>
+              <Button mt="20px" variant="outline" width="100%">
+                Add to List
+              </Button>
+            </Box>
           </>
         ) : (
           <LoadingPage />
