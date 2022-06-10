@@ -13,7 +13,6 @@ import {
   Input,
   Text,
   Flex,
-  useMediaQuery,
   Center,
   useToast,
 } from '@chakra-ui/react';
@@ -25,6 +24,8 @@ import { LoadingPage } from '../loadingpage/LoadingPage';
 import { LandingNavbar } from '../../components/navbars/LandingNavbar';
 import { Footer } from '../../components/footers/Footer';
 import { addToWaitlist } from '../../api/lib/user';
+
+import { isMobile } from 'react-device-detect';
 
 type Inputs = {
   email: string;
@@ -38,7 +39,6 @@ const WaitlistPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const [isTabletOrSmaller] = useMediaQuery('(max-width: 600px');
   const toast = useToast();
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const WaitlistPage = () => {
     }
   };
 
-  if (isTabletOrSmaller) {
+  if (isMobile) {
     return (
       <Flex height="100%" width="100%" flexDir="column">
         <LandingNavbar />
