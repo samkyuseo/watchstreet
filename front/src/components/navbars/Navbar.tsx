@@ -11,13 +11,13 @@ import {
   InputGroup,
   InputLeftElement,
   Button,
-} from "@chakra-ui/react";
-import { BsSearch } from "react-icons/bs";
-import { FaSignOutAlt } from "react-icons/fa";
+} from '@chakra-ui/react';
+import { BsSearch } from 'react-icons/bs';
+import { FaSignOutAlt } from 'react-icons/fa';
 
-import { useNavigate } from "react-router";
-import { signOutFromGoogle } from "../../functions/auth";
-import logo from "../../assets/images/logo.svg";
+import { useNavigate } from 'react-router';
+import { signOutFromGoogle } from '../../functions/auth';
+import logo from '../../assets/images/logo.svg';
 
 const Navbar = () => {
   let navigate = useNavigate();
@@ -39,10 +39,10 @@ const Navbar = () => {
         width="200px"
         marginY="auto"
         onClick={() => {
-          navigate("/profile");
+          navigate('/profile');
         }}
       >
-        <Image src={logo} boxSize="40px" margin="auto" />
+        <Image src={logo} width="100px" margin="auto" />
       </Box>
       {/* Search Bar */}
       <Box width="1000px" margin="auto">
@@ -77,7 +77,7 @@ const LeftButtons = () => {
   let navigate = useNavigate();
   return (
     <Box display="flex">
-      <Button variant="minimal" mr="20px" onClick={() => navigate("/profile")}>
+      <Button variant="minimal" mr="20px" onClick={() => navigate('/profile')}>
         Collection
       </Button>
       <Menu>

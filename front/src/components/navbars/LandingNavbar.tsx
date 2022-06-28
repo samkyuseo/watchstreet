@@ -15,15 +15,15 @@ const LandingNavbar = () => {
     >
       <Container display="flex" maxWidth="90%" paddingY="10px">
         <HStack display="flex" width="100%" justifyContent="space-between">
-          <Image src={logo} boxSize="40px" />
+          <Image src={logo} width="70px" />
           <Flex style={{ gap: '20px' }}>
             {/* Gone until website is live */}
-            <Button variant="minimal" onClick={signInWithGoogle}>
+            {/* <Button variant="minimal" onClick={signInWithGoogle}>
               Login
             </Button>
             <Button variant="pop" onClick={signInWithGoogle}>
               Sign Up
-            </Button>
+            </Button> */}
           </Flex>
         </HStack>
       </Container>
