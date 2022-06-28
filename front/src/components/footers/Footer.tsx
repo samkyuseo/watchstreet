@@ -1,6 +1,6 @@
 import { Container, Box, Text, Flex } from '@chakra-ui/layout';
 import { Image } from '@chakra-ui/react';
-import logo from '../../assets/images/logo.svg';
+import logo from '../../assets/images/favicon.svg';
 const Footer = () => {
   return (
     <Box
@@ -14,8 +14,8 @@ const Footer = () => {
       <Container maxWidth="70%" color="#6f6f6f">
         <Flex justifyContent="space-between">
           <Flex style={{ gap: 5 }}>
-            <Image marginTop="auto" src={logo} boxSize="20px" />
-            <Text>Watch Street</Text>
+            <Image marginTop="auto" src={logo} boxSize="25px" />
+            <Text>Watchstreet</Text>
           </Flex>
           <Text as="a" target="_blank" href="https://linkedin.com/in/samkyuseo">
             💬 Contact
