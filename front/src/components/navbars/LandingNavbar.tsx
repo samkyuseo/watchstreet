@@ -15,7 +15,7 @@ const LandingNavbar = () => {
     >
       <Container display="flex" maxWidth="90%" paddingY="10px">
         <HStack display="flex" width="100%" justifyContent="space-between">
-          <Image src={logo} width="70px" />
+          <Image src={logo} width="90px" />
           <Flex style={{ gap: '20px' }}>
             {/* Gone until website is live */}
             {/* <Button variant="minimal" onClick={signInWithGoogle}>

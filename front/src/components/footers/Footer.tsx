@@ -1,6 +1,6 @@
 import { Container, Box, Text, Flex } from '@chakra-ui/layout';
 import { Image } from '@chakra-ui/react';
-import logo from '../../assets/images/favicon.svg';
+import logo from '../../assets/images/logo.svg';
 const Footer = () => {
   return (
     <Box
