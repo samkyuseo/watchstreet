@@ -14,6 +14,7 @@ import {
   Text,
   Flex,
   useToast,
+  Image,
 } from '@chakra-ui/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -27,6 +28,7 @@ import { addToWaitlist } from '../../api/lib/user';
 import { isMobile } from 'react-device-detect';
 
 import rolex from '../../assets/images/rolexgmt2.png';
+import logo from '../../assets/images/logo.svg';
 
 type Inputs = {
   email: string;
@@ -74,7 +76,9 @@ const WaitlistPage = () => {
   if (isMobile) {
     return (
       <Flex height="100%" width="100%" flexDir="column">
-        <LandingNavbar />
+        <br />
+        {/* <LandingNavbar /> */}
+        <Image src={logo} width="75px" alignSelf={'center'} />
         <br />
         <Flex flexDir="column" alignItems={'center'} textAlign="center">
           <Heading variant={'hero-heading-mobile'}>
@@ -139,7 +143,9 @@ const WaitlistPage = () => {
 
   return (
     <Flex height="100%" width="100%" flexDir="column">
-      <LandingNavbar />
+      <br />
+      {/* <LandingNavbar /> */}
+      <Image src={logo} width="75px" alignSelf={'center'} />
       <br />
       <Flex flexDir="column" alignItems={'center'}>
         <Heading variant={'hero-heading'}>Learn, Discover, Track.</Heading>
