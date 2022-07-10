@@ -18,7 +18,7 @@ import {
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { getWatch } from '../../api/lib/watch';
-import { IWatch } from '../../types';
+import { IWatch } from '../../../../types';
 import { LoadingPage } from '../loadingpage/LoadingPage';
 import { LandingNavbar } from '../../components/navbars/LandingNavbar';
 import { Footer } from '../../components/footers/Footer';

@@ -1,5 +1,5 @@
 import { apiClient } from '../apiClient';
-import { IUserWatch, IUserList, IWatch, IPriceData } from '../../types';
+import { IUserWatch, IUserList, IWatch, IPriceData } from '../../../../types';
 import { getFakeWatchPriceData } from '../lib/watch';
 import patek from '../../assets/images/patek.jpg';
 

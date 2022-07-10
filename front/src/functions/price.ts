@@ -1,4 +1,4 @@
-import { IPriceData, ITimeDelta } from '../types';
+import { IPriceData, ITimeDelta } from '../../../types';
 /**
  * Add commas if applicable and two decimals
  * @param num

@@ -13,7 +13,7 @@ import { WatchImage } from '../../components/images/WatchImage/WatchImage';
 import { Button } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { getWatch } from '../../api/lib/watch';
-import { IWatch } from '../../types';
+import { IWatch } from '../../../../types';
 import { LoadingPage } from '../loadingpage/LoadingPage';
 
 const WatchPage = () => {

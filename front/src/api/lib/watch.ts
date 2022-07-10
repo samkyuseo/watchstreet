@@ -1,5 +1,10 @@
 import { apiClient } from '../apiClient';
-import { IWatch, IPriceData, IWatchList, IWatchArticle } from '../../types';
+import {
+  IWatch,
+  IPriceData,
+  IWatchList,
+  IWatchArticle,
+} from '../../../../types';
 
 /**
  * Returns watch object given id.

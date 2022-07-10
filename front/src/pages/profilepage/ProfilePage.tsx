@@ -23,7 +23,7 @@ import {
   IPriceData,
   IWatchList,
   IWatchArticle,
-} from '../../types';
+} from '../../../../types';
 
 import { getArticles, getTrendingLists } from '../../api/lib/watch';
 

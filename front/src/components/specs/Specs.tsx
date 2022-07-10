@@ -1,6 +1,6 @@
 import { Box, Text, Divider, Heading } from '@chakra-ui/layout';
 import { SimpleGrid } from '@chakra-ui/layout';
-import { IWatchSpecs } from '../../types';
+import { IWatchSpecs } from '../../../../types';
 
 interface ISpecsProps {
   watchSpecs: IWatchSpecs;

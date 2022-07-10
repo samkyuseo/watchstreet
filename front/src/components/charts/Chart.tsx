@@ -12,7 +12,7 @@ import {
 } from '../../functions/price';
 import { formatDate } from '../../functions/date';
 
-import { IPriceData, ITimeDelta } from '../../types';
+import { IPriceData, ITimeDelta } from '../../../../types';
 
 const chartTimeDeltas: ITimeDelta[] = [
   { id: '0', selectText: '1W', displayText: 'Past Week', numDays: 7 },

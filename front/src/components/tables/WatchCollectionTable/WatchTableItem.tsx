@@ -8,7 +8,7 @@ import {
   formatTwoDecimals,
 } from '../../../functions/price';
 import { calculateTimeDelta } from '../../../functions/date';
-import { IUserWatch } from '../../../types';
+import { IUserWatch } from '../../../../../types';
 
 /** Generic table item to display watch data on table */
 const WatchTableItem = ({

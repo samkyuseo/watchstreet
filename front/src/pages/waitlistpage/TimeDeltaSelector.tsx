@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Flex, Button, Divider, useMediaQuery } from '@chakra-ui/react';
-import { ITimeDelta } from './../../types';
+import { ITimeDelta } from '../../../../types';
 
 interface ITimeDeltaSelectorProps {
   chartTimeDeltas: ITimeDelta[];

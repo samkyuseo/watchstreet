@@ -3,7 +3,7 @@ import { WatchTableItem } from './WatchTableItem';
 import { WatchTableListItem } from './WatchTableListItem';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-import { IUserWatch, IUserList } from '../../../types';
+import { IUserWatch, IUserList } from '../../../../../types';
 
 interface IWatchCollectionTableProps {
   watches?: IUserWatch[];

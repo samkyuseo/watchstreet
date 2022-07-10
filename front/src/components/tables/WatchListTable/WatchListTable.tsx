@@ -16,7 +16,7 @@ import {
   formatTwoDecimals,
   getLatestPrice,
 } from '../../../functions/price';
-import { IWatch } from '../../../types';
+import { IWatch } from '../../../../../types';
 
 interface IWatchListTableProps {
   watches: IWatch[];

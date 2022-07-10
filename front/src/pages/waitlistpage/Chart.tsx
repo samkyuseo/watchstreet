@@ -12,7 +12,7 @@ import {
 } from '../../functions/price';
 import { formatDate } from '../../functions/date';
 
-import { IPriceData, ITimeDelta } from '../../types';
+import { IPriceData, ITimeDelta } from '../../../../types';
 import { useMediaQuery } from '@chakra-ui/react';
 
 const chartTimeDeltas: ITimeDelta[] = [
