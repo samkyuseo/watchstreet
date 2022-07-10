@@ -1,4 +1,4 @@
-import { IPriceData, ITimeDelta } from '../types/types';
+import { IPriceData, ITimeDelta } from '../../../types';
 /**
  * Utility function to generate fake watch price history data
  * @returns fake watch price data array

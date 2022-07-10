@@ -10,7 +10,7 @@ const db = getFirestore(app);
 export { app, db };
 
 /* Fake watch database */
-import { IWatch, IWatchArticle, IWatchList } from './types/types';
+import { IWatch, IWatchArticle, IWatchList } from '../../types';
 import { getFakeWatchPriceData } from './functions/price';
 
 export const watchDB: IWatch[] = [
@@ -155,7 +155,7 @@ export const articleDB: IWatchArticle[] = [
 ];
 
 /* Fake user database */
-import { IUser } from './types/types';
+import { IUser } from '../../types';
 
 export const userDB: IUser[] = [
   {

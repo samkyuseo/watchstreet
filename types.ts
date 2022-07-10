@@ -57,3 +57,5 @@ export interface ITimeDelta {
   displayText: string;
   numDays: number;
 }
+
+/* Types for requests */
