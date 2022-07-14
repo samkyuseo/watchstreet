@@ -42,7 +42,7 @@ const Navbar = () => {
           navigate('/profile');
         }}
       >
-        <Image src={logo} width="100px" margin="auto" />
+        <Image src={logo} width="60px" margin="auto" />
       </Box>
       {/* Search Bar */}
       <Box width="1000px" margin="auto">

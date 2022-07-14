@@ -28,6 +28,9 @@ const components = {
       'page-heading': {
         fontSize: '38px',
       },
+      'spec-heading': {
+        fontSize: '20px',
+      },
     },
   },
   Text: {

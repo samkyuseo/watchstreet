@@ -12,6 +12,38 @@ export interface IWatchSpecs {
   braceletMaterial: string;
   description: string;
 }
+export interface IWatchSpecs2 {
+  general: {
+    brand_name: string;
+    model_name: string;
+    model_number: string;
+    years_released: string;
+    years_stopped: string;
+  };
+  case: {
+    case_materials: string;
+    case_back: string;
+    case_size: string;
+    case_thickness: string;
+    bezel_materials: string;
+    bezel_insert_materials: string;
+    bezel_features: string;
+  };
+  movement: {
+    base_caliber: string;
+    manuf_caliber: string;
+    movement_type: string;
+    calendar_type: string;
+    power_reserve: string;
+    complications: string;
+  };
+  bracelet: {
+    band_materials: string;
+    lug_width: string;
+    bracelet_name: string;
+  };
+  images: string[];
+}
 export interface IWatch {
   id: string;
   image: string;

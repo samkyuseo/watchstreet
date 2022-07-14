@@ -12,22 +12,36 @@ import { WatchImage } from '../../components/images/WatchImage/WatchImage';
 
 import { Button } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
-import { getWatch } from '../../api/lib/watch';
-import { IWatch } from '../../../../types';
+import { getPriceData, getSpecs } from '../../api/lib/watch';
+import { IPriceData, IWatchSpecs2 } from '../../../../types';
 import { LoadingPage } from '../loadingpage/LoadingPage';
 
 const WatchPage = () => {
-  const { id } = useParams();
-  const [watch, setWatch] = useState<IWatch | null>(null);
+  const { id } = useParams<{ id: string }>();
+  const [specs, setSpecs] = useState<IWatchSpecs2>();
+  const [priceData, setPriceData] = useState<IPriceData[]>();
+
   useEffect(() => {
     const fetchData = async () => {
-      const watch = await getWatch(id || '');
-      setWatch(watch);
+      if (id) {
+        const watch = await getSpecs(id);
+        setSpecs(watch);
+      }
     };
     fetchData().catch(console.error);
   }, [id]);
 
-  if (!watch) {
+  useEffect(() => {
+    const fetchData = async () => {
+      if (id) {
+        const priceData = await getPriceData(id);
+        setPriceData(priceData);
+      }
+    };
+    fetchData().catch(console.error);
+  }, [id]);
+
+  if (!specs || !priceData) {
     return <LoadingPage />;
   }
 
@@ -38,16 +52,16 @@ const WatchPage = () => {
         <Content>
           {/* Price Data Section */}
           <Section>
-            <Chart title={watch.specs.model} data={watch.priceData} />
+            <Chart title={specs.general.model_name} data={priceData} />
           </Section>
           {/* Specifications Section */}
           <Section>
-            <Specs watchSpecs={watch.specs} />
+            <Specs specs={specs} />
           </Section>
         </Content>
         <StickySidebar height="350px">
           {/* Image */}
-          <WatchImage image={watch.image} />
+          <WatchImage image={specs.images[0]} />
           {/* Actions */}
           <Button mt="40px" variant="pop" width="100%">
             Add to Collection

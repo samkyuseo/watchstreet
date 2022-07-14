@@ -1,18 +1,49 @@
 import express from 'express';
 import { Request, Response } from 'express';
+import { db } from '../../db';
 
 /* Temporary fake DBs */
 import { watchDB, watchListDB, articleDB } from '../../db';
+import { getFakeWatchPriceData } from '../../functions/price';
 
 const router = express.Router();
 
 /**
- * Get watch based on id
- * @route GET /api/watch/<id>
+ * Get fake watch object
+ * @route GET /api/watch/fake/<id>
  */
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('/fake/:id', async (req: Request, res: Response) => {
   const id = req.params.id;
-  return res.json(watchDB.find((watch) => watch.id === id));
+  const result = watchDB.find((val) => (val.id = id));
+  return res.json(result);
+});
+
+/**
+ * Get watch specs based on id
+ * @route GET /api/watch/specs/<id>
+ */
+router.get('/specs/:id', async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  try {
+    const docRef = db.collection('watches').doc(id);
+    const doc = await docRef.get();
+    if (!doc.exists) {
+      return res.status(404).json({ message: 'Document missing.' });
+    }
+
+    return res.json(doc.data());
+  } catch (error: any) {
+    return res.status(500).json({ message: error.message });
+  }
+});
+/**
+ * Get watch price data base on id
+ * @route GET /api/watch/price/<id>
+ */
+router.get('/price/:id', async (req: Request, res: Response) => {
+  const id = req.params.id;
+  return res.json(getFakeWatchPriceData());
 });
 /**
  * Get all trending watch lists

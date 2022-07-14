@@ -4,15 +4,34 @@ import {
   IPriceData,
   IWatchList,
   IWatchArticle,
+  IWatchSpecs2,
 } from '../../../../types';
 
 /**
  * Returns watch object given id.
  * @param id of watch.
- * @returns watch object.
+ * @returns watch specs object.
+ */
+export async function getSpecs(id: string): Promise<IWatchSpecs2> {
+  const res = await apiClient.get<IWatchSpecs2>(`/api/watch/specs/${id}`);
+  return res.data;
+}
+/**
+ * Returns watch price data given id
+ * @param id of watch.
+ * @returns watch price data object
+ */
+export async function getPriceData(id: string): Promise<IPriceData[]> {
+  const res = await apiClient.get<IPriceData[]>(`/api/watch/price/${id}`);
+  return res.data;
+}
+/**
+ * Get fake watch price data and specs
+ * @param id
+ * @returns fake watch watch data object
  */
 export async function getWatch(id: string): Promise<IWatch> {
-  const res = await apiClient.get<IWatch>(`/api/watch/${id}`);
+  const res = await apiClient.get<IWatch>(`/api/watch/fake/${id}`);
   return res.data;
 }
 /**

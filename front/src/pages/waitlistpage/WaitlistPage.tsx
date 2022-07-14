@@ -144,7 +144,7 @@ const WaitlistPage = () => {
   return (
     <Flex height="100%" width="100%" flexDir="column">
       <br />
-      {/* <LandingNavbar /> */}
+      <LandingNavbar />
       <Image src={logo} width="75px" alignSelf={'center'} />
       <br />
       <Flex flexDir="column" alignItems={'center'}>

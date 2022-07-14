@@ -2,7 +2,7 @@ import express from 'express';
 import { Request, Response } from 'express';
 import { FirebaseError } from 'firebase-admin';
 import { db } from '../../db';
-import { isFirebaseError } from '../../types/guards';
+import { isFirebaseError } from '../../guards';
 
 import { userDB } from '../../db';
 

@@ -1,42 +1,65 @@
 import { Box, Text, Divider, Heading } from '@chakra-ui/layout';
 import { SimpleGrid } from '@chakra-ui/layout';
-import { IWatchSpecs } from '../../../../types';
+import { IWatchSpecs2 } from '../../../../types';
 
 interface ISpecsProps {
-  watchSpecs: IWatchSpecs;
+  specs: IWatchSpecs2;
 }
 
-const Specs = ({ watchSpecs }: ISpecsProps) => {
+const Specs = ({ specs }: ISpecsProps) => {
   return (
     <>
-      <Heading variant="section-heading">Specifications</Heading>
-      <Divider marginY="20px" />
-      <Text marginBottom="40px">{watchSpecs.description}</Text>
+      <Heading variant="spec-heading">General</Heading>
+      <Divider marginY="10px" />
       <SimpleGrid columns={{ sm: 2, md: 3 }} spacing="10px">
-        <Box height="80px">
-          <Text variant="bold-text">Brand</Text>
-          <Text>{watchSpecs.brand}</Text>
-        </Box>
-        <Box height="80px">
-          <Text variant="bold-text">Model</Text>
-          <Text>{watchSpecs.model}</Text>
-        </Box>
-        <Box height="80px">
-          <Text variant="bold-text">Ref Number</Text>
-          <Text>{watchSpecs.referenceNumber}</Text>
-        </Box>
-        <Box height="80px">
-          <Text variant="bold-text">Year of Production</Text>
-          <Text>{watchSpecs.yearOfProduction}</Text>
-        </Box>
-        <Box height="80px">
-          <Text variant="bold-text">Case Material</Text>
-          <Text>{watchSpecs.caseMaterial}</Text>
-        </Box>
-        <Box height="80px">
-          <Text variant="bold-text">Bracelet Material</Text>
-          <Text>{watchSpecs.braceletMaterial}</Text>
-        </Box>
+        {Object.entries(specs['general']).map(
+          (value, index) =>
+            value[1] && (
+              <Box key={index} height="80px">
+                <Text variant="bold-text">{value[0]}</Text>
+                <Text>{value[1]}</Text>
+              </Box>
+            )
+        )}
+      </SimpleGrid>
+      <Heading variant="spec-heading">Case</Heading>
+      <Divider marginY="10px" />
+      <SimpleGrid columns={{ sm: 2, md: 3 }} spacing="10px">
+        {Object.entries(specs['case']).map(
+          (value, index) =>
+            value[1] && (
+              <Box key={index} height="80px">
+                <Text variant="bold-text">{value[0]}</Text>
+                <Text>{value[1]}</Text>
+              </Box>
+            )
+        )}
+      </SimpleGrid>
+      <Heading variant="spec-heading">Movement</Heading>
+      <Divider marginY="10px" />
+      <SimpleGrid columns={{ sm: 2, md: 3 }} spacing="10px">
+        {Object.entries(specs['movement']).map(
+          (value, index) =>
+            value[1] && (
+              <Box key={index} height="80px">
+                <Text variant="bold-text">{value[0]}</Text>
+                <Text>{value[1]}</Text>
+              </Box>
+            )
+        )}
+      </SimpleGrid>
+      <Heading variant="spec-heading">Bracelet</Heading>
+      <Divider marginY="10px" />
+      <SimpleGrid columns={{ sm: 2, md: 3 }} spacing="10px">
+        {Object.entries(specs['bracelet']).map(
+          (value, index) =>
+            value[1] && (
+              <Box key={index} height="80px">
+                <Text variant="bold-text">{value[0]}</Text>
+                <Text>{value[1]}</Text>
+              </Box>
+            )
+        )}
       </SimpleGrid>
     </>
   );

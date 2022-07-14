@@ -1,6 +1,6 @@
 import { initializeApp, cert, ServiceAccount } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
-import serviceAccount from '../auth/key.json';
+import serviceAccount from '../auth/serviceAccount.json';
 
 const app = initializeApp({
   credential: cert(serviceAccount as ServiceAccount),

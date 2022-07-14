@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
 const apiClient = axios.create({
-  baseURL: `https://watchvalue-7e477.uc.r.appspot.com/`,
+  baseURL: `http://localhost:8000/`,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
