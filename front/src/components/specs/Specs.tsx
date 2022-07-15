@@ -6,6 +6,30 @@ interface ISpecsProps {
   specs: IWatchSpecs2;
 }
 
+const userFriendly: { [key: string]: string } = {
+  brand_name: 'Brand',
+  model_name: 'Model',
+  model_number: 'Reference',
+  years_released: 'Years Released',
+  years_stopped: 'Years Stopped',
+  case_materials: 'Case Materials',
+  case_back: 'Case Back',
+  case_size: 'Case Size',
+  case_thickness: 'Case Thickness',
+  bezel_materials: 'Bezel Materials',
+  bezel_insert_materials: 'Bezel Insert Materials',
+  bezel_features: 'Bezel Features',
+  base_caliber: 'Base Caliber',
+  manuf_caliber: 'Manufacturer Caliber',
+  movement_type: 'Movement Type',
+  calendar_type: 'Calendar Type',
+  power_reserve: 'Power Reserve',
+  complications: 'Complications',
+  band_materials: 'Band Materials',
+  lug_width: 'Lug Width',
+  bracelet_name: 'Bracelet Name',
+};
+
 const Specs = ({ specs }: ISpecsProps) => {
   return (
     <>
@@ -16,8 +40,8 @@ const Specs = ({ specs }: ISpecsProps) => {
           (value, index) =>
             value[1] && (
               <Box key={index} height="80px">
-                <Text variant="bold-text">{value[0]}</Text>
-                <Text>{value[1]}</Text>
+                <Text fontSize="13px">{userFriendly[value[0]]}</Text>
+                <Text variant="bold-text">{value[1]}</Text>
               </Box>
             )
         )}
@@ -29,8 +53,8 @@ const Specs = ({ specs }: ISpecsProps) => {
           (value, index) =>
             value[1] && (
               <Box key={index} height="80px">
-                <Text variant="bold-text">{value[0]}</Text>
-                <Text>{value[1]}</Text>
+                <Text fontSize="13px">{userFriendly[value[0]]}</Text>
+                <Text variant="bold-text">{value[1]}</Text>
               </Box>
             )
         )}
@@ -42,8 +66,8 @@ const Specs = ({ specs }: ISpecsProps) => {
           (value, index) =>
             value[1] && (
               <Box key={index} height="80px">
-                <Text variant="bold-text">{value[0]}</Text>
-                <Text>{value[1]}</Text>
+                <Text fontSize="13px">{userFriendly[value[0]]}</Text>
+                <Text variant="bold-text">{value[1]}</Text>
               </Box>
             )
         )}
@@ -55,8 +79,8 @@ const Specs = ({ specs }: ISpecsProps) => {
           (value, index) =>
             value[1] && (
               <Box key={index} height="80px">
-                <Text variant="bold-text">{value[0]}</Text>
-                <Text>{value[1]}</Text>
+                <Text fontSize="13px">{userFriendly[value[0]]}</Text>
+                <Text variant="bold-text">{value[1]}</Text>
               </Box>
             )
         )}
