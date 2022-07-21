@@ -4,7 +4,8 @@ import {
   IPriceData,
   IWatchList,
   IWatchArticle,
-  IWatchSpecs2,
+  ISpecs,
+  IAvgPrice,
 } from '../../../../types';
 
 /**
@@ -12,17 +13,26 @@ import {
  * @param id of watch.
  * @returns watch specs object.
  */
-export async function getSpecs(id: string): Promise<IWatchSpecs2> {
-  const res = await apiClient.get<IWatchSpecs2>(`/api/watch/specs/${id}`);
+export async function getSpecs(id: string): Promise<ISpecs> {
+  const res = await apiClient.get<ISpecs>(`/api/watch/specs/${id}`);
   return res.data;
 }
 /**
  * Returns watch price data given id
+ * @param id of watch
+ * @return watch price data object
+ */
+export async function getAvgPrices(id: string): Promise<IAvgPrice[]> {
+  const res = await apiClient.get<IAvgPrice[]>(`/api/watch/price/${id}`);
+  return res.data;
+}
+/**
+ * Returns fake price data given id
  * @param id of watch.
  * @returns watch price data object
  */
-export async function getPriceData(id: string): Promise<IPriceData[]> {
-  const res = await apiClient.get<IPriceData[]>(`/api/watch/price/${id}`);
+export async function getFakePriceData(id: string): Promise<IPriceData[]> {
+  const res = await apiClient.get<IPriceData[]>(`/api/watch/price-fake/${id}`);
   return res.data;
 }
 /**

@@ -12,14 +12,14 @@ import { WatchImage } from '../../components/images/WatchImage/WatchImage';
 
 import { Button } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
-import { getPriceData, getSpecs } from '../../api/lib/watch';
-import { IPriceData, IWatchSpecs2 } from '../../../../types';
+import { getAvgPrices, getSpecs } from '../../api/lib/watch';
+import { IPriceData, ISpecs, IAvgPrice } from '../../../../types';
 import { LoadingPage } from '../loadingpage/LoadingPage';
 
 const WatchPage = () => {
   const { id } = useParams<{ id: string }>();
-  const [specs, setSpecs] = useState<IWatchSpecs2>();
-  const [priceData, setPriceData] = useState<IPriceData[]>();
+  const [specs, setSpecs] = useState<ISpecs>();
+  const [avgPrices, setAvgPrices] = useState<IAvgPrice[]>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,14 +34,15 @@ const WatchPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (id) {
-        const priceData = await getPriceData(id);
-        setPriceData(priceData);
+        const avgPrices = await getAvgPrices(id);
+        console.log(avgPrices);
+        setAvgPrices(avgPrices);
       }
     };
     fetchData().catch(console.error);
   }, [id]);
 
-  if (!specs || !priceData) {
+  if (!specs || !avgPrices) {
     return <LoadingPage />;
   }
 
@@ -52,7 +53,10 @@ const WatchPage = () => {
         <Content>
           {/* Price Data Section */}
           <Section>
-            <Chart title={specs.general.model_name} data={priceData} />
+            <Chart
+              title={`${specs.general.brand_name} ${specs.general.model_name} ${specs.general.model_number}`}
+              data={avgPrices}
+            />
           </Section>
           {/* Specifications Section */}
           <Section>

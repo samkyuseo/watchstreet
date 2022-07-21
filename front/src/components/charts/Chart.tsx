@@ -12,7 +12,7 @@ import {
 } from '../../functions/price';
 import { formatDate } from '../../functions/date';
 
-import { IPriceData, ITimeDelta } from '../../../../types';
+import { IAvgPrice, IPriceData, ITimeDelta } from '../../../../types';
 
 const chartTimeDeltas: ITimeDelta[] = [
   { id: '0', selectText: '1W', displayText: 'Past Week', numDays: 7 },
@@ -25,12 +25,12 @@ const chartTimeDeltas: ITimeDelta[] = [
 
 export interface IChartProps {
   title: string;
-  data: IPriceData[];
+  data: IPriceData[] | IAvgPrice[];
 }
 
 const Chart = ({ title, data }: IChartProps) => {
   /* Hooks */
-  const [defaultIndex] = useState<number>(3);
+  const [defaultIndex] = useState<number>(5);
   const [timeDelta, setParentTimeDelta] = useState<ITimeDelta>(
     chartTimeDeltas[defaultIndex]
   );
@@ -106,8 +106,8 @@ const Chart = ({ title, data }: IChartProps) => {
           width={600}
           height={300}
           data={data
-            .slice(data.length - timeDelta.numDays, data.length)
-            .map((d) => ({ ...d, date: formatDate(d.date) }))}
+            .slice(data.length - timeDelta.numDays, data.length) // FUCKED HERE. Its going out of bounds
+            .map((d) => ({ ...d, date: formatDate(new Date(d.date)) }))}
         >
           <XAxis dataKey={'date'} tick={false} axisLine={false} />
           <Tooltip
@@ -125,11 +125,11 @@ const Chart = ({ title, data }: IChartProps) => {
             dot={false}
           />
         </LineChart>
-        <TimeDeltaSelector
+        {/* <TimeDeltaSelector
           chartTimeDeltas={chartTimeDeltas}
           setParentTimeDelta={setParentTimeDelta}
           defaultIndex={defaultIndex}
-        />
+        /> */}
       </Box>
     </VStack>
   );

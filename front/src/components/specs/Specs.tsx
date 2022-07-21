@@ -1,9 +1,9 @@
 import { Box, Text, Divider, Heading } from '@chakra-ui/layout';
 import { SimpleGrid } from '@chakra-ui/layout';
-import { IWatchSpecs2 } from '../../../../types';
+import { ISpecs } from '../../../../types';
 
 interface ISpecsProps {
-  specs: IWatchSpecs2;
+  specs: ISpecs;
 }
 
 const userFriendly: { [key: string]: string } = {
@@ -35,7 +35,7 @@ const Specs = ({ specs }: ISpecsProps) => {
     <>
       <Heading variant="spec-heading">General</Heading>
       <Divider marginY="10px" />
-      <SimpleGrid columns={{ sm: 2, md: 3 }} spacing="10px">
+      <SimpleGrid columns={{ sm: 2, md: 2 }} spacing="10px">
         {Object.entries(specs['general']).map(
           (value, index) =>
             value[1] && (
@@ -48,7 +48,7 @@ const Specs = ({ specs }: ISpecsProps) => {
       </SimpleGrid>
       <Heading variant="spec-heading">Case</Heading>
       <Divider marginY="10px" />
-      <SimpleGrid columns={{ sm: 2, md: 3 }} spacing="10px">
+      <SimpleGrid columns={{ sm: 2, md: 2 }} spacing="10px">
         {Object.entries(specs['case']).map(
           (value, index) =>
             value[1] && (
@@ -61,7 +61,7 @@ const Specs = ({ specs }: ISpecsProps) => {
       </SimpleGrid>
       <Heading variant="spec-heading">Movement</Heading>
       <Divider marginY="10px" />
-      <SimpleGrid columns={{ sm: 2, md: 3 }} spacing="10px">
+      <SimpleGrid columns={{ sm: 2, md: 2 }} spacing="10px">
         {Object.entries(specs['movement']).map(
           (value, index) =>
             value[1] && (
@@ -74,7 +74,7 @@ const Specs = ({ specs }: ISpecsProps) => {
       </SimpleGrid>
       <Heading variant="spec-heading">Bracelet</Heading>
       <Divider marginY="10px" />
-      <SimpleGrid columns={{ sm: 2, md: 3 }} spacing="10px">
+      <SimpleGrid columns={{ sm: 2, md: 2 }} spacing="10px">
         {Object.entries(specs['bracelet']).map(
           (value, index) =>
             value[1] && (

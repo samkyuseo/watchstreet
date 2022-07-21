@@ -1,4 +1,30 @@
 /* Types for watch data */
+export interface IDetails {
+  dial_color: string;
+  bezel_insert_colors: string;
+  year: string;
+  approximate_age: string;
+  paper_date: string;
+  nickname: string;
+  box: string;
+  papers: string;
+  alternate_reference_numbers: string;
+  condition: string;
+  limited_quantity: string;
+  image: string;
+  vendor: string;
+  url: string;
+}
+export interface IPrice {
+  price: number;
+  date: string;
+  details: IDetails;
+}
+export interface IAvgPrice {
+  price: number;
+  date: string;
+  prices: IPrice[];
+}
 export interface IPriceData {
   price: number;
   date: Date;
@@ -12,7 +38,7 @@ export interface IWatchSpecs {
   braceletMaterial: string;
   description: string;
 }
-export interface IWatchSpecs2 {
+export interface ISpecs {
   general: {
     brand_name: string;
     model_name: string;
@@ -89,5 +115,3 @@ export interface ITimeDelta {
   displayText: string;
   numDays: number;
 }
-
-/* Types for requests */

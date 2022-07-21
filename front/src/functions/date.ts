@@ -3,7 +3,7 @@ const ONE_DAY = 24 * 60 * 60 * 1000; /* hrs * mins * secs * ms */
 /**
  * Given a javascript Date object, returns a formatted date string
  * @param {Date} date
- * @returns {string} formatted in MMM DD, YYYY
+ * @returns {string} formatted in MM DD, YYYY
  */
 export function formatDate(date: Date): string {
   return new Date(date).toLocaleDateString('default', {
