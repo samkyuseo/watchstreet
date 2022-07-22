@@ -3,15 +3,21 @@ import { Flex, Button, Divider } from '@chakra-ui/react';
 import { ITimeDelta } from '../../../../types';
 
 interface ITimeDeltaSelectorProps {
-  chartTimeDeltas: ITimeDelta[];
   defaultIndex: number;
   setParentTimeDelta: React.Dispatch<React.SetStateAction<ITimeDelta>>; // sets the parent elements state
 }
 function TimeDeltaSelector({
-  chartTimeDeltas,
   defaultIndex,
   setParentTimeDelta,
 }: ITimeDeltaSelectorProps) {
+  const chartTimeDeltas: ITimeDelta[] = [
+    { id: '0', selectText: '1W', displayText: 'Past Week', numDays: 7 },
+    { id: '1', selectText: '1M', displayText: 'Past Month', numDays: 30 },
+    { id: '2', selectText: '3M', displayText: 'Past 3 Months', numDays: 90 },
+    { id: '3', selectText: '6M', displayText: 'Past 6 Months', numDays: 180 },
+    { id: '4', selectText: '1Y', displayText: 'Past Year', numDays: 365 },
+    { id: '5', selectText: 'ALL', displayText: 'All Time', numDays: Infinity },
+  ];
   const [timeDelta, setTimeDelta] = useState<ITimeDelta>(
     chartTimeDeltas[defaultIndex]
   );

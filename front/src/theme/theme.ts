@@ -22,6 +22,9 @@ const components = {
       'chart-heading': {
         fontSize: '38px',
       },
+      'chart-subheading': {
+        fontSize: '14px',
+      },
       'chart-heading-mobile': {
         fontSize: '28px',
       },
@@ -29,7 +32,7 @@ const components = {
         fontSize: '38px',
       },
       'spec-heading': {
-        fontSize: '20px',
+        fontSize: '13px',
       },
     },
   },

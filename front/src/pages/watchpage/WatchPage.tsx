@@ -54,7 +54,8 @@ const WatchPage = () => {
           {/* Price Data Section */}
           <Section>
             <Chart
-              title={`${specs.general.brand_name} ${specs.general.model_name} ${specs.general.model_number}`}
+              subtitle={`${specs.general.brand_name}`}
+              title={`${specs.general.model_name} ${specs.general.model_number}`}
               data={avgPrices}
             />
           </Section>

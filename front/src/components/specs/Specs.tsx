@@ -1,4 +1,4 @@
-import { Box, Text, Divider, Heading } from '@chakra-ui/layout';
+import { Box, Text, Divider, Heading, Grid, GridItem } from '@chakra-ui/layout';
 import { SimpleGrid } from '@chakra-ui/layout';
 import { ISpecs } from '../../../../types';
 
@@ -33,60 +33,95 @@ const userFriendly: { [key: string]: string } = {
 const Specs = ({ specs }: ISpecsProps) => {
   return (
     <>
-      <Heading variant="spec-heading">General</Heading>
-      <Divider marginY="10px" />
-      <SimpleGrid columns={{ sm: 2, md: 2 }} spacing="10px">
+      <Divider marginY="10px" backgroundColor={'gray.300'} />
+      <Grid
+        templateRows="repeat(2, 1fr)"
+        templateColumns="repeat(6, 1fr)"
+        gap={4}
+      >
+        <GridItem
+          rowSpan={Math.ceil(Object.keys(specs['general']).length / 2)}
+          colSpan={2}
+        >
+          <Heading variant="spec-heading">GENERAL</Heading>
+        </GridItem>
         {Object.entries(specs['general']).map(
           (value, index) =>
             value[1] && (
-              <Box key={index} height="80px">
+              <GridItem key={index} colSpan={2} height="80px">
                 <Text fontSize="13px">{userFriendly[value[0]]}</Text>
                 <Text variant="bold-text">{value[1]}</Text>
-              </Box>
+              </GridItem>
             )
         )}
-      </SimpleGrid>
-      <Heading variant="spec-heading">Case</Heading>
-      <Divider marginY="10px" />
-      <SimpleGrid columns={{ sm: 2, md: 2 }} spacing="10px">
+      </Grid>
+      <Divider marginY="10px" backgroundColor={'gray.300'} />
+      <Grid
+        templateRows="repeat(2, 1fr)"
+        templateColumns="repeat(6, 1fr)"
+        gap={4}
+      >
+        <GridItem
+          rowSpan={Math.ceil(Object.keys(specs['case']).length / 2)}
+          colSpan={2}
+        >
+          <Heading variant="spec-heading">CASE</Heading>
+        </GridItem>
         {Object.entries(specs['case']).map(
           (value, index) =>
             value[1] && (
-              <Box key={index} height="80px">
+              <GridItem key={index} colSpan={2} height="80px">
                 <Text fontSize="13px">{userFriendly[value[0]]}</Text>
                 <Text variant="bold-text">{value[1]}</Text>
-              </Box>
+              </GridItem>
             )
         )}
-      </SimpleGrid>
-      <Heading variant="spec-heading">Movement</Heading>
-      <Divider marginY="10px" />
-      <SimpleGrid columns={{ sm: 2, md: 2 }} spacing="10px">
+      </Grid>
+      <Divider marginY="10px" backgroundColor={'gray.300'} />
+      <Grid
+        templateRows="repeat(2, 1fr)"
+        templateColumns="repeat(6, 1fr)"
+        gap={4}
+      >
+        <GridItem
+          rowSpan={Math.ceil(Object.keys(specs['movement']).length / 2)}
+          colSpan={2}
+        >
+          <Heading variant="spec-heading">MOVEMENT</Heading>
+        </GridItem>
         {Object.entries(specs['movement']).map(
           (value, index) =>
             value[1] && (
-              <Box key={index} height="80px">
+              <GridItem key={index} colSpan={2} height="80px">
                 <Text fontSize="13px">{userFriendly[value[0]]}</Text>
                 <Text variant="bold-text">{value[1]}</Text>
-              </Box>
+              </GridItem>
             )
         )}
-      </SimpleGrid>
-      <Heading variant="spec-heading">Bracelet</Heading>
-      <Divider marginY="10px" />
-      <SimpleGrid columns={{ sm: 2, md: 2 }} spacing="10px">
+      </Grid>
+      <Divider marginY="10px" backgroundColor={'gray.300'} />
+      <Grid
+        templateRows="repeat(2, 1fr)"
+        templateColumns="repeat(6, 1fr)"
+        gap={4}
+      >
+        <GridItem
+          rowSpan={Math.ceil(Object.keys(specs['bracelet']).length / 2)}
+          colSpan={2}
+        >
+          <Heading variant="spec-heading">BRACELET</Heading>
+        </GridItem>
         {Object.entries(specs['bracelet']).map(
           (value, index) =>
             value[1] && (
-              <Box key={index} height="80px">
+              <GridItem key={index} colSpan={2} height="80px">
                 <Text fontSize="13px">{userFriendly[value[0]]}</Text>
                 <Text variant="bold-text">{value[1]}</Text>
-              </Box>
+              </GridItem>
             )
         )}
-      </SimpleGrid>
+      </Grid>
     </>
   );
 };
-
 export { Specs };

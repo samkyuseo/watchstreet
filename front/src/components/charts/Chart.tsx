@@ -14,26 +14,14 @@ import { formatDate } from '../../functions/date';
 
 import { IAvgPrice, IPriceData, ITimeDelta } from '../../../../types';
 
-const chartTimeDeltas: ITimeDelta[] = [
-  { id: '0', selectText: '1W', displayText: 'Past Week', numDays: 7 },
-  { id: '1', selectText: '1M', displayText: 'Past Month', numDays: 30 },
-  { id: '2', selectText: '3M', displayText: 'Past 3 Months', numDays: 90 },
-  { id: '3', selectText: '6M', displayText: 'Past 6 Months', numDays: 180 },
-  { id: '4', selectText: '1Y', displayText: 'Past Year', numDays: 365 },
-  { id: '5', selectText: 'ALL', displayText: 'All Time', numDays: Infinity },
-];
-
 export interface IChartProps {
+  subtitle?: string;
   title: string;
   data: IPriceData[] | IAvgPrice[];
 }
 
-const Chart = ({ title, data }: IChartProps) => {
+const Chart = ({ subtitle, title, data }: IChartProps) => {
   /* Hooks */
-  const [defaultIndex] = useState<number>(5);
-  const [timeDelta, setParentTimeDelta] = useState<ITimeDelta>(
-    chartTimeDeltas[defaultIndex]
-  );
   const priceRef = useRef<HTMLHeadingElement>(null);
   const priceChangeRef = useRef<HTMLParagraphElement>(null);
   useEffect(() => {
@@ -46,10 +34,11 @@ const Chart = ({ title, data }: IChartProps) => {
     if (priceChangeRef.current) {
       priceChangeRef.current.innerText = formatPriceChangeString(
         data,
-        calculatePriceChange(data, timeDelta)
+        calculatePriceChange(data, data.length)
       );
     }
-  }, [timeDelta, data]);
+    console.log(data);
+  }, [data]);
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     /* Tool tip is not active */
@@ -61,7 +50,7 @@ const Chart = ({ title, data }: IChartProps) => {
     if (!active && priceChangeRef.current) {
       priceChangeRef.current.innerText = formatPriceChangeString(
         data,
-        calculatePriceChange(data, timeDelta)
+        calculatePriceChange(data, data.length)
       );
     }
     /* Tool tip is active */
@@ -70,10 +59,8 @@ const Chart = ({ title, data }: IChartProps) => {
         priceRef.current.innerText = `$${formatTwoDecimals(payload[0].value)}`;
       }
       if (priceChangeRef.current) {
-        const td =
-          timeDelta.numDays === Infinity ? data.length : timeDelta.numDays;
         /* Can't use calculatePriceChange, since end value is different */
-        const priceChange = payload[0].value - data[data.length - td].price;
+        const priceChange = payload[0].value - data[0].price;
         priceChangeRef.current.innerText = formatPriceChangeString(
           data,
           priceChange
@@ -90,6 +77,7 @@ const Chart = ({ title, data }: IChartProps) => {
 
   return (
     <VStack alignItems="left" width="100%">
+      <Text variant="chart-subheading">{subtitle?.toUpperCase()}</Text>
       <Heading variant="page-heading">{title}</Heading>
       <Box>
         <Heading variant="chart-heading" ref={priceRef} />
@@ -98,16 +86,14 @@ const Chart = ({ title, data }: IChartProps) => {
           display="inline-block"
           ref={priceChangeRef}
         ></Text>{' '}
-        <Text display="inline-block">{timeDelta.displayText}</Text>
+        <Text display="inline-block">{'All Time'}</Text>
       </Box>
       <br />
       <Box width="600px">
         <LineChart
           width={600}
           height={300}
-          data={data
-            .slice(data.length - timeDelta.numDays, data.length) // FUCKED HERE. Its going out of bounds
-            .map((d) => ({ ...d, date: formatDate(new Date(d.date)) }))}
+          data={data.map((d) => ({ ...d, date: formatDate(new Date(d.date)) }))}
         >
           <XAxis dataKey={'date'} tick={false} axisLine={false} />
           <Tooltip
@@ -125,11 +111,6 @@ const Chart = ({ title, data }: IChartProps) => {
             dot={false}
           />
         </LineChart>
-        {/* <TimeDeltaSelector
-          chartTimeDeltas={chartTimeDeltas}
-          setParentTimeDelta={setParentTimeDelta}
-          defaultIndex={defaultIndex}
-        /> */}
       </Box>
     </VStack>
   );

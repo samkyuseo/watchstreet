@@ -6,7 +6,7 @@ interface ISectionProps {
 
 const Section = ({ children }: ISectionProps) => {
   return (
-    <Box width='100%' mt='40px'>
+    <Box width="100%" mt="40px">
       {children}
     </Box>
   );
