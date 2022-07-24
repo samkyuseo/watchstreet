@@ -21,13 +21,12 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { getWatch } from '../../api/lib/watch';
 import { IWatch } from '../../../../types';
 import { LoadingPage } from '../loadingpage/LoadingPage';
-import { LandingNavbar } from '../../components/navbars/LandingNavbar';
 import { Footer } from '../../components/footers/Footer';
 import { addToWaitlist } from '../../api/lib/user';
 
 import { isMobile } from 'react-device-detect';
 
-import rolex from '../../assets/images/rolexgmt2.png';
+import patek from '../../assets/images/patek.jpg';
 import logo from '../../assets/images/logo.svg';
 
 type Inputs = {
@@ -54,9 +53,9 @@ const WaitlistPage = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      const res = await addToWaitlist(data.email);
+      await addToWaitlist(data.email);
       toast({
-        title: res.msg,
+        title: 'Added to waitlist!',
         status: 'success',
         position: 'bottom-left',
         isClosable: true,
@@ -120,7 +119,7 @@ const WaitlistPage = () => {
                 {/* Image */}
                 {/* Actions */}
                 <Flex height="300px">
-                  <WatchImage image={rolex} />
+                  <WatchImage image={patek} />
                 </Flex>
                 <Button variant="pop" width="100%">
                   Add to Collection
@@ -197,7 +196,9 @@ const WaitlistPage = () => {
               {/* Image */}
               <br />
               <br />
-              <WatchImage image={rolex} />
+              <Flex height="100%">
+                <WatchImage image={patek} />
+              </Flex>
               {/* Actions */}
               <Button mt="40px" variant="pop" width="100%">
                 Add to Collection

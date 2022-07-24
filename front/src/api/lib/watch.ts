@@ -41,8 +41,29 @@ export async function getFakePriceData(id: string): Promise<IPriceData[]> {
  * @returns fake watch watch data object
  */
 export async function getWatch(id: string): Promise<IWatch> {
-  const res = await apiClient.get<IWatch>(`/api/watch/fake/${id}`);
-  return res.data;
+  const watch = {
+    id: '1',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/watchvalue-7e477.appspot.com/o/patek.jpg?alt=media',
+    specs: {
+      model: 'Nautilus 5711/1A-014',
+      brand: 'Patek Phillipe',
+      referenceNumber: '5711/1A-014',
+      yearOfProduction: '2021',
+      caseMaterial: 'Steel',
+      braceletMaterial: 'Steel',
+      description: `On its 5711/1A model, Patek Philippe unveils a dial in a brand-new
+      olive-green shade that is new to the Nautilus collection and which
+      should delight lovers of this cult watch, an icon of sporting elegance.
+      The highly recognizable design of the case, bezel and bracelet is
+      enhanced by a subtle alternation between satinated and polished manual
+      finishing. Inside this model water-resistant to 120m beats a
+      self-winding caliber visible through a transparent sapphire crystal
+      case-back.`,
+    },
+    priceData: getFakeWatchPriceData(),
+  };
+  return watch;
 }
 /**
  * Get all trending lists
