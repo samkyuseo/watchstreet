@@ -1,8 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Heading, Text, Box, VStack } from '@chakra-ui/layout';
 import { LineChart, Line, XAxis, Tooltip } from 'recharts';
-
-import { TimeDeltaSelector } from './TimeDeltaSelector';
 
 import {
   formatTwoDecimals,
@@ -12,7 +10,7 @@ import {
 } from '../../functions/price';
 import { formatDate } from '../../functions/date';
 
-import { IAvgPrice, IPriceData, ITimeDelta } from '../../../../types';
+import { IAvgPrice, IPriceData } from '../../../../types';
 
 export interface IChartProps {
   subtitle?: string;
@@ -37,7 +35,6 @@ const Chart = ({ subtitle, title, data }: IChartProps) => {
         calculatePriceChange(data, data.length)
       );
     }
-    console.log(data);
   }, [data]);
 
   const CustomTooltip = ({ active, payload, label }: any) => {

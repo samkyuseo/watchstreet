@@ -33,7 +33,7 @@ const userFriendly: { [key: string]: string } = {
 const Specs = ({ specs }: ISpecsProps) => {
   return (
     <>
-      <Divider marginY="10px" backgroundColor={'gray.300'} />
+      <Divider />
       <Grid
         templateRows="repeat(2, 1fr)"
         templateColumns="repeat(6, 1fr)"
@@ -55,7 +55,7 @@ const Specs = ({ specs }: ISpecsProps) => {
             )
         )}
       </Grid>
-      <Divider marginY="10px" backgroundColor={'gray.300'} />
+      <Divider />
       <Grid
         templateRows="repeat(2, 1fr)"
         templateColumns="repeat(6, 1fr)"
@@ -77,7 +77,7 @@ const Specs = ({ specs }: ISpecsProps) => {
             )
         )}
       </Grid>
-      <Divider marginY="10px" backgroundColor={'gray.300'} />
+      <Divider />
       <Grid
         templateRows="repeat(2, 1fr)"
         templateColumns="repeat(6, 1fr)"
@@ -99,7 +99,7 @@ const Specs = ({ specs }: ISpecsProps) => {
             )
         )}
       </Grid>
-      <Divider marginY="10px" backgroundColor={'gray.300'} />
+      <Divider />
       <Grid
         templateRows="repeat(2, 1fr)"
         templateColumns="repeat(6, 1fr)"

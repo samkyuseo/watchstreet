@@ -126,6 +126,12 @@ const components = {
       },
     },
   },
+  Divider: {
+    baseStyle: {
+      marginBottom: '10px',
+      borderColor: 'gray.300',
+    },
+  },
 };
 
 const colors = {
@@ -138,9 +144,3 @@ const colors = {
 };
 
 export const theme = extendTheme({ colors, components });
-
-// variant="bold-text"
-//             color="green.light"
-//             textDecoration="underline"
-//             textUnderlineOffset="13px"
-//             textDecorationThickness="2px"

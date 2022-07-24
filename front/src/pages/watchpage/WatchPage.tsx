@@ -35,7 +35,6 @@ const WatchPage = () => {
     const fetchData = async () => {
       if (id) {
         const avgPrices = await getAvgPrices(id);
-        console.log(avgPrices);
         setAvgPrices(avgPrices);
       }
     };
