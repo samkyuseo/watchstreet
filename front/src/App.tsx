@@ -5,9 +5,10 @@ import { WatchPage } from './pages/watchpage/WatchPage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { ProfilePage } from './pages/profilepage/ProfilePage';
 
-import { initializeApp } from '@firebase/app';
-import { getAnalytics } from '@firebase/analytics';
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
 import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 import { LoadingPage } from './pages/loadingpage/LoadingPage';
 import { WatchListPage } from './pages/watchlistpage/WatchListPage';
@@ -23,6 +24,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 getAnalytics(app);
 
 const App = () => {
@@ -50,4 +52,4 @@ const App = () => {
   }
 };
 
-export { App };
+export { App, db };

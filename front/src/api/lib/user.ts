@@ -2,6 +2,8 @@ import { apiClient } from '../apiClient';
 import { IUserWatch, IUserList, IWatch, IPriceData } from '../../types';
 import { getFakeWatchPriceData } from '../lib/watch';
 import patek from '../../assets/images/patek.jpg';
+import { db } from '../../App';
+import { collection, doc, getDocs, setDoc, getDoc } from 'firebase/firestore';
 
 /**
  * Get User's watch collection
@@ -49,11 +51,21 @@ export async function getUserLists(): Promise<IUserList[]> {
 
 /**
  * Save user's email
- * @returns message that it added to the waitlist
  */
-export async function addToWaitlist(email: string): Promise<{ msg: string }> {
-  const res = await apiClient.post<{ msg: string }>('/api/user/waitlist', {
-    email: email,
-  });
-  return res.data;
+export async function addToWaitlist(email: string) {
+  if (!email || email === '') {
+    throw Error('Email is required!');
+  }
+
+  if ((await getDoc(doc(db, 'waitlist', email))).exists()) {
+    throw Error('Email already exists.');
+  }
+
+  try {
+    await setDoc(doc(db, 'waitlist', email), {
+      queuePos: (await getDocs(collection(db, 'waitlist'))).size + 1,
+    });
+  } catch (e) {
+    throw Error('Error adding email.');
+  }
 }
