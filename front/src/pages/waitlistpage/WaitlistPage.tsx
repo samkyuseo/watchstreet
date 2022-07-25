@@ -29,13 +29,12 @@ const WaitlistPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm<Inputs>();
   const toast = useToast();
 
   useEffect(() => {
     const fetchData = async () => {
-      const watch = await getWatch(id);
+      const watch = await getWatch();
       setWatch(watch);
     };
     fetchData().catch(console.error);

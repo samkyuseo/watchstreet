@@ -13,7 +13,7 @@ import { WatchImage } from '../../components/images/WatchImage/WatchImage';
 import { Button } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { getAvgPrices, getSpecs } from '../../api/lib/watch';
-import { IPriceData, ISpecs, IAvgPrice } from '../../../../types';
+import {  ISpecs, IAvgPrice } from '../../../../types';
 import { LoadingPage } from '../loadingpage/LoadingPage';
 
 const WatchPage = () => {

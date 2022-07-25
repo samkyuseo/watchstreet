@@ -8,7 +8,7 @@ import {
   IAvgPrice,
 } from '../../../../types';
 import { db } from '../../App';
-import { collection, doc, getDocs, setDoc, getDoc } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 
 /**
  * Returns watch object given id.
@@ -49,10 +49,9 @@ export async function getFakePriceData(id: string): Promise<IPriceData[]> {
 }
 /**
  * Get fake watch price data and specs
- * @param id
  * @returns fake watch watch data object
  */
-export async function getWatch(id: string): Promise<IWatch> {
+export async function getWatch(): Promise<IWatch> {
   const watch = {
     id: '1',
     image:

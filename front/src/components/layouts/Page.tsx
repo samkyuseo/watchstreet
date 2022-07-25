@@ -4,7 +4,7 @@ interface IPageProps {
   children: React.ReactNode;
   border?: string;
 }
-const Page = ({ children, border }: IPageProps) => {
+const Page = ({ children }: IPageProps) => {
   return (
     <Box
       display='flex'

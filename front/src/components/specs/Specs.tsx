@@ -1,5 +1,4 @@
-import { Box, Text, Divider, Heading, Grid, GridItem } from '@chakra-ui/layout';
-import { SimpleGrid } from '@chakra-ui/layout';
+import { Text, Divider, Heading, Grid, GridItem } from '@chakra-ui/layout';
 import { ISpecs } from '../../../../types';
 
 interface ISpecsProps {
