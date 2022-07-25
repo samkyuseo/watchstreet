@@ -1,92 +1,81 @@
-import { useEffect, useRef } from 'react';
-import { Heading, Text, Box, VStack } from '@chakra-ui/layout';
-import { LineChart, Line, XAxis, Tooltip } from 'recharts';
+import { useEffect, useRef } from 'react'
+import { Heading, Text, Box, VStack } from '@chakra-ui/layout'
+import { LineChart, Line, XAxis, Tooltip } from 'recharts'
 
 import {
   formatTwoDecimals,
   calculatePriceChange,
   formatPriceChangeString,
   getLatestPrice,
-} from '../../functions/price';
-import { formatDate } from '../../functions/date';
+} from '../../functions/price'
+import { formatDate } from '../../functions/date'
 
-import { IAvgPrice, IPriceData } from '../../../../types';
+import { IAvgPrice, IPriceData } from '../../../../types'
 
 export interface IChartProps {
-  subtitle?: string;
-  title: string;
-  data: IPriceData[] | IAvgPrice[];
+  subtitle?: string
+  title: string
+  data: IPriceData[] | IAvgPrice[]
 }
 
 const Chart = ({ subtitle, title, data }: IChartProps) => {
   /* Hooks */
-  const priceRef = useRef<HTMLHeadingElement>(null);
-  const priceChangeRef = useRef<HTMLParagraphElement>(null);
+  const priceRef = useRef<HTMLHeadingElement>(null)
+  const priceChangeRef = useRef<HTMLParagraphElement>(null)
   useEffect(() => {
     /* Set the chart price as soon as component is rendered */
     if (priceRef.current) {
-      priceRef.current.innerText = `$${formatTwoDecimals(
-        getLatestPrice(data)
-      )}`;
+      priceRef.current.innerText = `$${formatTwoDecimals(getLatestPrice(data))}`
     }
     if (priceChangeRef.current) {
       priceChangeRef.current.innerText = formatPriceChangeString(
         data,
-        calculatePriceChange(data, data.length)
-      );
+        calculatePriceChange(data, data.length),
+      )
     }
-  }, [data]);
+  }, [data])
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     /* Tool tip is not active */
     if (!active && priceRef.current) {
-      priceRef.current.innerText = `$${formatTwoDecimals(
-        getLatestPrice(data)
-      )}`;
+      priceRef.current.innerText = `$${formatTwoDecimals(getLatestPrice(data))}`
     }
     if (!active && priceChangeRef.current) {
       priceChangeRef.current.innerText = formatPriceChangeString(
         data,
-        calculatePriceChange(data, data.length)
-      );
+        calculatePriceChange(data, data.length),
+      )
     }
     /* Tool tip is active */
     if (active && payload && payload.length) {
       if (priceRef.current) {
-        priceRef.current.innerText = `$${formatTwoDecimals(payload[0].value)}`;
+        priceRef.current.innerText = `$${formatTwoDecimals(payload[0].value)}`
       }
       if (priceChangeRef.current) {
         /* Can't use calculatePriceChange, since end value is different */
-        const priceChange = payload[0].value - data[0].price;
-        priceChangeRef.current.innerText = formatPriceChangeString(
-          data,
-          priceChange
-        );
+        const priceChange = payload[0].value - data[0].price
+        priceChangeRef.current.innerText = formatPriceChangeString(data, priceChange)
       }
       return (
         <Box>
           <Text>{label}</Text>
         </Box>
-      );
+      )
     }
-    return <></>;
-  };
+    return <></>
+  }
 
   return (
-    <VStack alignItems="left" width="100%">
-      <Text variant="chart-subheading">{subtitle?.toUpperCase()}</Text>
-      <Heading variant="page-heading">{title}</Heading>
+    <VStack alignItems='left' width='100%'>
+      <Text variant='chart-subheading'>{subtitle?.toUpperCase()}</Text>
+      <Heading variant='page-heading'>{title}</Heading>
       <Box>
-        <Heading variant="chart-heading" ref={priceRef} />
-        <Text
-          variant="bold-text"
-          display="inline-block"
-          ref={priceChangeRef}
-        ></Text>{' '}
-        <Text display="inline-block">{'All Time'}</Text>
+        <Heading variant='chart-heading' ref={priceRef} />
+        <Text variant='bold-text' display='inline-block' ref={priceChangeRef}></Text>{' '}
+        <Text display='inline-block'>{'All Time'}</Text>
       </Box>
       <br />
-      <Box width="600px">
+      <Box width='600px'>
         <LineChart
           width={600}
           height={300}
@@ -100,17 +89,11 @@ const Chart = ({ subtitle, title, data }: IChartProps) => {
             allowEscapeViewBox={{ y: true, x: true }}
             wrapperStyle={{ top: -20, left: -50 }}
           />
-          <Line
-            type="monotone"
-            dataKey="price"
-            stroke="#24E5AF"
-            strokeWidth={2}
-            dot={false}
-          />
+          <Line type='monotone' dataKey='price' stroke='#24E5AF' strokeWidth={2} dot={false} />
         </LineChart>
       </Box>
     </VStack>
-  );
-};
+  )
+}
 
-export { Chart };
+export { Chart }

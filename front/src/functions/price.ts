@@ -1,4 +1,4 @@
-import { IAvgPrice, IPriceData, ITimeDelta } from '../../../types';
+import { IAvgPrice, IPriceData, ITimeDelta } from '../../../types'
 /**
  * Add commas if applicable and two decimals
  * @param num
@@ -8,7 +8,7 @@ export function formatTwoDecimals(num: number): string {
   return num
     .toFixed(2)
     .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
 /**
@@ -19,17 +19,17 @@ export function formatTwoDecimals(num: number): string {
  */
 export function calculatePriceChange(
   data: IPriceData[] | IAvgPrice[],
-  td: ITimeDelta | number
+  td: ITimeDelta | number,
 ): number {
-  let numDays = typeof td === 'number' ? td : td.numDays;
+  const numDays = typeof td === 'number' ? td : td.numDays
 
   if (numDays === Infinity) {
-    return data[data.length - 1].price - data[0].price;
+    return data[data.length - 1].price - data[0].price
   }
   // priceChange = priceToday - priceXDaysAgo
-  const priceToday = data[data.length - 1].price;
-  const priceXDaysAgo = data[data.length - numDays].price;
-  return priceToday - priceXDaysAgo;
+  const priceToday = data[data.length - 1].price
+  const priceXDaysAgo = data[data.length - numDays].price
+  return priceToday - priceXDaysAgo
 }
 
 /**
@@ -38,21 +38,18 @@ export function calculatePriceChange(
  * @param td a number or ITimeDelta object
  * @returns amount changed in the time period
  */
-export function calculatePriceChangePerent(
-  data: IPriceData[],
-  td: ITimeDelta | number
-): number {
-  let numDays = typeof td === 'number' ? td : td.numDays;
+export function calculatePriceChangePerent(data: IPriceData[], td: ITimeDelta | number): number {
+  const numDays = typeof td === 'number' ? td : td.numDays
 
   if (numDays === Infinity) {
-    return data[data.length - 1].price - data[0].price;
+    return data[data.length - 1].price - data[0].price
   }
   // priceChange = priceToday - priceXDaysAgo
-  const priceToday = data[data.length - 1].price;
-  const priceXDaysAgo = data[data.length - numDays].price;
+  const priceToday = data[data.length - 1].price
+  const priceXDaysAgo = data[data.length - numDays].price
 
-  const priceChange = priceToday - priceXDaysAgo;
-  return (priceChange / data[data.length - 1].price) * 100;
+  const priceChange = priceToday - priceXDaysAgo
+  return (priceChange / data[data.length - 1].price) * 100
 }
 
 /**
@@ -63,18 +60,16 @@ export function calculatePriceChangePerent(
  */
 export function formatPriceChangeString(
   data: IPriceData[] | IAvgPrice[],
-  priceChange: number
+  priceChange: number,
 ): string {
   const neatPercentPriceChange = formatTwoDecimals(
-    (priceChange / data[data.length - 1].price) * 100
-  );
-  const neatPriceChange = formatTwoDecimals(priceChange);
-  const sign = priceChange < 0 ? '-' : '+';
-  let formatted = `${sign + neatPriceChange} (${
-    sign + neatPercentPriceChange
-  }%)`;
+    (priceChange / data[data.length - 1].price) * 100,
+  )
+  const neatPriceChange = formatTwoDecimals(priceChange)
+  const sign = priceChange < 0 ? '-' : '+'
+  const formatted = `${sign + neatPriceChange} (${sign + neatPercentPriceChange}%)`
 
-  return formatted;
+  return formatted
 }
 
 /**
@@ -85,15 +80,15 @@ export function formatPriceChangeString(
  */
 export function formatPriceChangePercent(
   data: IPriceData[] | IAvgPrice[],
-  priceChange: number
+  priceChange: number,
 ): string {
   const neatPercentPriceChange = formatTwoDecimals(
-    (priceChange / data[data.length - 1].price) * 100
-  );
-  const sign = priceChange < 0 ? '-' : '+';
+    (priceChange / data[data.length - 1].price) * 100,
+  )
+  const sign = priceChange < 0 ? '-' : '+'
 
-  let formatted = `${sign + neatPercentPriceChange}%`;
-  return formatted;
+  const formatted = `${sign + neatPercentPriceChange}%`
+  return formatted
 }
 
 /**
@@ -102,7 +97,7 @@ export function formatPriceChangePercent(
  * @returns latest price of watch
  */
 export function getLatestPrice(data: IPriceData[] | IAvgPrice[]): number {
-  return data[data.length - 1].price;
+  return data[data.length - 1].price
 }
 /**
  * Get latest date of watch
@@ -110,5 +105,5 @@ export function getLatestPrice(data: IPriceData[] | IAvgPrice[]): number {
  * @returns latest price of watch
  */
 export function getLatestDate(data: IPriceData[] | IAvgPrice[]): Date {
-  return new Date(data[data.length - 1].date);
+  return new Date(data[data.length - 1].date)
 }
