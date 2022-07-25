@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
 const apiClient = axios.create({
   baseURL: `http://localhost:8000/`,
@@ -6,17 +6,17 @@ const apiClient = axios.create({
     Accept: 'application/json',
     'Content-Type': 'application/json',
   },
-})
+});
 
 apiClient.interceptors.response.use(
   function (res: AxiosResponse) {
-    return res
+    return res;
   },
   function (error: AxiosError<{ msg: string }>) {
-    const res = error.response
-    if (res && res.data.msg) throw Error(res.data.msg)
-    throw Error('Unknown error occured.')
+    const res = error.response;
+    if (res && res.data.msg) throw Error(res.data.msg);
+    throw Error('Unknown error occured.');
   },
-)
+);
 
-export { apiClient }
+export { apiClient };

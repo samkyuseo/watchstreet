@@ -1,8 +1,8 @@
-import { Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react';
 
 interface IPageProps {
-  children: React.ReactNode
-  border?: string
+  children: React.ReactNode;
+  border?: string;
 }
 const Page = ({ children, border }: IPageProps) => {
   return (
@@ -17,7 +17,7 @@ const Page = ({ children, border }: IPageProps) => {
     >
       {children}
     </Box>
-  )
-}
+  );
+};
 
-export { Page }
+export { Page };

@@ -1,11 +1,11 @@
-import { Box, Text, Heading, Image, Flex, Divider } from '@chakra-ui/react'
+import { Box, Text, Heading, Image, Flex, Divider } from '@chakra-ui/react';
 
 interface IArticleProps {
-  company: string
-  heading: string
-  articleSnippet: string
-  image: string
-  url: string
+  company: string;
+  heading: string;
+  articleSnippet: string;
+  image: string;
+  url: string;
 }
 
 const Article = ({ company, heading, articleSnippet, image, url }: IArticleProps) => {
@@ -35,7 +35,7 @@ const Article = ({ company, heading, articleSnippet, image, url }: IArticleProps
         <Divider width='100%' />
       </Box>
     </>
-  )
-}
+  );
+};
 
-export { Article }
+export { Article };

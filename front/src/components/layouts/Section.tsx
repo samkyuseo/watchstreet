@@ -1,7 +1,7 @@
-import { Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react';
 
 interface ISectionProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const Section = ({ children }: ISectionProps) => {
@@ -9,7 +9,7 @@ const Section = ({ children }: ISectionProps) => {
     <Box width='100%' mt='40px'>
       {children}
     </Box>
-  )
-}
+  );
+};
 
-export { Section }
+export { Section };

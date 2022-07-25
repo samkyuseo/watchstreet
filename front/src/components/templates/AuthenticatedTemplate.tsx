@@ -1,11 +1,11 @@
-import { getAuth } from 'firebase/auth'
-import { ReactNode } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { Route } from 'react-router-dom'
-import { WatchPage } from '../../pages/watchpage/WatchPage'
+import { getAuth } from 'firebase/auth';
+import { ReactNode } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Route } from 'react-router-dom';
+import { WatchPage } from '../../pages/watchpage/WatchPage';
 
 interface IProps {
-  children: ReactNode
+  children: ReactNode;
 }
 /**
  * @desc a template that only renders if the user is authenticated
@@ -13,7 +13,7 @@ interface IProps {
  * @returns children if authenticated
  */
 const AuthenticatedTemplate = ({ children }: IProps) => {
-  const [user] = useAuthState(getAuth())
+  const [user] = useAuthState(getAuth());
 
   return user ? (
     <>{children}</>
@@ -21,7 +21,7 @@ const AuthenticatedTemplate = ({ children }: IProps) => {
     <Route path='*'>
       <WatchPage />
     </Route>
-  )
-}
+  );
+};
 
-export { AuthenticatedTemplate }
+export { AuthenticatedTemplate };

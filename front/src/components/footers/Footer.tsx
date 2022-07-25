@@ -1,6 +1,6 @@
-import { Container, Box, Text, Flex } from '@chakra-ui/layout'
-import { Image } from '@chakra-ui/react'
-import logo from '../../assets/images/logo.svg'
+import { Container, Box, Text, Flex } from '@chakra-ui/layout';
+import { Image } from '@chakra-ui/react';
+import logo from '../../assets/images/logo.svg';
 const Footer = () => {
   return (
     <Box
@@ -23,7 +23,7 @@ const Footer = () => {
         </Flex>
       </Container>
     </Box>
-  )
-}
+  );
+};
 
-export { Footer }
+export { Footer };

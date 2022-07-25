@@ -1,7 +1,7 @@
-import { Container, Box, HStack, Flex, Button } from '@chakra-ui/react'
-import { Image } from '@chakra-ui/react'
-import { signInWithGoogle } from '../../functions/auth'
-import logo from '../../assets/images/logo.svg'
+import { Container, Box, HStack, Flex, Button } from '@chakra-ui/react';
+import { Image } from '@chakra-ui/react';
+import { signInWithGoogle } from '../../functions/auth';
+import logo from '../../assets/images/logo.svg';
 const LandingNavbar = () => {
   return (
     <Box
@@ -28,7 +28,7 @@ const LandingNavbar = () => {
         </HStack>
       </Container>
     </Box>
-  )
-}
+  );
+};
 
-export { LandingNavbar }
+export { LandingNavbar };

@@ -1,15 +1,15 @@
-import { Table, Thead, Tbody, Tr, Th, Td, StatArrow, StatHelpText, Text } from '@chakra-ui/react'
-import { AiOutlinePlus } from 'react-icons/ai'
+import { Table, Thead, Tbody, Tr, Th, Td, StatArrow, StatHelpText, Text } from '@chakra-ui/react';
+import { AiOutlinePlus } from 'react-icons/ai';
 import {
   calculatePriceChange,
   calculatePriceChangePerent,
   formatTwoDecimals,
   getLatestPrice,
-} from '../../../functions/price'
-import { IWatch } from '../../../../../types'
+} from '../../../functions/price';
+import { IWatch } from '../../../../../types';
 
 interface IWatchListTableProps {
-  watches: IWatch[]
+  watches: IWatch[];
 }
 
 const WatchListTable = ({ watches }: IWatchListTableProps) => {
@@ -65,11 +65,11 @@ const WatchListTable = ({ watches }: IWatchListTableProps) => {
                 <AiOutlinePlus />
               </Td>
             </Tr>
-          )
+          );
         })}
       </Tbody>
     </Table>
-  )
-}
+  );
+};
 
-export { WatchListTable }
+export { WatchListTable };

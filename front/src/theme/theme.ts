@@ -1,4 +1,4 @@
-import { extendTheme } from '@chakra-ui/react'
+import { extendTheme } from '@chakra-ui/react';
 
 const components = {
   Heading: {
@@ -132,7 +132,7 @@ const components = {
       borderColor: 'gray.300',
     },
   },
-}
+};
 
 const colors = {
   green: {
@@ -141,6 +141,6 @@ const colors = {
     lighter: '#50f2c5',
     alpha: '#50f2c532',
   },
-}
+};
 
-export const theme = extendTheme({ colors, components })
+export const theme = extendTheme({ colors, components });

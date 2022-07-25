@@ -1,48 +1,48 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
-import { Page } from '../../components/layouts/Page'
-import { Content } from '../../components/layouts/Content'
-import { Section } from '../../components/layouts/Section'
-import { StickySidebar } from '../../components/layouts/StickySidebar'
+import { Page } from '../../components/layouts/Page';
+import { Content } from '../../components/layouts/Content';
+import { Section } from '../../components/layouts/Section';
+import { StickySidebar } from '../../components/layouts/StickySidebar';
 
-import { Navbar } from '../../components/navbars/Navbar'
-import { Chart } from '../../components/charts/Chart'
-import { Specs } from '../../components/specs/Specs'
-import { WatchImage } from '../../components/images/WatchImage/WatchImage'
+import { Navbar } from '../../components/navbars/Navbar';
+import { Chart } from '../../components/charts/Chart';
+import { Specs } from '../../components/specs/Specs';
+import { WatchImage } from '../../components/images/WatchImage/WatchImage';
 
-import { Button } from '@chakra-ui/react'
-import { useParams } from 'react-router-dom'
-import { getAvgPrices, getSpecs } from '../../api/lib/watch'
-import { IPriceData, ISpecs, IAvgPrice } from '../../../../types'
-import { LoadingPage } from '../loadingpage/LoadingPage'
+import { Button } from '@chakra-ui/react';
+import { useParams } from 'react-router-dom';
+import { getAvgPrices, getSpecs } from '../../api/lib/watch';
+import { IPriceData, ISpecs, IAvgPrice } from '../../../../types';
+import { LoadingPage } from '../loadingpage/LoadingPage';
 
 const WatchPage = () => {
-  const { id } = useParams<{ id: string }>()
-  const [specs, setSpecs] = useState<ISpecs>()
-  const [avgPrices, setAvgPrices] = useState<IAvgPrice[]>()
+  const { id } = useParams<{ id: string }>();
+  const [specs, setSpecs] = useState<ISpecs>();
+  const [avgPrices, setAvgPrices] = useState<IAvgPrice[]>();
 
   useEffect(() => {
     const fetchData = async () => {
       if (id) {
-        const watch = await getSpecs(id)
-        setSpecs(watch)
+        const watch = await getSpecs(id);
+        setSpecs(watch);
       }
-    }
-    fetchData().catch(console.error)
-  }, [id])
+    };
+    fetchData().catch(console.error);
+  }, [id]);
 
   useEffect(() => {
     const fetchData = async () => {
       if (id) {
-        const avgPrices = await getAvgPrices(id)
-        setAvgPrices(avgPrices)
+        const avgPrices = await getAvgPrices(id);
+        setAvgPrices(avgPrices);
       }
-    }
-    fetchData().catch(console.error)
-  }, [id])
+    };
+    fetchData().catch(console.error);
+  }, [id]);
 
   if (!specs || !avgPrices) {
-    return <LoadingPage />
+    return <LoadingPage />;
   }
 
   return (
@@ -76,7 +76,7 @@ const WatchPage = () => {
         </StickySidebar>
       </Page>
     </>
-  )
-}
+  );
+};
 
-export { WatchPage }
+export { WatchPage };

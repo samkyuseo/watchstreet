@@ -11,16 +11,16 @@ import {
   InputGroup,
   InputLeftElement,
   Button,
-} from '@chakra-ui/react'
-import { BsSearch } from 'react-icons/bs'
-import { FaSignOutAlt } from 'react-icons/fa'
+} from '@chakra-ui/react';
+import { BsSearch } from 'react-icons/bs';
+import { FaSignOutAlt } from 'react-icons/fa';
 
-import { useNavigate } from 'react-router'
-import { signOutFromGoogle } from '../../functions/auth'
-import logo from '../../assets/images/logo.svg'
+import { useNavigate } from 'react-router';
+import { signOutFromGoogle } from '../../functions/auth';
+import logo from '../../assets/images/logo.svg';
 
 const Navbar = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     // Just the outer border
     <Box
@@ -39,7 +39,7 @@ const Navbar = () => {
         width='200px'
         marginY='auto'
         onClick={() => {
-          navigate('/profile')
+          navigate('/profile');
         }}
       >
         <Image src={logo} width='60px' margin='auto' />
@@ -53,8 +53,8 @@ const Navbar = () => {
         <LeftButtons />
       </Box>
     </Box>
-  )
-}
+  );
+};
 
 const SearchBar = () => {
   return (
@@ -67,11 +67,11 @@ const SearchBar = () => {
         focusBorderColor='gray'
       />
     </InputGroup>
-  )
-}
+  );
+};
 
 const LeftButtons = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <Box display='flex'>
       <Button variant='minimal' mr='20px' onClick={() => navigate('/profile')}>
@@ -91,7 +91,7 @@ const LeftButtons = () => {
         </MenuList>
       </Menu>
     </Box>
-  )
-}
+  );
+};
 
-export { Navbar }
+export { Navbar };

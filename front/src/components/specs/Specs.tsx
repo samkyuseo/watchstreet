@@ -1,9 +1,9 @@
-import { Box, Text, Divider, Heading, Grid, GridItem } from '@chakra-ui/layout'
-import { SimpleGrid } from '@chakra-ui/layout'
-import { ISpecs } from '../../../../types'
+import { Box, Text, Divider, Heading, Grid, GridItem } from '@chakra-ui/layout';
+import { SimpleGrid } from '@chakra-ui/layout';
+import { ISpecs } from '../../../../types';
 
 interface ISpecsProps {
-  specs: ISpecs
+  specs: ISpecs;
 }
 
 const userFriendly: { [key: string]: string } = {
@@ -28,7 +28,7 @@ const userFriendly: { [key: string]: string } = {
   band_materials: 'Band Materials',
   lug_width: 'Lug Width',
   bracelet_name: 'Bracelet Name',
-}
+};
 
 const Specs = ({ specs }: ISpecsProps) => {
   return (
@@ -94,6 +94,6 @@ const Specs = ({ specs }: ISpecsProps) => {
         )}
       </Grid>
     </>
-  )
-}
-export { Specs }
+  );
+};
+export { Specs };

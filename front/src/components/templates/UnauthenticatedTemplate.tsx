@@ -1,9 +1,9 @@
-import { getAuth } from 'firebase/auth'
-import { ReactNode } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import { getAuth } from 'firebase/auth';
+import { ReactNode } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 interface IProps {
-  children: ReactNode
+  children: ReactNode;
 }
 /**
  * @desc a template that only renders if the user is unauthenticated
@@ -11,9 +11,9 @@ interface IProps {
  * @returns children if unauthenticated
  */
 const UnauthenticatedTemplate = ({ children }: IProps) => {
-  const [user] = useAuthState(getAuth())
+  const [user] = useAuthState(getAuth());
 
-  return user === null || user === undefined ? <>{children}</> : <></>
-}
+  return user === null || user === undefined ? <>{children}</> : <></>;
+};
 
-export { UnauthenticatedTemplate }
+export { UnauthenticatedTemplate };

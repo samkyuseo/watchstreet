@@ -1,13 +1,13 @@
-import { Box, Flex, Text, Accordion } from '@chakra-ui/react'
-import { WatchTableItem } from './WatchTableItem'
-import { WatchTableListItem } from './WatchTableListItem'
-import { AiOutlinePlus } from 'react-icons/ai'
+import { Box, Flex, Text, Accordion } from '@chakra-ui/react';
+import { WatchTableItem } from './WatchTableItem';
+import { WatchTableListItem } from './WatchTableListItem';
+import { AiOutlinePlus } from 'react-icons/ai';
 
-import { IUserWatch, IUserList } from '../../../../../types'
+import { IUserWatch, IUserList } from '../../../../../types';
 
 interface IWatchCollectionTableProps {
-  watches?: IUserWatch[]
-  watchLists?: IUserList[]
+  watches?: IUserWatch[];
+  watchLists?: IUserList[];
 }
 
 const WatchCollectionTable = ({ watches, watchLists }: IWatchCollectionTableProps) => {
@@ -43,7 +43,7 @@ const WatchCollectionTable = ({ watches, watchLists }: IWatchCollectionTableProp
           </Flex>
           {/* Table content */}
           {watches.map((watch, index) => {
-            return <WatchTableItem key={index} {...watch} />
+            return <WatchTableItem key={index} {...watch} />;
           })}
         </>
       ) : (
@@ -68,14 +68,14 @@ const WatchCollectionTable = ({ watches, watchLists }: IWatchCollectionTableProp
                 watches={watchList.watches}
                 key={index}
               />
-            )
+            );
           })}
         </Accordion>
       ) : (
         <></>
       )}
     </Box>
-  )
-}
+  );
+};
 
-export { WatchCollectionTable }
+export { WatchCollectionTable };

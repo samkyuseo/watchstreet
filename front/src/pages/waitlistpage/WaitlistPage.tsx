@@ -1,55 +1,55 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
-import { Content } from '../../components/layouts/Content'
-import { Section } from '../../components/layouts/Section'
-import { Chart } from './Chart'
-import { WatchImage } from '../../components/images/WatchImage/WatchImage'
-import { LandingNavbar } from '../../components/navbars/LandingNavbar'
-import { Button, Box, Heading, Spacer, Input, Text, Flex, useToast, Image } from '@chakra-ui/react'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { Content } from '../../components/layouts/Content';
+import { Section } from '../../components/layouts/Section';
+import { Chart } from './Chart';
+import { WatchImage } from '../../components/images/WatchImage/WatchImage';
+import { LandingNavbar } from '../../components/navbars/LandingNavbar';
+import { Button, Box, Heading, Spacer, Input, Text, Flex, useToast, Image } from '@chakra-ui/react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
-import { getWatch } from '../../api/lib/watch'
-import { IWatch } from '../../../../types'
-import { LoadingPage } from '../loadingpage/LoadingPage'
-import { Footer } from '../../components/footers/Footer'
-import { addToWaitlist } from '../../api/lib/user'
+import { getWatch } from '../../api/lib/watch';
+import { IWatch } from '../../../../types';
+import { LoadingPage } from '../loadingpage/LoadingPage';
+import { Footer } from '../../components/footers/Footer';
+import { addToWaitlist } from '../../api/lib/user';
 
-import { isMobile } from 'react-device-detect'
+import { isMobile } from 'react-device-detect';
 
-import patek from '../../assets/images/patek.jpg'
-import logo from '../../assets/images/logo.svg'
+import patek from '../../assets/images/patek.jpg';
+import logo from '../../assets/images/logo.svg';
 
 type Inputs = {
-  email: string
-}
+  email: string;
+};
 
 const WaitlistPage = () => {
-  const [watch, setWatch] = useState<IWatch | null>(null)
-  const [id] = useState<string>('2')
+  const [watch, setWatch] = useState<IWatch | null>(null);
+  const [id] = useState<string>('2');
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>()
-  const toast = useToast()
+  } = useForm<Inputs>();
+  const toast = useToast();
 
   useEffect(() => {
     const fetchData = async () => {
-      const watch = await getWatch(id)
-      setWatch(watch)
-    }
-    fetchData().catch(console.error)
-  }, [id])
+      const watch = await getWatch(id);
+      setWatch(watch);
+    };
+    fetchData().catch(console.error);
+  }, [id]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      await addToWaitlist(data.email)
+      await addToWaitlist(data.email);
       toast({
         title: 'Added to waitlist!',
         status: 'success',
         position: 'bottom-left',
         isClosable: true,
-      })
+      });
     } catch (_e) {
       if (_e instanceof Error) {
         toast({
@@ -57,10 +57,10 @@ const WaitlistPage = () => {
           status: 'error',
           position: 'bottom-left',
           isClosable: true,
-        })
+        });
       }
     }
-  }
+  };
 
   if (isMobile) {
     return (
@@ -121,7 +121,7 @@ const WaitlistPage = () => {
         <br />
         <Footer />
       </Flex>
-    )
+    );
   }
 
   return (
@@ -201,7 +201,7 @@ const WaitlistPage = () => {
       <br />
       <Footer />
     </Flex>
-  )
-}
+  );
+};
 
-export { WaitlistPage }
+export { WaitlistPage };

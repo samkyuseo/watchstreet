@@ -4,9 +4,9 @@ import {
   Box,
   AccordionIcon,
   AccordionPanel,
-} from '@chakra-ui/react'
-import { IUserList } from '../../../../../types'
-import { WatchTableItem } from './WatchTableItem'
+} from '@chakra-ui/react';
+import { IUserList } from '../../../../../types';
+import { WatchTableItem } from './WatchTableItem';
 
 const WatchTableListItem = ({ title, emoji, watches }: IUserList) => {
   return (
@@ -21,11 +21,11 @@ const WatchTableListItem = ({ title, emoji, watches }: IUserList) => {
       </h2>
       <AccordionPanel p='0'>
         {watches.map((watch, index) => {
-          return <WatchTableItem key={index} {...watch} />
+          return <WatchTableItem key={index} {...watch} />;
         })}
       </AccordionPanel>
     </AccordionItem>
-  )
-}
+  );
+};
 
-export { WatchTableListItem }
+export { WatchTableListItem };

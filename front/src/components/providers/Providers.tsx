@@ -1,13 +1,13 @@
-import { ReactNode } from 'react'
-import { ChakraProvider } from '@chakra-ui/react'
-import { BrowserRouter } from 'react-router-dom'
-import { theme } from '../../theme/theme'
+import { ReactNode } from 'react';
+import { ChakraProvider } from '@chakra-ui/react';
+import { BrowserRouter } from 'react-router-dom';
+import { theme } from '../../theme/theme';
 
-import '@fontsource/barlow'
-import '@fontsource/inter'
+import '@fontsource/barlow';
+import '@fontsource/inter';
 
 interface IProps {
-  children: ReactNode
+  children: ReactNode;
 }
 /**
  * @desc A componenet that encapsulates all providers for the app
@@ -18,5 +18,5 @@ export const Providers = ({ children }: IProps) => {
     <ChakraProvider theme={theme}>
       <BrowserRouter>{children}</BrowserRouter>
     </ChakraProvider>
-  )
-}
+  );
+};

@@ -1,7 +1,14 @@
-import { apiClient } from '../apiClient'
-import { IWatch, IPriceData, IWatchList, IWatchArticle, ISpecs, IAvgPrice } from '../../../../types'
-import { db } from '../../App'
-import { collection, doc, getDocs, setDoc, getDoc } from 'firebase/firestore'
+import { apiClient } from '../apiClient';
+import {
+  IWatch,
+  IPriceData,
+  IWatchList,
+  IWatchArticle,
+  ISpecs,
+  IAvgPrice,
+} from '../../../../types';
+import { db } from '../../App';
+import { collection, doc, getDocs, setDoc, getDoc } from 'firebase/firestore';
 
 /**
  * Returns watch object given id.
@@ -12,14 +19,14 @@ export async function getSpecs(id: string): Promise<ISpecs> {
   // const res = await apiClient.get<ISpecs>(`/api/watch/specs/${id}`);
   // return res.data;
   try {
-    const docRef = await getDoc(doc(db, 'watches', id))
+    const docRef = await getDoc(doc(db, 'watches', id));
     if (docRef.exists()) {
-      throw Error(`Watch with id ${id} doesn't exist.`)
+      throw Error(`Watch with id ${id} doesn't exist.`);
     }
-    const data = docRef.data()
-    return data as ISpecs
+    const data = docRef.data();
+    return data as ISpecs;
   } catch (error: any) {
-    throw Error(`Error getting specs: ${error.message}`)
+    throw Error(`Error getting specs: ${error.message}`);
   }
 }
 /**
@@ -28,8 +35,8 @@ export async function getSpecs(id: string): Promise<ISpecs> {
  * @return watch price data object
  */
 export async function getAvgPrices(id: string): Promise<IAvgPrice[]> {
-  const res = await apiClient.get<IAvgPrice[]>(`/api/watch/price/${id}`)
-  return res.data
+  const res = await apiClient.get<IAvgPrice[]>(`/api/watch/price/${id}`);
+  return res.data;
 }
 /**
  * Returns fake price data given id
@@ -37,8 +44,8 @@ export async function getAvgPrices(id: string): Promise<IAvgPrice[]> {
  * @returns watch price data object
  */
 export async function getFakePriceData(id: string): Promise<IPriceData[]> {
-  const res = await apiClient.get<IPriceData[]>(`/api/watch/price-fake/${id}`)
-  return res.data
+  const res = await apiClient.get<IPriceData[]>(`/api/watch/price-fake/${id}`);
+  return res.data;
 }
 /**
  * Get fake watch price data and specs
@@ -67,26 +74,26 @@ export async function getWatch(id: string): Promise<IWatch> {
       case-back.`,
     },
     priceData: getFakeWatchPriceData(),
-  }
-  return watch
+  };
+  return watch;
 }
 /**
  * Get all trending lists
  * @returns a list of watch lists
  */
 export async function getTrendingLists(): Promise<IWatchList[]> {
-  const response = await apiClient.get<IWatchList[]>('/api/watch/list/all')
-  return response.data
+  const response = await apiClient.get<IWatchList[]>('/api/watch/list/all');
+  return response.data;
 }
 
 export async function getTrendingList(id: string): Promise<IWatchList> {
-  const response = await apiClient.get<IWatchList>(`/api/watch/list/${id}`)
-  return response.data
+  const response = await apiClient.get<IWatchList>(`/api/watch/list/${id}`);
+  return response.data;
 }
 
 export async function getArticles(): Promise<IWatchArticle[]> {
-  const response = await apiClient.get<IWatchArticle[]>('api/watch/article/all')
-  return response.data
+  const response = await apiClient.get<IWatchArticle[]>('api/watch/article/all');
+  return response.data;
 }
 
 /**
@@ -94,19 +101,19 @@ export async function getArticles(): Promise<IWatchArticle[]> {
  * @returns fake watch price data array
  */
 export function getFakeWatchPriceData(): IPriceData[] {
-  let startDate = new Date('12/24/2021')
-  let startPrice = Math.floor(Math.random() * 200001) // random start price between 0 and $200,000
+  let startDate = new Date('12/24/2021');
+  let startPrice = Math.floor(Math.random() * 200001); // random start price between 0 and $200,000
 
   const fakeData = Array.from({ length: 500 }, () => {
-    startDate = new Date(startDate.setDate(startDate.getDate() + 1))
+    startDate = new Date(startDate.setDate(startDate.getDate() + 1));
     // randomly add or subtract but ensure a pos price
     if (Math.round(Math.random() * 1) === 1 || startPrice < 0) {
-      startPrice += Math.floor(Math.random() * 10000) + 5000 // add amount between $10,000 and $5,000
+      startPrice += Math.floor(Math.random() * 10000) + 5000; // add amount between $10,000 and $5,000
     } else if (startPrice > 10000) {
-      startPrice -= Math.floor(Math.random() * 10000) + 5000 // subtract ''
+      startPrice -= Math.floor(Math.random() * 10000) + 5000; // subtract ''
     }
-    return { price: startPrice, date: startDate }
-  })
+    return { price: startPrice, date: startDate };
+  });
   /* For some reason ^ adds an extra day at the end thats repeated... */
-  return fakeData.slice(0, -1)
+  return fakeData.slice(0, -1);
 }

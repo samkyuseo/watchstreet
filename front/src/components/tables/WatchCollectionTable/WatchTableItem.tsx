@@ -1,24 +1,24 @@
-import { useNavigate } from 'react-router-dom'
-import { Flex, Text, VStack, Spacer } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom';
+import { Flex, Text, VStack, Spacer } from '@chakra-ui/react';
 import {
   calculatePriceChange,
   getLatestPrice,
   formatPriceChangePercent,
   getLatestDate,
   formatTwoDecimals,
-} from '../../../functions/price'
-import { calculateTimeDelta } from '../../../functions/date'
-import { IUserWatch } from '../../../../../types'
+} from '../../../functions/price';
+import { calculateTimeDelta } from '../../../functions/date';
+import { IUserWatch } from '../../../../../types';
 
 /** Generic table item to display watch data on table */
 const WatchTableItem = ({ watch, purchaseDate, numberOfWatches }: IUserWatch) => {
-  const navigate = useNavigate()
-  const timeDelta = calculateTimeDelta(getLatestDate(watch.priceData), purchaseDate)
+  const navigate = useNavigate();
+  const timeDelta = calculateTimeDelta(getLatestDate(watch.priceData), purchaseDate);
 
-  const priceChange = calculatePriceChange(watch.priceData, timeDelta)
-  let currentPrice = getLatestPrice(watch.priceData)
+  const priceChange = calculatePriceChange(watch.priceData, timeDelta);
+  let currentPrice = getLatestPrice(watch.priceData);
   if (numberOfWatches) {
-    currentPrice *= numberOfWatches
+    currentPrice *= numberOfWatches;
   }
   return (
     <Flex
@@ -27,7 +27,7 @@ const WatchTableItem = ({ watch, purchaseDate, numberOfWatches }: IUserWatch) =>
       padding='10px'
       flexDirection='row'
       onClick={() => {
-        navigate(`/watch/${watch.id}`)
+        navigate(`/watch/${watch.id}`);
       }}
       _hover={{ backgroundColor: 'gray.50' }}
     >
@@ -57,7 +57,7 @@ const WatchTableItem = ({ watch, purchaseDate, numberOfWatches }: IUserWatch) =>
         )}
       </VStack>
     </Flex>
-  )
-}
+  );
+};
 
-export { WatchTableItem }
+export { WatchTableItem };

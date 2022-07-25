@@ -1,19 +1,19 @@
-import { useState, useEffect, useRef } from 'react'
-import { Heading, Text, Box, VStack } from '@chakra-ui/layout'
-import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts'
+import { useState, useEffect, useRef } from 'react';
+import { Heading, Text, Box, VStack } from '@chakra-ui/layout';
+import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
-import { TimeDeltaSelector } from './TimeDeltaSelector'
+import { TimeDeltaSelector } from './TimeDeltaSelector';
 
 import {
   formatTwoDecimals,
   calculatePriceChange,
   formatPriceChangeString,
   getLatestPrice,
-} from '../../functions/price'
-import { formatDate } from '../../functions/date'
+} from '../../functions/price';
+import { formatDate } from '../../functions/date';
 
-import { IPriceData, ITimeDelta } from '../../../../types'
-import { useMediaQuery } from '@chakra-ui/react'
+import { IPriceData, ITimeDelta } from '../../../../types';
+import { useMediaQuery } from '@chakra-ui/react';
 
 const chartTimeDeltas: ITimeDelta[] = [
   { id: '0', selectText: '1W', displayText: 'Past Week', numDays: 7 },
@@ -22,63 +22,63 @@ const chartTimeDeltas: ITimeDelta[] = [
   { id: '3', selectText: '6M', displayText: 'Past 6 Months', numDays: 180 },
   { id: '4', selectText: '1Y', displayText: 'Past Year', numDays: 365 },
   { id: '5', selectText: 'ALL', displayText: 'All Time', numDays: Infinity },
-]
+];
 
 export interface IChartProps {
-  title: string
-  data: IPriceData[]
+  title: string;
+  data: IPriceData[];
 }
 
 const Chart = ({ title, data }: IChartProps) => {
   /* Hooks */
-  const [isTableOrSmaller] = useMediaQuery('(max-width: 700px)')
-  const [defaultIndex] = useState<number>(3)
-  const [timeDelta, setParentTimeDelta] = useState<ITimeDelta>(chartTimeDeltas[defaultIndex])
-  const priceRef = useRef<HTMLHeadingElement>(null)
-  const priceChangeRef = useRef<HTMLParagraphElement>(null)
+  const [isTableOrSmaller] = useMediaQuery('(max-width: 700px)');
+  const [defaultIndex] = useState<number>(3);
+  const [timeDelta, setParentTimeDelta] = useState<ITimeDelta>(chartTimeDeltas[defaultIndex]);
+  const priceRef = useRef<HTMLHeadingElement>(null);
+  const priceChangeRef = useRef<HTMLParagraphElement>(null);
   useEffect(() => {
     /* Set the chart price as soon as component is rendered */
     if (priceRef.current) {
-      priceRef.current.innerText = `$${formatTwoDecimals(getLatestPrice(data))}`
+      priceRef.current.innerText = `$${formatTwoDecimals(getLatestPrice(data))}`;
     }
     if (priceChangeRef.current) {
       priceChangeRef.current.innerText = formatPriceChangeString(
         data,
         calculatePriceChange(data, timeDelta),
-      )
+      );
     }
-  }, [timeDelta, data])
+  }, [timeDelta, data]);
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     /* Tool tip is not active */
     if (!active && priceRef.current) {
-      priceRef.current.innerText = `$${formatTwoDecimals(getLatestPrice(data))}`
+      priceRef.current.innerText = `$${formatTwoDecimals(getLatestPrice(data))}`;
     }
     if (!active && priceChangeRef.current) {
       priceChangeRef.current.innerText = formatPriceChangeString(
         data,
         calculatePriceChange(data, timeDelta),
-      )
+      );
     }
     /* Tool tip is active */
     if (active && payload && payload.length) {
       if (priceRef.current) {
-        priceRef.current.innerText = `$${formatTwoDecimals(payload[0].value)}`
+        priceRef.current.innerText = `$${formatTwoDecimals(payload[0].value)}`;
       }
       if (priceChangeRef.current) {
-        const td = timeDelta.numDays === Infinity ? data.length : timeDelta.numDays
+        const td = timeDelta.numDays === Infinity ? data.length : timeDelta.numDays;
         /* Can't use calculatePriceChange, since end value is different */
-        const priceChange = payload[0].value - data[data.length - td].price
-        priceChangeRef.current.innerText = formatPriceChangeString(data, priceChange)
+        const priceChange = payload[0].value - data[data.length - td].price;
+        priceChangeRef.current.innerText = formatPriceChangeString(data, priceChange);
       }
       return (
         <Box>
           <Text>{label}</Text>
         </Box>
-      )
+      );
     }
-    return <></>
-  }
+    return <></>;
+  };
 
   return (
     <VStack alignItems='left' width='100%'>
@@ -120,7 +120,7 @@ const Chart = ({ title, data }: IChartProps) => {
         />
       </Box>
     </VStack>
-  )
-}
+  );
+};
 
-export { Chart }
+export { Chart };
