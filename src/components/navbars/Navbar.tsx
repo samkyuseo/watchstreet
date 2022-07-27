@@ -5,7 +5,7 @@ import {
   Menu,
   MenuList,
   MenuItem,
-  MenuDivider,
+  // MenuDivider,
   Image,
   Input,
   InputGroup,
@@ -82,8 +82,8 @@ const LeftButtons = () => {
           Account
         </MenuButton>
         <MenuList>
-          <MenuItem as={Text}>Account Settings</MenuItem>
-          <MenuDivider />
+          {/* <MenuItem as={Text}>Account Settings</MenuItem>
+          <MenuDivider /> */}
           <MenuItem as={Text} css={{ gap: 5 }} onClick={signOutFromGoogle}>
             <FaSignOutAlt color='#6f6f6f' />
             <span>Sign Out</span>

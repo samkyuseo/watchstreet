@@ -40,9 +40,7 @@ const LandingPage = () => {
             Learn, Discover, Track.
           </Heading>
           <br></br>
-          <Text variant='hero-text-mobile'>
-            Gray watch market prices and watch news - All in one location.
-          </Text>
+          <Text variant='hero-text-mobile'>What is your watch collection worth?</Text>
           <br></br>
           <Flex gap='5'>
             <Button variant='outline' onClick={() => navigate('login')}>
@@ -90,9 +88,7 @@ const LandingPage = () => {
       <Flex flexDir='column' alignItems={'center'}>
         <Heading variant={'hero-heading'}>Learn, Discover, Track.</Heading>
         <br></br>
-        <Text variant='hero-text'>
-          Gray watch market prices and watch news - All in one location.
-        </Text>
+        <Text variant='hero-text'>What is your watch collection worth?</Text>
         <br />
         <Flex gap='5'>
           <Button variant='outline' size='lg' onClick={() => navigate('login')}>

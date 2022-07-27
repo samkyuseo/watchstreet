@@ -39,7 +39,7 @@ const LoginPage = () => {
         flexDir={'column'}
         padding='20px'
       >
-        <Image src={logo} height={'50px'} />
+        <Image onClick={() => navigate('/')} src={logo} height={'50px'} />
         <br />
         <Button
           variant='outline'
@@ -59,6 +59,7 @@ const LoginPage = () => {
             <Input
               type='email'
               focusBorderColor='gray'
+              borderColor='gray.300'
               placeholder='Email'
               {...register('email', { required: true })}
             />
@@ -71,6 +72,7 @@ const LoginPage = () => {
               type={'password'}
               focusBorderColor='gray'
               {...register('password', { required: true })}
+              borderColor='gray.300'
               placeholder='Enter password'
             />
           </InputGroup>

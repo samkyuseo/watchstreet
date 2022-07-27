@@ -49,7 +49,7 @@ const SignUpPage = () => {
         flexDir={'column'}
         padding='20px'
       >
-        <Image src={logo} height={'50px'} />
+        <Image onClick={() => navigate('/')} src={logo} height={'50px'} />
         <br />
         <Button
           variant='outline'
@@ -70,6 +70,7 @@ const SignUpPage = () => {
               type='email'
               focusBorderColor='gray'
               placeholder='Email'
+              borderColor='gray.300'
               {...register('email', {
                 required: { value: true, message: 'This field is required' },
               })}
@@ -82,6 +83,7 @@ const SignUpPage = () => {
             <Input
               type={'password'}
               focusBorderColor='gray'
+              borderColor='gray.300'
               {...register('password', {
                 required: { value: true, message: 'This field is required' },
                 minLength: { value: 8, message: 'Password must be atleast 8 characters' },
@@ -96,6 +98,7 @@ const SignUpPage = () => {
             <Input
               type={'password'}
               focusBorderColor='gray'
+              borderColor='gray.300'
               {...register('confirmPassword', {
                 required: { value: true, message: 'This field is required' },
                 validate: (cp) => validate(cp),

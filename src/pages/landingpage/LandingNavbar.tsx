@@ -18,7 +18,7 @@ const LandingNavbar = () => {
         <HStack display='flex' width='100%' justifyContent='space-between'>
           <Image src={logo} width='75px' />
           <Flex style={{ gap: '20px' }}>
-            <Button variant='minimal' onClick={() => navigate('login')}>
+            <Button variant='outline' onClick={() => navigate('login')}>
               Login
             </Button>
             <Button variant='pop' onClick={() => navigate('signup')}>

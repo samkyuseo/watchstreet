@@ -18,7 +18,12 @@ export async function createUserWithEmail(email: string, password: string) {
     await createUserWithEmailAndPassword(getAuth(), email, password);
   } catch (_e: any) {
     const e = _e as FirebaseError;
-    console.log(e.code);
+    switch (e.code) {
+      case 'auth/email-already-in-use':
+        throw Error('Email is already in use.');
+      default:
+        throw Error('Server Error.');
+    }
   }
 }
 
