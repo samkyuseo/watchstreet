@@ -1,14 +1,5 @@
-import { apiClient } from '../apiClient';
 import { getFakeWatchPriceData } from '../../functions/price';
-import {
-  IWatch,
-  IPriceData,
-  IWatchList,
-  IWatchArticle,
-  ISpecs,
-  IAvgPrice,
-  IPrice,
-} from '../../types';
+import { IWatch, IWatchList, IWatchArticle, ISpecs, IAvgPrice, IPrice } from '../../types';
 import { watchListDB, articleDB } from '../mockDB';
 import { db } from '../../App';
 import { doc, getDoc } from 'firebase/firestore';
@@ -58,15 +49,7 @@ export async function getAvgPrices(id: string): Promise<IAvgPrice[]> {
     throw Error(error.message);
   }
 }
-/**
- * Returns fake price data given id
- * @param id of watch.
- * @returns watch price data object
- */
-export async function getFakePriceData(id: string): Promise<IPriceData[]> {
-  const res = await apiClient.get<IPriceData[]>(`/api/watch/price-fake/${id}`);
-  return res.data;
-}
+
 /**
  * Get fake watch price data and specs
  * @returns fake watch watch data object

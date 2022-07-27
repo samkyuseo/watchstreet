@@ -32,7 +32,7 @@ const userFriendly: { [key: string]: string } = {
 const Specs = ({ specs }: ISpecsProps) => {
   return (
     <>
-      <Divider />
+      <Divider marginBottom={'10px'} />
       <Grid templateRows='repeat(2, 1fr)' templateColumns='repeat(6, 1fr)' gap={4}>
         <GridItem rowSpan={Math.ceil(Object.keys(specs['general']).length / 2)} colSpan={2}>
           <Heading variant='spec-heading'>GENERAL</Heading>
@@ -47,7 +47,7 @@ const Specs = ({ specs }: ISpecsProps) => {
             ),
         )}
       </Grid>
-      <Divider />
+      <Divider marginBottom={'10px'} />
       <Grid templateRows='repeat(2, 1fr)' templateColumns='repeat(6, 1fr)' gap={4}>
         <GridItem rowSpan={Math.ceil(Object.keys(specs['case']).length / 2)} colSpan={2}>
           <Heading variant='spec-heading'>CASE</Heading>
@@ -62,7 +62,7 @@ const Specs = ({ specs }: ISpecsProps) => {
             ),
         )}
       </Grid>
-      <Divider />
+      <Divider marginBottom={'10px'} />
       <Grid templateRows='repeat(2, 1fr)' templateColumns='repeat(6, 1fr)' gap={4}>
         <GridItem rowSpan={Math.ceil(Object.keys(specs['movement']).length / 2)} colSpan={2}>
           <Heading variant='spec-heading'>MOVEMENT</Heading>
@@ -77,7 +77,7 @@ const Specs = ({ specs }: ISpecsProps) => {
             ),
         )}
       </Grid>
-      <Divider />
+      <Divider marginBottom={'10px'} />
       <Grid templateRows='repeat(2, 1fr)' templateColumns='repeat(6, 1fr)' gap={4}>
         <GridItem rowSpan={Math.ceil(Object.keys(specs['bracelet']).length / 2)} colSpan={2}>
           <Heading variant='spec-heading'>BRACELET</Heading>

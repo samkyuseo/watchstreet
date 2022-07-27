@@ -18,7 +18,6 @@ import { IUserWatch, IUserList, IPriceData, IWatchList, IWatchArticle } from '..
 import { getArticles, getTrendingLists } from '../../api/lib/watch';
 
 const ProfilePage = () => {
-  /* Review: Could combine these all into one custom use effect hook */
   const [userWatches, setUserWatches] = useState<IUserWatch[] | undefined>(undefined);
   const [userLists, setUserLists] = useState<IUserList[] | undefined>(undefined);
   const [totalValue, setTotalValue] = useState<IPriceData[] | undefined>(undefined);

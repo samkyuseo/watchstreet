@@ -1,8 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { Container, Box, HStack, Flex, Button } from '@chakra-ui/react';
 import { Image } from '@chakra-ui/react';
-import { signInWithGoogle } from '../../functions/auth';
 import logo from '../../assets/images/logo.svg';
 const LandingNavbar = () => {
+  const navigate = useNavigate();
   return (
     <Box
       top='0'
@@ -17,11 +18,10 @@ const LandingNavbar = () => {
         <HStack display='flex' width='100%' justifyContent='space-between'>
           <Image src={logo} width='75px' />
           <Flex style={{ gap: '20px' }}>
-            {/* Gone until website is live */}
-            <Button variant='minimal' onClick={signInWithGoogle}>
+            <Button variant='minimal' onClick={() => navigate('login')}>
               Login
             </Button>
-            <Button variant='pop' onClick={signInWithGoogle}>
+            <Button variant='pop' onClick={() => navigate('signup')}>
               Sign Up
             </Button>
           </Flex>

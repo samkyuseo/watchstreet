@@ -1,6 +1,6 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 
-import { WaitlistPage } from './pages/waitlistpage/WaitlistPage';
+import { LandingPage } from './pages/landingpage/LandingPage';
 import { WatchPage } from './pages/watchpage/WatchPage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { ProfilePage } from './pages/profilepage/ProfilePage';
@@ -12,6 +12,8 @@ import { getFirestore } from 'firebase/firestore';
 
 import { LoadingPage } from './pages/loadingpage/LoadingPage';
 import { WatchListPage } from './pages/watchlistpage/WatchListPage';
+import { LoginPage } from './pages/loginpage/LoginPage';
+import { SignUpPage } from './pages/signuppage/SignUpPage';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBNvP9lKSi6K-Mean3tkJfy65a6OfYq3oI',
@@ -36,7 +38,9 @@ const App = () => {
     { path: '*', element: <Navigate to='/profile' /> },
   ]);
   const unAuthRoutes = useRoutes([
-    { path: '/', element: <WaitlistPage /> },
+    { path: '/', element: <LandingPage /> },
+    { path: '/login', element: <LoginPage /> },
+    { path: '/signup', element: <SignUpPage /> },
     { path: '*', element: <Navigate to='/' /> },
   ]);
   const loadingRoutes = useRoutes([{ path: '*', element: <LoadingPage /> }]);

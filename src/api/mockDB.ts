@@ -161,7 +161,7 @@ export const userDB: IUser[] = [
       },
       {
         watch: watchDB[2],
-        numberOfWatches: 0,
+        numberOfWatches: 1,
         purchaseDate: new Date('November 17, 2022'),
       },
     ],

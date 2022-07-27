@@ -105,6 +105,7 @@ const components = {
       outline: {
         bgColor: 'transparent',
         borderColor: 'green.light',
+        border: '2px',
         fontFamily: 'barlow',
         _hover: { backgroundColor: 'green.alpha' },
         _active: {
@@ -128,7 +129,6 @@ const components = {
   },
   Divider: {
     baseStyle: {
-      marginBottom: '10px',
       borderColor: 'gray.300',
     },
   },

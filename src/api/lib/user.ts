@@ -48,27 +48,26 @@ export async function getTotalValue(): Promise<IPriceData[] | undefined> {
 export async function getUserLists(): Promise<IUserList[] | undefined> {
   const user = userDB.find((user) => user.id === '0');
   if (user) {
-    return user.userLists; 
+    return user.userLists;
   }
 }
 
 /**
  * Save user's email in firebase
+ * @param email user's email
  */
 export async function addToWaitlist(email: string) {
-  if (!email || email === '') {
-    throw Error('Email is required!');
-  }
-
-  if ((await getDoc(doc(db, 'waitlist', email))).exists()) {
-    throw Error('Email already exists.');
-  }
-
   try {
+    if (!email || email === '') {
+      throw Error('Email is required!');
+    }
+    if ((await getDoc(doc(db, 'waitlist', email))).exists()) {
+      throw Error('Email already exists.');
+    }
     await setDoc(doc(db, 'waitlist', email), {
       queuePos: (await getDocs(collection(db, 'waitlist'))).size + 1,
     });
-  } catch (e) {
-    throw Error('Error adding email.');
+  } catch (error: any) {
+    throw Error(error.message);
   }
 }
