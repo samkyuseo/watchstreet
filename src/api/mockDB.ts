@@ -188,7 +188,7 @@ export const userDB: IUser[] = [
         ],
       },
       {
-        title: 'Investment Pieces',
+        title: 'My Next Few Pieces',
         emoji: '💰',
         watches: [
           {

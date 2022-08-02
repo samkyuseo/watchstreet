@@ -5,7 +5,7 @@ import {
   AccordionIcon,
   AccordionPanel,
 } from '@chakra-ui/react';
-import  { IUserList } from '../../../types'
+import { IUserList } from '../../../types';
 import { WatchTableItem } from './WatchTableItem';
 
 const WatchTableListItem = ({ title, emoji, watches }: IUserList) => {
@@ -19,11 +19,11 @@ const WatchTableListItem = ({ title, emoji, watches }: IUserList) => {
           <AccordionIcon />
         </AccordionButton>
       </h2>
-      <AccordionPanel p='0'>
+      {/* <AccordionPanel p='0'>
         {watches.map((watch, index) => {
           return <WatchTableItem key={index} {...watch} />;
         })}
-      </AccordionPanel>
+      </AccordionPanel> */}
     </AccordionItem>
   );
 };

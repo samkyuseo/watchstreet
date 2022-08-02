@@ -40,9 +40,7 @@ const WatchListPage = () => {
           </Section>
           <Section>{trendingList && <WatchListTable watches={trendingList.watches} />}</Section>
         </Content>
-        <StickySidebar>
-          <WatchCollectionTable watchLists={userLists} />
-        </StickySidebar>
+        <StickySidebar>{/* <WatchCollectionTable watchLists={userLists} /> */}</StickySidebar>
       </Page>
     </>
   );

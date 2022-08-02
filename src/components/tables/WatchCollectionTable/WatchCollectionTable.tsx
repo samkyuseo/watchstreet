@@ -1,16 +1,14 @@
-import { Box, Flex, Text, Accordion } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import { WatchTableItem } from './WatchTableItem';
-import { WatchTableListItem } from './WatchTableListItem';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-import { IUserWatch, IUserList } from '../../../types';
+import { IUser2 } from '../../../types';
 
 interface IWatchCollectionTableProps {
-  watches?: IUserWatch[];
-  watchLists?: IUserList[];
+  userData?: IUser2;
 }
 
-const WatchCollectionTable = ({ watches, watchLists }: IWatchCollectionTableProps) => {
+const WatchCollectionTable = ({ userData }: IWatchCollectionTableProps) => {
   return (
     <Box
       // make content always 80% of the vh
@@ -34,43 +32,27 @@ const WatchCollectionTable = ({ watches, watchLists }: IWatchCollectionTableProp
       boxShadow='md'
     >
       {/* Watch Collection */}
-      {watches ? (
+      {userData ? (
         <>
-          <Flex borderBottom='1px' borderColor='gray.200' width='100%' p='10px'>
+          <Flex
+            borderBottom='1px'
+            borderColor='gray.200'
+            justifyContent='space-between'
+            width='100%'
+            p='10px'
+          >
             <Text variant='bold-text' fontSize='lg'>
-              Watches
+              Collection
             </Text>
+            <Flex marginY='auto' marginRight='8px'>
+              <AiOutlinePlus />
+            </Flex>
           </Flex>
           {/* Table content */}
-          {watches.map((watch, index) => {
-            return <WatchTableItem key={index} {...watch} />;
+          {userData.collection.map((watch, index) => {
+            return <WatchTableItem key={index} watch={watch} />;
           })}
         </>
-      ) : (
-        <></>
-      )}
-      {/* Watch Lists */}
-      <Flex width='100%' p='10px' justifyContent='space-between'>
-        <Text variant='bold-text' fontSize='lg'>
-          Lists
-        </Text>
-        <Flex marginY='auto' marginRight='8px'>
-          <AiOutlinePlus />
-        </Flex>
-      </Flex>
-      {watchLists ? (
-        <Accordion defaultIndex={[0]} allowMultiple fontFamily='barlow'>
-          {watchLists.map((watchList, index) => {
-            return (
-              <WatchTableListItem
-                title={watchList.title}
-                emoji={watchList.emoji}
-                watches={watchList.watches}
-                key={index}
-              />
-            );
-          })}
-        </Accordion>
       ) : (
         <></>
       )}

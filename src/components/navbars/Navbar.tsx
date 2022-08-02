@@ -16,7 +16,7 @@ import { BsSearch } from 'react-icons/bs';
 import { FaSignOutAlt } from 'react-icons/fa';
 
 import { useNavigate } from 'react-router';
-import { signOutFromGoogle } from '../../functions/auth';
+import { signOutUser } from '../../functions/auth';
 import logo from '../../assets/images/logo.svg';
 
 const Navbar = () => {
@@ -84,7 +84,7 @@ const LeftButtons = () => {
         <MenuList>
           {/* <MenuItem as={Text}>Account Settings</MenuItem>
           <MenuDivider /> */}
-          <MenuItem as={Text} css={{ gap: 5 }} onClick={signOutFromGoogle}>
+          <MenuItem as={Text} css={{ gap: 5 }} onClick={signOutUser}>
             <FaSignOutAlt color='#6f6f6f' />
             <span>Sign Out</span>
           </MenuItem>

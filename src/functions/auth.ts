@@ -7,7 +7,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-
+import { createUser } from '../api/lib/user';
 /**
  * Create account with username and password
  * @param email
@@ -15,7 +15,10 @@ import {
  */
 export async function createUserWithEmail(email: string, password: string) {
   try {
-    await createUserWithEmailAndPassword(getAuth(), email, password);
+    /* Create user in firebase auth */
+    const userCreds = await createUserWithEmailAndPassword(getAuth(), email, password);
+    /* Create user in firestore */
+    await createUser(userCreds.user.uid);
   } catch (_e: any) {
     const e = _e as FirebaseError;
     switch (e.code) {
@@ -58,6 +61,6 @@ export async function signInWithEmail(email: string, password: string) {
 /**
  * Log user out
  */
-export async function signOutFromGoogle() {
+export async function signOutUser() {
   await signOut(getAuth());
 }

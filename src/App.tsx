@@ -11,7 +11,6 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 import { LoadingPage } from './pages/loadingpage/LoadingPage';
-import { WatchListPage } from './pages/watchlistpage/WatchListPage';
 import { LoginPage } from './pages/loginpage/LoginPage';
 import { SignUpPage } from './pages/signuppage/SignUpPage';
 
@@ -32,7 +31,6 @@ getAnalytics(app);
 const App = () => {
   const [user, loading, error] = useAuthState(getAuth());
   const authRoutes = useRoutes([
-    { path: '/lists/:id', element: <WatchListPage /> },
     { path: '/watch/:id', element: <WatchPage /> },
     { path: '/profile', element: <ProfilePage /> },
     { path: '*', element: <Navigate to='/profile' /> },

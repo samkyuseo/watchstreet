@@ -1,3 +1,5 @@
+import { DocumentReference } from 'firebase/firestore';
+
 /* Types for watch data */
 export interface IDetails {
   dial_color: string;
@@ -23,7 +25,7 @@ export interface IPrice {
 export interface IAvgPrice {
   price: number;
   date: string;
-  prices: IPrice[];
+  prices: IPrice[]; // can be null
 }
 export interface IPriceData {
   price: number;
@@ -97,6 +99,14 @@ export interface IUser {
   id: String;
   userLists: IUserList[];
   userWatches: IUserWatch[];
+}
+export interface IUser2 {
+  collection: IUserWatch2[];
+}
+export interface IUserWatch2 {
+  watch_ref: DocumentReference;
+  price_ref: DocumentReference;
+  purchase_price: number;
 }
 export interface IUserWatch {
   watch: IWatch;
