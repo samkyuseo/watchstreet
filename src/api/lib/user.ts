@@ -1,9 +1,24 @@
-import { IUserWatch, IUserList, IPriceData, IUser2, IAvgPrice, IUserWatch2 } from '../../types';
+import {
+  IUserWatch,
+  IUserList,
+  IPriceData,
+  IUser2,
+  IAvgPrice,
+  IUserWatch2,
+  IPrice,
+} from '../../types';
 import { db } from '../../App';
-import { collection, doc, getDocs, setDoc, getDoc } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDocs,
+  setDoc,
+  getDoc,
+  updateDoc,
+  arrayUnion,
+} from 'firebase/firestore';
 import { userDB } from '../mockDB';
 import { signOutUser } from '../../functions/auth';
-import { getAvgPrices } from './watch';
 
 /**
  * Create user in user document collection
@@ -41,10 +56,6 @@ export async function getUser(id: string): Promise<IUser2> {
     if (!docRef.exists()) {
       throw Error("User doesn't exist.");
     }
-    // for (const ud of userData.collection) {
-    //   const doc = await getDoc(ud.watch_ref);
-    //   console.log(doc.data());
-    // }
     const userData = docRef.data() as IUser2;
     return userData;
   } catch (error: any) {
@@ -80,15 +91,61 @@ export async function getTotalValue(): Promise<IPriceData[] | undefined> {
     return priceDataSum;
   }
 }
-
+/**
+ * A function to sum avg prices in the user's collection and add them together
+ * @param coll User's collection
+ * @returns List of average prices
+ */
 export async function getCollSum(coll: IUserWatch2[]): Promise<IAvgPrice[]> {
-  const allAvgPrices: IAvgPrice[][] = [];
+  const rawPrices: { [key: string]: IPrice[] }[] = [];
   for (const c of coll) {
-    allAvgPrices.push(await getAvgPrices(c.price_ref.id));
+    const docRef = await getDoc(c.price_ref);
+    if (!docRef.exists()) {
+      throw Error(`Price with id ${c.price_ref.id} does not exist.`);
+    }
+    rawPrices.push(docRef.data() as { [key: string]: IPrice[] });
   }
-  console.log(allAvgPrices);
-  return allAvgPrices[0];
+
+  const map = new Map<string, { avg: IAvgPrice; numWatches: number }>();
+  for (const rp of rawPrices) {
+    for (const [date, rawPriceObjs] of Object.entries(rp)) {
+      const sum = Array.from(rawPriceObjs, (rpo) => rpo.price).reduce((prev, curr) => prev + curr);
+      const avg = sum / rawPriceObjs.length;
+      const oldPrice = map.get(date);
+      map.set(date, {
+        avg: { date, price: avg + (oldPrice !== undefined ? oldPrice.avg.price : 0) },
+        numWatches: 1 + (oldPrice !== undefined ? oldPrice.numWatches : 0),
+      });
+    }
+  }
+  const res: IAvgPrice[] = [];
+  map.forEach((value) => {
+    /* only dates that have all watches in it */
+    if (value.numWatches === rawPrices.length) res.push(value.avg);
+  });
+  res.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  return res;
 }
+/**
+ * Add to collection
+ * @param userId
+ * @param watchId
+ * @param purchasePrice
+ */
+export async function addToColl(userId: string, watchId: string, purchasePrice: number) {
+  try {
+    await updateDoc(doc(db, 'users', userId), {
+      collection: arrayUnion({
+        purchase_price: purchasePrice,
+        watch_ref: doc(db, 'watches', watchId),
+        price_ref: doc(db, 'prices', watchId),
+      }),
+    });
+  } catch (error: any) {
+    throw Error(error.message);
+  }
+}
+
 /**
  * Get User's watch lists
  * @returns an array of list watches

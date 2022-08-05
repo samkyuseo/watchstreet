@@ -11,8 +11,8 @@ import { Chart } from '../../components/charts/Chart';
 import { WatchCollectionTable } from '../../components/tables/WatchCollectionTable/WatchCollectionTable';
 import { Article } from '../../components/articles/Article';
 
-import { getTotalValue, getUser, getCollSum } from '../../api/lib/user';
-import { IPriceData, IWatchArticle, IUser2, IAvgPrice } from '../../types';
+import { getUser, getCollSum } from '../../api/lib/user';
+import { IWatchArticle, IUser2, IAvgPrice } from '../../types';
 
 import { getArticles } from '../../api/lib/watch';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -22,7 +22,6 @@ import { LoadingPage } from '../loadingpage/LoadingPage';
 const ProfilePage = () => {
   const [user, loading, error] = useAuthState(getAuth());
 
-  const [totalValue, setTotalValue] = useState<IPriceData[] | undefined>(undefined);
   const [articles, setArticles] = useState<IWatchArticle[] | undefined>(undefined);
   const [userData, setUserData] = useState<IUser2>();
   const [collSum, setCollSum] = useState<IAvgPrice[]>();
@@ -39,9 +38,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const totalValue = await getTotalValue();
       const articles = await getArticles();
-      setTotalValue(totalValue);
       setArticles(articles);
     };
     fetchData().catch(console.error);
@@ -71,7 +68,7 @@ const ProfilePage = () => {
       <Page>
         <Content>
           {/* Portfolio Section */}
-          <Section>{totalValue && <Chart title='' data={totalValue} />}</Section>
+          <Section>{collSum && <Chart title='' data={collSum} />}</Section>
           <Section>
             <Flex flexDirection='column'>
               <Flex flexDirection='row' gap={2}>

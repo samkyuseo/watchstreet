@@ -25,7 +25,7 @@ export interface IPrice {
 export interface IAvgPrice {
   price: number;
   date: string;
-  prices: IPrice[]; // can be null
+  prices?: IPrice[]; // can be null
 }
 export interface IPriceData {
   price: number;
