@@ -3,12 +3,26 @@ import { WatchTableItem } from './WatchTableItem';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import { IUser2 } from '../../../types';
+import { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getAuth } from 'firebase/auth';
+import { getUser } from '../../../api/lib/user';
 
-interface IWatchCollectionTableProps {
-  userData?: IUser2;
-}
+const WatchCollectionTable = () => {
+  const [user] = useAuthState(getAuth());
 
-const WatchCollectionTable = ({ userData }: IWatchCollectionTableProps) => {
+  const [userData, setUserData] = useState<IUser2>();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (user) {
+        const userData = await getUser(user.uid);
+        setUserData(userData);
+      }
+    };
+    fetchData().catch(console.error);
+  }, []);
+
   return (
     <Box
       // make content always 80% of the vh

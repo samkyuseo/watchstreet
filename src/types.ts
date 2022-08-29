@@ -107,6 +107,7 @@ export interface IUserWatch2 {
   watch_ref: DocumentReference;
   price_ref: DocumentReference;
   purchase_price: number;
+  id: string;
 }
 export interface IUserWatch {
   watch: IWatch;

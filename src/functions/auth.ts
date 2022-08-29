@@ -7,7 +7,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import { createUser } from '../api/lib/user';
+
 /**
  * Create account with username and password
  * @param email
@@ -16,9 +16,7 @@ import { createUser } from '../api/lib/user';
 export async function createUserWithEmail(email: string, password: string) {
   try {
     /* Create user in firebase auth */
-    const userCreds = await createUserWithEmailAndPassword(getAuth(), email, password);
-    /* Create user in firestore */
-    await createUser(userCreds.user.uid);
+    await createUserWithEmailAndPassword(getAuth(), email, password);
   } catch (_e: any) {
     const e = _e as FirebaseError;
     switch (e.code) {
@@ -34,8 +32,13 @@ export async function createUserWithEmail(email: string, password: string) {
  * Login using google auth provider. If user doesn't exist, it creates a user
  */
 export async function signInWithGoogle() {
-  const provider = new GoogleAuthProvider();
-  await signInWithRedirect(getAuth(), provider);
+  try {
+    const provider = new GoogleAuthProvider();
+    await signInWithRedirect(getAuth(), provider);
+  } catch (error: any) {
+    await signOutUser();
+    throw Error(error.message);
+  }
 }
 
 /**

@@ -27,6 +27,9 @@ const LoginPage = () => {
       setAuthError(error.message);
     }
   };
+  async function onClick() {
+    await signInWithGoogle();
+  }
   return (
     <Flex justifyContent={'center'} alignItems={'center'} height={'100vh'} width={'100wh'}>
       <Flex
@@ -41,13 +44,7 @@ const LoginPage = () => {
       >
         <Image onClick={() => navigate('/')} src={logo} height={'50px'} />
         <br />
-        <Button
-          variant='outline'
-          size='lg'
-          rightIcon={<FcGoogle />}
-          onClick={signInWithGoogle}
-          width='100%'
-        >
+        <Button variant='outline' size='lg' rightIcon={<FcGoogle />} onClick={onClick} width='100%'>
           Login with Google
         </Button>
         <br />

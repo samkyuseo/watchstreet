@@ -78,13 +78,8 @@ export function formatPriceChangeString(
  * @param priceChange
  * @returns a string in the form of +/-XX.XX%
  */
-export function formatPriceChangePercent(
-  data: IPriceData[] | IAvgPrice[],
-  priceChange: number,
-): string {
-  const neatPercentPriceChange = formatTwoDecimals(
-    (priceChange / data[data.length - 1].price) * 100,
-  );
+export function formatPriceChangePercent(currentPrice: number, priceChange: number): string {
+  const neatPercentPriceChange = formatTwoDecimals((priceChange / currentPrice) * 100);
   const sign = priceChange < 0 ? '-' : '+';
 
   const formatted = `${sign + neatPercentPriceChange}%`;

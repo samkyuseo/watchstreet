@@ -11,7 +11,7 @@ import { Chart } from '../../components/charts/Chart';
 import { WatchCollectionTable } from '../../components/tables/WatchCollectionTable/WatchCollectionTable';
 import { Article } from '../../components/articles/Article';
 
-import { getUser, getCollSum } from '../../api/lib/user';
+import { getUser, getCollSum, isNewUser, createUser } from '../../api/lib/user';
 import { IWatchArticle, IUser2, IAvgPrice } from '../../types';
 
 import { getArticles } from '../../api/lib/watch';
@@ -29,6 +29,8 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (user) {
+        const isNew = await isNewUser(user.uid);
+        if (isNew) await createUser(user.uid);
         const userData = await getUser(user.uid);
         setUserData(userData);
       }
@@ -88,7 +90,7 @@ const ProfilePage = () => {
           </Section>
         </Content>
         <StickySidebar>
-          <WatchCollectionTable userData={userData} />
+          <WatchCollectionTable />
         </StickySidebar>
       </Page>
     </>

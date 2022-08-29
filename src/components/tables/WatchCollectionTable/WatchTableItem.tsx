@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Flex, Text, VStack, Spacer } from '@chakra-ui/react';
+import { Flex, Text, VStack, Spacer, useDisclosure } from '@chakra-ui/react';
 import { formatPriceChangePercent, formatTwoDecimals } from '../../../functions/price';
 import { IAvgPrice, ISpecs, IUserWatch2 } from '../../../types';
 import { useEffect } from 'react';
 import { getAvgPrices, getSpecs } from '../../../api/lib/watch';
+import { NavOrDelModal } from '../../modals/NavOrDelModal';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getAuth } from 'firebase/auth';
 
 interface IWatchTableItemProps {
   watch: IUserWatch2;
@@ -12,9 +14,10 @@ interface IWatchTableItemProps {
 
 /** Generic table item to display watch data on table */
 const WatchTableItem = ({ watch }: IWatchTableItemProps) => {
-  const navigate = useNavigate();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [specs, setSpecs] = useState<ISpecs>();
   const [prices, setPrices] = useState<IAvgPrice[]>();
+  const [user] = useAuthState(getAuth());
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,9 +35,10 @@ const WatchTableItem = ({ watch }: IWatchTableItemProps) => {
     fetchData().catch(console.error);
   }, []);
 
-  if (!prices || !specs) {
+  if (!prices || !specs || !user) {
     return <></>;
   }
+
   const priceChange = prices[prices.length - 1].price - watch.purchase_price;
   const currentPrice = prices[prices.length - 1].price;
   return (
@@ -43,9 +47,7 @@ const WatchTableItem = ({ watch }: IWatchTableItemProps) => {
       width='100%'
       padding='10px'
       flexDirection='row'
-      onClick={() => {
-        navigate(`/watch/${watch.watch_ref.id}`);
-      }}
+      onClick={onOpen}
       _hover={{ backgroundColor: 'gray.50' }}
     >
       <VStack align='left'>
@@ -65,14 +67,25 @@ const WatchTableItem = ({ watch }: IWatchTableItemProps) => {
         </Text>
         {priceChange >= 0 ? (
           <Text fontSize='sm' color='green.light' textAlign='right'>
-            {formatPriceChangePercent(prices, priceChange)}
+            {formatPriceChangePercent(currentPrice, priceChange)}
           </Text>
         ) : (
           <Text fontSize='sm' color='red' textAlign='right'>
-            {formatPriceChangePercent(prices, priceChange)}
+            {formatPriceChangePercent(currentPrice, priceChange)}
           </Text>
         )}
       </VStack>
+      <NavOrDelModal
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
+        specs={specs}
+        userId={user.uid}
+        userWatch={watch}
+        watchId={watch.watch_ref.id}
+        priceChange={priceChange}
+        currentPrice={currentPrice}
+      />
     </Flex>
   );
 };

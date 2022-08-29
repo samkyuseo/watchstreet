@@ -30,6 +30,7 @@ getAnalytics(app);
 
 const App = () => {
   const [user, loading, error] = useAuthState(getAuth());
+
   const authRoutes = useRoutes([
     { path: '/watch/:id', element: <WatchPage /> },
     { path: '/profile', element: <ProfilePage /> },
@@ -37,10 +38,11 @@ const App = () => {
   ]);
   const unAuthRoutes = useRoutes([
     { path: '/', element: <LandingPage /> },
-    { path: '/login', element: <LoginPage /> },
     { path: '/signup', element: <SignUpPage /> },
+    { path: '/login', element: <LoginPage /> },
     { path: '*', element: <Navigate to='/' /> },
   ]);
+
   const loadingRoutes = useRoutes([{ path: '*', element: <LoadingPage /> }]);
 
   if (loading || error) {

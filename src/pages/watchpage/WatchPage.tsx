@@ -9,13 +9,13 @@ import { Navbar } from '../../components/navbars/Navbar';
 import { Chart } from '../../components/charts/Chart';
 import { Specs } from '../../components/specs/Specs';
 import { WatchImage } from '../../components/images/WatchImage/WatchImage';
+import { AddToCollModal } from '../../components/modals/AddToCollModal';
 
-import { useToast, Button } from '@chakra-ui/react';
+import { Button, useDisclosure } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { getAvgPrices, getSpecs } from '../../api/lib/watch';
 import { ISpecs, IAvgPrice } from '../../types';
 import { LoadingPage } from '../loadingpage/LoadingPage';
-import { addToColl } from '../../api/lib/user';
 import { getAuth } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
@@ -23,8 +23,8 @@ const WatchPage = () => {
   const { id } = useParams<{ id: string }>();
   const [specs, setSpecs] = useState<ISpecs>();
   const [avgPrices, setAvgPrices] = useState<IAvgPrice[]>();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [user] = useAuthState(getAuth());
-  const toast = useToast();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,27 +45,6 @@ const WatchPage = () => {
     };
     fetchData().catch(console.error);
   }, [id]);
-
-  async function handleClick(userId: string, watchId: string, purchasePrice: number) {
-    try {
-      await addToColl(userId, watchId, purchasePrice);
-      toast({
-        title: 'Success.',
-        description: 'Added to your collection',
-        status: 'success',
-        duration: 9000,
-        isClosable: true,
-      });
-    } catch (error) {
-      toast({
-        title: 'Error.',
-        description: 'Sorry. There was an error.',
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-      });
-    }
-  }
 
   if (!specs || !avgPrices || !user || !id) {
     return <LoadingPage />;
@@ -93,14 +72,17 @@ const WatchPage = () => {
           {/* Image */}
           <WatchImage image={specs.images[0]} />
           {/* Actions */}
-          <Button
-            mt='40px'
-            variant='pop'
-            width='100%'
-            onClick={() => handleClick(user.uid, id, 1000)}
-          >
+          <Button mt='40px' variant='pop' width='100%' onClick={onOpen}>
             Add to Collection
           </Button>
+          <AddToCollModal
+            isOpen={isOpen}
+            onOpen={onOpen}
+            onClose={onClose}
+            specs={specs}
+            userId={user.uid}
+            watchId={id}
+          />
         </StickySidebar>
       </Page>
     </>
