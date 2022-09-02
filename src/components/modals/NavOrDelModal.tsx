@@ -14,6 +14,8 @@ import { ISpecs, IUserWatch2 } from '../../types';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { formatTwoDecimals, formatPriceChangePercent } from '../../functions/price';
 import { removeFromColl } from '../../api/lib/user';
+import { UpdateCollection } from '../providers/UpdateCollection';
+import { useContext } from 'react';
 
 interface INavOrDelModalProps {
   isOpen: boolean;
@@ -36,6 +38,7 @@ const NavOrDelModal = ({
   currentPrice,
   watchId,
 }: INavOrDelModalProps) => {
+  const { value, setValue } = useContext(UpdateCollection);
   const navigate = useNavigate();
   const toast = useToast();
   async function handleRemove() {
@@ -48,6 +51,7 @@ const NavOrDelModal = ({
         duration: 9000,
         isClosable: true,
       });
+      setValue(value + 1);
       onClose();
     } catch (error) {
       toast({

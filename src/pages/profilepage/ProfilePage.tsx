@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { Page } from '../../components/layouts/Page';
 import { Content } from '../../components/layouts/Content';
@@ -18,6 +18,7 @@ import { getArticles } from '../../api/lib/watch';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { LoadingPage } from '../loadingpage/LoadingPage';
+import { UpdateCollection } from '../../components/providers/UpdateCollection';
 
 const ProfilePage = () => {
   const [user, loading, error] = useAuthState(getAuth());
@@ -25,6 +26,8 @@ const ProfilePage = () => {
   const [articles, setArticles] = useState<IWatchArticle[] | undefined>(undefined);
   const [userData, setUserData] = useState<IUser2>();
   const [collSum, setCollSum] = useState<IAvgPrice[]>();
+
+  const collectionUpdated = useContext(UpdateCollection);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +39,7 @@ const ProfilePage = () => {
       }
     };
     fetchData().catch(console.error);
-  }, [loading]);
+  }, [loading, collectionUpdated.value]);
 
   useEffect(() => {
     const fetchData = async () => {

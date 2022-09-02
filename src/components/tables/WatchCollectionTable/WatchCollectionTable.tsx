@@ -3,14 +3,15 @@ import { WatchTableItem } from './WatchTableItem';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import { IUser2 } from '../../../types';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { getUser } from '../../../api/lib/user';
+import { UpdateCollection } from '../../providers/UpdateCollection';
 
 const WatchCollectionTable = () => {
   const [user] = useAuthState(getAuth());
-
+  const collectionUpdated = useContext(UpdateCollection);
   const [userData, setUserData] = useState<IUser2>();
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const WatchCollectionTable = () => {
       }
     };
     fetchData().catch(console.error);
-  }, []);
+  }, [collectionUpdated.value]);
 
   return (
     <Box

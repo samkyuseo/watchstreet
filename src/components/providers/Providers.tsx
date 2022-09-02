@@ -1,10 +1,11 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
 import { theme } from '../../theme/theme';
 
 import '@fontsource/barlow';
 import '@fontsource/inter';
+import { UpdateCollection } from './UpdateCollection';
 
 interface IProps {
   children: ReactNode;
@@ -14,9 +15,12 @@ interface IProps {
  * @param children a react child
  */
 export const Providers = ({ children }: IProps) => {
+  const [value, setValue] = useState(0);
   return (
-    <ChakraProvider theme={theme}>
-      <BrowserRouter>{children}</BrowserRouter>
-    </ChakraProvider>
+    <UpdateCollection.Provider value={{ value, setValue }}>
+      <ChakraProvider theme={theme}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </ChakraProvider>
+    </UpdateCollection.Provider>
   );
 };
