@@ -13,6 +13,7 @@ import { getFirestore } from 'firebase/firestore';
 import { LoadingPage } from './pages/loadingpage/LoadingPage';
 import { LoginPage } from './pages/loginpage/LoginPage';
 import { SignUpPage } from './pages/signuppage/SignUpPage';
+import TestPage from './pages/testpage/TestPage';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBNvP9lKSi6K-Mean3tkJfy65a6OfYq3oI',
@@ -34,6 +35,8 @@ const App = () => {
   const authRoutes = useRoutes([
     { path: '/watch/:id', element: <WatchPage /> },
     { path: '/profile', element: <ProfilePage /> },
+    { path: '/test', element: <TestPage /> },
+
     { path: '*', element: <Navigate to='/profile' /> },
   ]);
   const unAuthRoutes = useRoutes([

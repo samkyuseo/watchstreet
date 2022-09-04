@@ -1,24 +1,10 @@
-import {
-  Box,
-  Text,
-  MenuButton,
-  Menu,
-  MenuList,
-  MenuItem,
-  // MenuDivider,
-  Image,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Button,
-} from '@chakra-ui/react';
-import { BsSearch } from 'react-icons/bs';
+import { Box, Text, MenuButton, Menu, MenuList, MenuItem, Image, Button } from '@chakra-ui/react';
 import { FaSignOutAlt } from 'react-icons/fa';
 
 import { useNavigate } from 'react-router';
 import { signOutUser } from '../../functions/auth';
 import logo from '../../assets/images/logo.svg';
-
+import { Autocomplete } from '../../pages/testpage/Autocomplete';
 const Navbar = () => {
   const navigate = useNavigate();
   return (
@@ -46,27 +32,17 @@ const Navbar = () => {
       </Box>
       {/* Search Bar */}
       <Box width='1000px' margin='auto'>
-        <SearchBar />
+        <Autocomplete
+          placeholder='Search by brand, reference, diameter, year, caliber...'
+          openOnFocus={true}
+          debug={true}
+        />
       </Box>
       {/* Left Buttons */}
       <Box width='200px'>
         <LeftButtons />
       </Box>
     </Box>
-  );
-};
-
-const SearchBar = () => {
-  return (
-    <InputGroup width='70%'>
-      <InputLeftElement pointerEvents='none' children={<BsSearch color='gray' />} />
-      <Input
-        variant='outline'
-        placeholder='Search watches'
-        maxWidth='100%'
-        focusBorderColor='gray'
-      />
-    </InputGroup>
   );
 };
 

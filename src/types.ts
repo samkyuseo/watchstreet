@@ -40,7 +40,7 @@ export interface IWatchSpecs {
   braceletMaterial: string;
   description: string;
 }
-export interface ISpecs {
+export type ISpecs = {
   general: {
     brand_name: string;
     model_name: string;
@@ -71,7 +71,7 @@ export interface ISpecs {
     bracelet_name: string;
   };
   images: string[];
-}
+};
 export interface IWatch {
   id: string;
   image: string;
