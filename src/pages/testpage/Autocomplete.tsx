@@ -8,11 +8,10 @@ import { getAlgoliaResults } from '@algolia/autocomplete-preset-algolia';
 import { Hit } from '@algolia/client-search';
 import algoliasearch from 'algoliasearch/lite';
 import React, { useEffect, useRef, useMemo } from 'react';
-import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { Box, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { BsSearch } from 'react-icons/bs';
 import { ISpecs } from '../../types';
 import { useNavigate } from 'react-router';
-import { collection } from 'firebase/firestore';
 const searchClient = algoliasearch('DJ3G6SKSEW', '955dd0b5882aa1a41f7d3d281f874bd3');
 
 type MyState = ISpecs & {
@@ -94,29 +93,25 @@ export function Autocomplete(props: Partial<AutocompleteOptions<AutocompleteItem
       window.removeEventListener('touchmove', onTouchMove);
     };
   }, [getEnvironmentProps, formRef, inputRef, panelRef]);
-  console.log(autocompleteState.collections);
   return (
     <div className='aa-Autocomplete' {...autocomplete.getRootProps({})}>
       <form ref={formRef} {...autocomplete.getFormProps({ inputElement: inputRef.current })}>
-        <div className='aa-InputWrapper'>
-          <InputGroup width='100%'>
-            <InputLeftElement pointerEvents='none' children={<BsSearch color='gray' />} />
-            <Input
-              variant='outline'
-              maxWidth='70%'
-              ref={inputRef}
-              {...autocomplete.getInputProps({ inputElement: inputRef.current })}
-              focusBorderColor='gray'
-              onBlur={() => {
-                setAutocompleteState({ ...autocompleteState, isOpen: false });
-              }}
-            />
-          </InputGroup>
-        </div>
+        <InputGroup width='100%'>
+          <InputLeftElement pointerEvents='none' children={<BsSearch color='gray' />} />
+          <Input
+            variant='outline'
+            maxWidth='70%'
+            ref={inputRef}
+            {...autocomplete.getInputProps({ inputElement: inputRef.current })}
+            focusBorderColor='gray'
+            onBlur={() => {
+              setAutocompleteState({ ...autocompleteState, isOpen: false });
+            }}
+          />
+        </InputGroup>
       </form>
-
       {autocompleteState.isOpen && (
-        <div
+        <Box
           ref={panelRef}
           className={[
             'aa-Panel',
@@ -127,7 +122,7 @@ export function Autocomplete(props: Partial<AutocompleteOptions<AutocompleteItem
             .join(' ')}
           {...autocomplete.getPanelProps({})}
         >
-          <div className='aa-PanelLayout aa-Panel--scrollable'>
+          <Box className='aa-PanelLayout aa-Panel--scrollable' maxWidth={'70%'}>
             {autocompleteState.collections.map((collection, index) => {
               const { source, items } = collection;
 
@@ -164,8 +159,8 @@ export function Autocomplete(props: Partial<AutocompleteOptions<AutocompleteItem
                 </section>
               );
             })}
-          </div>
-        </div>
+          </Box>
+        </Box>
       )}
     </div>
   );
