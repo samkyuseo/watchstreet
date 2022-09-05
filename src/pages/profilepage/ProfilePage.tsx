@@ -78,7 +78,7 @@ const ProfilePage = () => {
             <Flex flexDirection='column'>
               <Flex flexDirection='row' gap={2}>
                 <Heading variant='section-heading'>News Articles</Heading>
-                <Tooltip label='New articles added every week!'>
+                <Tooltip label='New articles added every week!' color='white'>
                   <Tag marginTop={'auto'}>info</Tag>
                 </Tooltip>
               </Flex>

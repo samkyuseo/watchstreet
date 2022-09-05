@@ -59,7 +59,7 @@ const WatchCollectionTable = () => {
             <Text variant='bold-text' fontSize='lg'>
               Collection
             </Text>
-            <Tooltip label='Search for watches to add your collection.'>
+            <Tooltip label='Search for watches and add it to your collection!' color='white'>
               <Tag marginTop={'auto'}>info</Tag>
             </Tooltip>
             {/* <Flex marginY='auto' marginRight='8px'>
