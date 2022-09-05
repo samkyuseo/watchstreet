@@ -12,7 +12,6 @@ import { Box, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { BsSearch } from 'react-icons/bs';
 import { ISpecs } from '../../types';
 import { useNavigate } from 'react-router';
-import '@algolia/autocomplete-theme-classic';
 
 const searchClient = algoliasearch('DJ3G6SKSEW', '955dd0b5882aa1a41f7d3d281f874bd3');
 
