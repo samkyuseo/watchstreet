@@ -5,7 +5,7 @@ import { theme } from '../../theme/theme';
 
 import '@fontsource/barlow';
 import '@fontsource/inter';
-import '@algolia/autocomplete-theme-classic';
+import '../../theme/algolia.css';
 import { UpdateCollection } from './UpdateCollection';
 
 interface IProps {
