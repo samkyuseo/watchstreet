@@ -57,7 +57,7 @@ const ProfilePage = () => {
       }
     };
     fetchData().catch(console.error);
-  }, [userData]);
+  }, [userData, collectionUpdated.value]);
 
   if (loading || error) {
     return <LoadingPage />;
@@ -78,8 +78,8 @@ const ProfilePage = () => {
             <Flex flexDirection='column'>
               <Flex flexDirection='row' gap={2}>
                 <Heading variant='section-heading'>News Articles</Heading>
-                <Tooltip label='This is an experimental feature!'>
-                  <Tag marginTop={'auto'}>alpha</Tag>
+                <Tooltip label='New articles added every week!'>
+                  <Tag marginTop={'auto'}>info</Tag>
                 </Tooltip>
               </Flex>
               <Box marginTop='20px'>

@@ -1,6 +1,5 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Tag, Text, Tooltip } from '@chakra-ui/react';
 import { WatchTableItem } from './WatchTableItem';
-import { AiOutlinePlus } from 'react-icons/ai';
 
 import { IUser2 } from '../../../types';
 import { useContext, useEffect, useState } from 'react';
@@ -52,16 +51,20 @@ const WatchCollectionTable = () => {
           <Flex
             borderBottom='1px'
             borderColor='gray.200'
-            justifyContent='space-between'
+            // justifyContent='space-between'
             width='100%'
             p='10px'
+            gap={'10px'}
           >
             <Text variant='bold-text' fontSize='lg'>
               Collection
             </Text>
-            <Flex marginY='auto' marginRight='8px'>
+            <Tooltip label='Search for watches to add your collection.'>
+              <Tag marginTop={'auto'}>info</Tag>
+            </Tooltip>
+            {/* <Flex marginY='auto' marginRight='8px'>
               <AiOutlinePlus />
-            </Flex>
+            </Flex> */}
           </Flex>
           {/* Table content */}
           {userData.collection.map((watch, index) => {

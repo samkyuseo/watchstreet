@@ -22,7 +22,11 @@ const Chart = ({ subtitle, title, data }: IChartProps) => {
   /* Hooks */
   const priceRef = useRef<HTMLHeadingElement>(null);
   const priceChangeRef = useRef<HTMLParagraphElement>(null);
+
   useEffect(() => {
+    if (data.length === 0) {
+      data = [{ price: 0, date: 'Add some watches!' }];
+    }
     /* Set the chart price as soon as component is rendered */
     if (priceRef.current) {
       priceRef.current.innerText = `$${formatTwoDecimals(getLatestPrice(data))}`;
@@ -36,6 +40,9 @@ const Chart = ({ subtitle, title, data }: IChartProps) => {
   }, [data]);
 
   const CustomTooltip = ({ active, payload, label }: any) => {
+    if (data.length === 0) {
+      data = [{ price: 0, date: 'Add some watches!' }];
+    }
     /* Tool tip is not active */
     if (!active && priceRef.current) {
       priceRef.current.innerText = `$${formatTwoDecimals(getLatestPrice(data))}`;

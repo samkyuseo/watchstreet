@@ -141,8 +141,6 @@ export async function addToColl(userId: string, watchId: string, purchasePrice: 
  * @param watchId
  */
 export async function removeFromColl(userId: string, watchId: string) {
-  console.log('hi');
-  console.log(watchId);
   try {
     const docRef = await getDoc(doc(db, 'users', userId));
     if (!docRef.exists()) {

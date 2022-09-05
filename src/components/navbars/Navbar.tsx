@@ -4,7 +4,7 @@ import { FaSignOutAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
 import { signOutUser } from '../../functions/auth';
 import logo from '../../assets/images/logo.svg';
-import { Autocomplete } from '../../pages/testpage/Autocomplete';
+import { Autocomplete } from './Autocomplete';
 const Navbar = () => {
   const navigate = useNavigate();
   return (
@@ -33,13 +33,13 @@ const Navbar = () => {
       {/* Search Bar */}
       <Box width='1000px' margin='auto'>
         <Autocomplete
-          placeholder='Search by brand, reference, diameter, year, caliber...'
+          placeholder='Search brand, reference, diameter, year, caliber...'
           openOnFocus={true}
           debug={true}
         />
       </Box>
       {/* Left Buttons */}
-      <Box width='200px'>
+      <Box width='250px'>
         <LeftButtons />
       </Box>
     </Box>
@@ -50,6 +50,13 @@ const LeftButtons = () => {
   const navigate = useNavigate();
   return (
     <Box display='flex'>
+      <Button
+        variant='minimal'
+        mr='20px'
+        onClick={() => window.open('https://www.reddit.com/r/watchstreet/')}
+      >
+        Forum
+      </Button>
       <Button variant='minimal' mr='20px' onClick={() => navigate('/profile')}>
         Collection
       </Button>
